@@ -1,0 +1,27 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: spark-kafka-consumer
+  namespace: kafka
+spec:
+  template:
+    spec:
+      containers:
+      - name: spark-consumer
+        image: reddit-spark-consumer:latest
+        imagePullPolicy: IfNotPresent # pull from local storage
+        command:
+          - /opt/bitnami/spark/bin/spark-submit
+          - --master
+          - local[*] # Run Spark locally with as many worker threads as logical cores on your machine.
+          - --deploy-mode
+          - client # default is client
+          - --conf # specify path for cache and other stuff as an absolute path
+          - spark.jars.ivy=/tmp/.ivy2
+          - --packages #required packages by spark structured streaming + kafka
+          - org.apache.spark:spark-sql-kafka-0-10_2.12:3.5.5
+          - consumer.py
+        #TODO: fix this, running as a root is not ok
+        securityContext:
+          runAsUser: 0 # run as root
+      restartPolicy: Never
