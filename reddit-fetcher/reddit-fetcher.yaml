@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: reddit-fetcher
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: reddit-fetcher
+  template:
+    metadata:
+      labels:
+        app: reddit-fetcher
+    spec:
+      containers:
+      - name: fetcher
+        image: tuonome/reddit-fetcher:latest
+        env:
+        - name: KAFKA_BOOTSTRAP_SERVERS
+          value: "kafka:9092"
+        - name: REDDIT_CLIENT_ID
+          valueFrom:
+            secretKeyRef:
+              name: reddit-secrets
+              key: client_id
+        - name: REDDIT_CLIENT_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: reddit-secrets
+              key: client_secret
