@@ -1,2 +1,2 @@
 # ReddiTrend
-ReddiTrend: Realtime Reddit Graph
+ReddiTrend: Realtime Reddit Graph.
