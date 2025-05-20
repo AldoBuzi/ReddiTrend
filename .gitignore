@@ -1,3 +1,4 @@
 .*
 !/.gitignore
 reddit-secret.yaml
+reddit-fetcher/reddit-fetcher/
