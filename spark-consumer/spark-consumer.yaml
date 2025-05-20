@@ -20,7 +20,7 @@ spec:
           - spark.jars.ivy=/tmp/.ivy2
           - --packages #required packages by spark structured streaming + kafka
           - org.apache.spark:spark-sql-kafka-0-10_2.12:3.5.5
-          - consumer.py
+          - app/consumer.py
         #TODO: fix this, running as a root is not ok
         securityContext:
           runAsUser: 0 # run as root

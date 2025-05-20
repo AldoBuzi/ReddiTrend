@@ -6,8 +6,11 @@ Note that this initial configuration runs everyting in the same cluster but on d
 ```
 eval $(minikube -p ReddiTrend-Cluster docker-env)
 ```
-
-
+You can check your default docker env with:
+```
+docker info | grep "Name
+```
+It should return something like: ```Name: ReddiTrend-Cluster```
 ## 2. Start Minikube
 
 ```
@@ -35,7 +38,10 @@ If you changed the ```kraft-kafka.yaml``` or for any other reason, you can use:
 ```
 kubectl apply -f kraft-kafka.yaml -n kafka
 ```
-
+Create the default topic by applying this yaml:
+```
+kubectl apply -f kafka-topic.yaml -n kafka
+```
 Now strimzi will have created all the necessary pods to run the broker. Your broker is correctly running. Check the pods by using:
 ```
  kubectl get pods -n kafka  
