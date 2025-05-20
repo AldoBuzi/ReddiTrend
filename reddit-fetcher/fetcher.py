@@ -4,13 +4,13 @@ import json
 from kafka import KafkaProducer
 
 reddit = praw.Reddit(
-    client_id='YOUR_CLIENT_ID',
-    client_secret='YOUR_CLIENT_SECRET',
+    client_id=os.environ["REDDIT_CLIENT_ID"],
+    client_secret=os.environ["REDDIT_CLIENT_SECRET"],
     user_agent='reddit-fetcher'
 )
 
 producer = KafkaProducer(
-    bootstrap_servers='kafka:9092',
+    bootstrap_servers=["KAFKA_BOOTSTRAP_SERVERS"],
     value_serializer=lambda v: json.dumps(v).encode('utf-8')
 )
 
@@ -18,6 +18,7 @@ TOPIC = 'reddit-posts'
 
 def fetch_and_send():
     print("Fetching Reddit posts...")
+
     for submission in reddit.subreddit("all").hot(limit=100):
         post = {
             'id': submission.id,
@@ -26,7 +27,10 @@ def fetch_and_send():
             'created_utc': submission.created_utc,
             'subreddit': submission.subreddit.display_name,
         }
+
+        print(post)
         producer.send(TOPIC, post)
+
     producer.flush()
     print("Sent posts to Kafka.")
 

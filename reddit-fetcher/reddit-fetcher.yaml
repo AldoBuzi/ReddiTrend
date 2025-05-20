@@ -14,10 +14,11 @@ spec:
     spec:
       containers:
       - name: fetcher
-        image: tuonome/reddit-fetcher:latest
+        image: redditrend/reddit-fetcher:latest
+        imagePullPolicy: Never
         env:
         - name: KAFKA_BOOTSTRAP_SERVERS
-          value: "kafka:9092"
+          value: "my-cluster-kafka-bootstrap:9092"
         - name: REDDIT_CLIENT_ID
           valueFrom:
             secretKeyRef:
