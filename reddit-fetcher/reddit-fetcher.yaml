@@ -18,7 +18,7 @@ spec:
         imagePullPolicy: Never
         env:
         - name: KAFKA_BOOTSTRAP_SERVERS
-          value: "my-cluster-kafka-bootstrap:9092"
+          value: "my-cluster-kafka-bootstrap.kafka.svc:9092"
         - name: REDDIT_CLIENT_ID
           valueFrom:
             secretKeyRef:
