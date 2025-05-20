@@ -1,6 +1,7 @@
 import praw
 import time
 import json
+import os
 from kafka import KafkaProducer
 
 reddit = praw.Reddit(
@@ -10,7 +11,7 @@ reddit = praw.Reddit(
 )
 
 producer = KafkaProducer(
-    bootstrap_servers=["KAFKA_BOOTSTRAP_SERVERS"],
+    bootstrap_servers=os.environ["KAFKA_BOOTSTRAP_SERVERS"],
     value_serializer=lambda v: json.dumps(v).encode('utf-8')
 )
 
