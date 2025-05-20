@@ -1,0 +1,9 @@
+from pyspark.sql import SparkSession
+
+def init_spark(app_name="SparkApp"):
+    return SparkSession.builder.appName(app_name).getOrCreate()
+
+def process_message(spark, message):
+    # Create a DataFrame with the message content
+    df = spark.createDataFrame([(message,)], ["message"])
+    df.show()

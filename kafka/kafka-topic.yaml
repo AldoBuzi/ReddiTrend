@@ -1,0 +1,11 @@
+apiVersion: kafka.strimzi.io/v1beta2
+kind: KafkaTopic
+metadata:
+  name: reddit-posts
+  namespace: kafka  # same namespace as your Kafka cluster
+  labels:
+    strimzi.io/cluster: my-cluster  # match the name of your Kafka cluster
+spec:
+  partitions: 3
+  replicas: 1
+  topicName: reddit-posts

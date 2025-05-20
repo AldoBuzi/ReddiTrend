@@ -2,4 +2,7 @@ FROM bitnami/spark:3.5.5
 
 
 # Copy your Spark script into the image
-COPY consumer.py  consumer.py
+ENV PYTHONPATH "${PYTHONPATH}:/app/"
+COPY app/__init__.py app/__init__.py
+COPY app/spark.py app/spark.py
+COPY app/consumer.py  app/consumer.py
