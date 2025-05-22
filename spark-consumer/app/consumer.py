@@ -35,22 +35,12 @@ schema = StructType() \
 
 # Parse Kafka message value
 parsed = df.selectExpr("CAST(value AS STRING) as json_data")
-    
+
+#Careful, from_json does not throw errors, we may need to check if data is NULL
 parsed_df = parsed.select(from_json(col("json_data"), schema=schema).alias("data"))
-    
+#df = spark.read.json(spark.sparkContext.parallelize(['{ "timestamp": 1, "title": "CIAOOO", "karma": 154, "subreddit": "r/italy", "comments": [{"text":"ciao2","karma":1}],"link": "fakeUrl"}']))
 
-failed_parse_df = parsed_df.filter("data IS NULL")
 successful_parse_df = parsed_df.filter("data IS NOT NULL")
-
-# Show bad records (optional)
-parsed.writeStream \
-    .outputMode("append") \
-    .format("console") \
-    .option("truncate", False) \
-    .start()
-
-#failed_parse_df.printSchema()
-#failed_parse_df.explain()
 # Continue with good records
 successful_parse_df.select("data.*") \
     .writeStream \

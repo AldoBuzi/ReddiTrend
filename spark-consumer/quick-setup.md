@@ -20,3 +20,12 @@ kubectl delete job spark-kafka-consumer -n kafka
 ```
 kubectl logs -f job/spark-kafka-consumer -n kafka
 ```
+## 5. You can automate the following steps by running the bash script you find in the folder
+Make sure to give permissions to the script with the following command:
+```
+chmod +x apply-changes.sh
+```
+Then, you can just type:
+```
+./apply-changes.sh
+```
