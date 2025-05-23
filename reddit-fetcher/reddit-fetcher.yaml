@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: fetcher
-        image: redditrend/reddit-fetcher:latest
+        image: reddit-fetcher:latest
         imagePullPolicy: Never
         env:
         - name: KAFKA_BOOTSTRAP_SERVERS
