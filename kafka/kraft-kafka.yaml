@@ -1,31 +1,31 @@
 apiVersion: kafka.strimzi.io/v1beta2
 kind: KafkaNodePool
 metadata:
-  name: dual-role
+  name: dual-role # Name of the node pool
   labels:
-    strimzi.io/cluster: my-cluster
+    strimzi.io/cluster: my-cluster # Associates this node pool with the Kafka cluster
 spec:
-  replicas: 1
+  replicas: 1 # Number of Kafka nodes in this pool
   roles:
     - controller
     - broker
   storage:
-    type: jbod
+    type: jbod # Storage layout using JBOD (Just a Bunch Of Disks)
     volumes:
       - id: 0
-        type: persistent-claim
-        size: 100Gi
-        deleteClaim: false
-        kraftMetadata: shared
+        type: persistent-claim # Uses a Persistent Volume Claim for storage
+        size: 100Gi # Size of the volume
+        deleteClaim: false  # Volume won't be deleted if the cluster is deleted
+        kraftMetadata: shared # Metadata is shared for KRaft mode
 ---
 
 apiVersion: kafka.strimzi.io/v1beta2
 kind: Kafka
 metadata:
-  name: my-cluster
+  name: my-cluster # Name of the Kafka cluster
   annotations:
-    strimzi.io/node-pools: enabled
-    strimzi.io/kraft: enabled
+    strimzi.io/node-pools: enabled # Enables use of node pools
+    strimzi.io/kraft: enabled # Enables KRaft mode
 spec:
   kafka:
     version: 4.0.0
@@ -40,12 +40,12 @@ spec:
         type: internal
         tls: true
     config:
-      offsets.topic.replication.factor: 1
-      transaction.state.log.replication.factor: 1
-      transaction.state.log.min.isr: 1
-      default.replication.factor: 1
-      min.insync.replicas: 1
-      auto.create.topics.enable: true
+      offsets.topic.replication.factor: 1 # Replication factor for internal offset topic
+      transaction.state.log.replication.factor: 1 # Replication for transaction logs
+      transaction.state.log.min.isr: 1 # Minimum in-sync replicas for transactions
+      default.replication.factor: 1 # Default replication for new topics
+      min.insync.replicas: 1 # Minimum number of in-sync replicas needed to produce
+      auto.create.topics.enable: true # Allows automatic creation of topics
   entityOperator:
     topicOperator: {}
     userOperator: {}
