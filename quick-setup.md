@@ -8,7 +8,7 @@ eval $(minikube -p ReddiTrend-Cluster docker-env)
 ```
 You can check your default docker env with:
 ```
-docker info | grep "Name
+docker info | grep "Name"
 ```
 It should return something like: ```Name: ReddiTrend-Cluster```
 ## 2. Start Minikube

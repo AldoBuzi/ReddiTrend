@@ -1,0 +1,21 @@
+{
+  "name": "ReddiTrend Dev Container",
+  "build": {
+    "dockerfile": "../spark-consumer/Dockerfile",
+    "context": "../spark-consumer"
+  },
+  "workspaceFolder": "/workspace",
+  "settings": {
+    "python.defaultInterpreterPath": "/usr/bin/python3"
+  },
+  "mounts": [
+    "source=${localWorkspaceFolder},target=/workspace,type=bind"
+  ],
+  "remoteUser": "root",
+  "extensions": [
+    "ms-python.python",           // supporto Python
+    "ms-toolsai.jupyter",         // (opzionale, per Jupyter)
+    "ms-azuretools.vscode-docker", // supporto Docker
+    "ms-kubernetes-tools.vscode-kubernetes-tools" // supporto Kubernetes
+  ]
+}
