@@ -1,4 +1,5 @@
 from pyspark.sql import SparkSession
+from graphframes import GraphFrame
 
 def init_spark(app_name="SparkApp"):
     return SparkSession.builder.appName(app_name).getOrCreate()
