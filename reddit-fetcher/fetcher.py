@@ -39,7 +39,7 @@ def fetch_and_send():
         top_comments = post.comments[:10]
 
         for comment in top_comments:
-            post_data["comments"].append((comment.body, comment.score))
+            post_data["comments"].append({"text": comment.body, "karma": comment.score})
 
         print(index, json.dumps(post_data, indent=2, ensure_ascii=False, sort_keys=False))
         producer.send(TOPIC, post_data) # Send the posts data to the kafka topic
