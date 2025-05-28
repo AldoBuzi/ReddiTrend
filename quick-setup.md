@@ -46,7 +46,7 @@ Now strimzi will have created all the necessary pods to run the broker. Your bro
 ```
  kubectl get pods -n kafka  
 ```
-Note(TODO): This must be changed to allow replicas, we must study strimzi deepier to understand how we can configure it.
+Note(TODO): This must be changed to allow replicas, we must study strimzi deeper to understand how we can configure it.
 ## 6. (Optional) Wait for Kafka to Be Ready
 You can wait until the Kafka cluster is ready before proceeding:
 
