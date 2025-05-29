@@ -7,11 +7,9 @@ import pandas as pd
 pd.set_option("display.max_colwidth", None)
 
 
-# 1. KeyBERT model
 kw_model = KeyBERT()
 
-# 2. Function to run KeyBERT on each batch
-def extract_keywords(batch_df: DataFrame, batch_id):
+def extract_keywords(batch_df, batch_id):
     # Convert Spark DataFrame to pandas
     pdf = batch_df.toPandas()
     # Apply KeyBERT
@@ -52,8 +50,6 @@ schema = StructType() \
 parsed = df.selectExpr("CAST(value AS STRING) as json_data")
 
 parsed_df = parsed.select(from_json(col("json_data"), schema=schema).alias("data"))
-
-#text_df = parsed_df.select(col("data.title").alias("text"))
 
 
 query = parsed_df.select("data.*") \

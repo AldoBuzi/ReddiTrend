@@ -23,6 +23,5 @@ RUN pip install pandas
 
 RUN pip install spark-nlp==6.0.2
 COPY app/__init__.py app/__init__.p
-COPY app/entities.txt app/entities.txt
 COPY app/spark.py app/spark.py
 COPY app/consumer.py  app/consumer.py
