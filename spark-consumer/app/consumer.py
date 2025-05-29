@@ -1,14 +1,28 @@
 from pyspark.sql import SparkSession
-from app.spark import init_spark, process_message
+from app.spark import init_spark
 from pyspark.sql.functions import from_json, col
-from pyspark.sql.types import StructType, StringType, TimestampType, IntegerType, ArrayType
-import os 
-print(os.getcwd())
-spark = init_spark("RedditKafkaConsumer")
+from pyspark.sql.types import StructType, StringType, IntegerType, ArrayType
+from keybert import KeyBERT
+import pandas as pd
+pd.set_option("display.max_colwidth", None)
 
-#spark = SparkSession.builder \
-#    .appName("RedditKafkaConsumer") \
-#    .getOrCreate()
+
+# 1. KeyBERT model
+kw_model = KeyBERT()
+
+# 2. Function to run KeyBERT on each batch
+def extract_keywords(batch_df: DataFrame, batch_id):
+    # Convert Spark DataFrame to pandas
+    pdf = batch_df.toPandas()
+    # Apply KeyBERT
+    pdf["keywords"] = pdf["title"].apply(lambda x: kw_model.extract_keywords(x,keyphrase_ngram_range=(1, 2), top_n=5))
+
+    # Print the result
+    print(f"=== BATCH {batch_id} ===")
+    print(pdf[:])
+
+spark = init_spark("ReddiTrendConsumer")
+
 
 # Read from Kafka topic
 # Kafka service name in K8s
@@ -26,6 +40,7 @@ schema = StructType() \
     .add("title", StringType()) \
     .add("karma", IntegerType()) \
     .add("subreddit", StringType()) \
+    .add("text",StringType())\
     .add("comments", ArrayType(
         StructType()
         .add("text", StringType())
@@ -36,17 +51,17 @@ schema = StructType() \
 # Parse Kafka message value
 parsed = df.selectExpr("CAST(value AS STRING) as json_data")
 
-#Careful, from_json does not throw errors, we may need to check if data is NULL
 parsed_df = parsed.select(from_json(col("json_data"), schema=schema).alias("data"))
-#df = spark.read.json(spark.sparkContext.parallelize(['{ "timestamp": 1, "title": "CIAOOO", "karma": 154, "subreddit": "r/italy", "comments": [{"text":"ciao2","karma":1}],"link": "fakeUrl"}']))
 
-successful_parse_df = parsed_df.filter("data IS NOT NULL")
-# Continue with good records
-successful_parse_df.select("data.*") \
+#text_df = parsed_df.select(col("data.title").alias("text"))
+
+
+query = parsed_df.select("data.*") \
     .writeStream \
     .outputMode("append") \
     .format("console") \
+    .foreachBatch(extract_keywords) \
     .option("truncate", False) \
-    .start() \
+    .start()\
     .awaitTermination()
 

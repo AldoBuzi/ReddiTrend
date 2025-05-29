@@ -9,6 +9,9 @@ docker build -t reddit-fetcher:latest .
 # Delete previous Reddit Fetcher deployment
 kubectl delete deployment reddit-fetcher -n kafka
 
+POD_NAME=$(kubectl get pods -n kafka | grep reddit-fetcher | awk '{print $1}')
+kubectl wait --for=delete pod/"$POD_NAME" -n kafka --timeout=60s
+
 # Deploy the Reddit Fetcher to the cluster
 kubectl apply -f reddit-fetcher.yaml -n kafka
 
