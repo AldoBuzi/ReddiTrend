@@ -1,7 +1,6 @@
 FROM bitnami/spark:3.5.5
 
 #TODO check if we can remove this 
-#USER root
 
 
 #RUN install_packages curl
@@ -14,17 +13,10 @@ FROM bitnami/spark:3.5.5
 
 
 # Copy your Spark script into the image
-ENV PYTHONPATH "${PYTHONPATH}:/app/"
-#RUN pip install graphframes
-#RUN pip install keybert
+RUN pip install graphframes
+RUN pip install keybert
 #RUN pip install pandas
 
 #RUN pip install vaderSentiment
 
 #RUN pip install spark-nlp==6.0.2
-
-COPY app/__init__.py app/__init__.p
-COPY app/spark.py app/spark.py
-COPY app/schema.py app/schema.py
-COPY app/graph.py app/graph.py
-COPY app/consumer.py  app/consumer.py

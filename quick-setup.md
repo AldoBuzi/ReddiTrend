@@ -72,3 +72,22 @@ To change its name, you must edit the ```kraft-kafka.yaml``` file used by the br
 3. (Optional) Change the namespace and all its references
 
 Lastly, make sure to update producer and consumer references.
+
+
+## 9. Run spark-rbac.yaml
+This file create a service account and a role binding, apply it with:
+```
+kubectl apply -f spark-rbac.yaml
+```
+To check if the account has been correctly created use:
+```
+kubectl get serviceaccounts -n kafka
+```
+and 
+```
+kubectl get clusterrolebindings -n kafka | grep spark
+```
+And check with this command that the answer is yes:
+```
+kubectl auth can-i create pod --as=system:serviceaccount:kafka:spark
+```

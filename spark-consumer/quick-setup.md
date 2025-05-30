@@ -27,5 +27,5 @@ chmod +x apply-changes.sh
 ```
 Then, you can just type:
 ```
-./apply-changes.sh
+. apply-changes.sh
 ```

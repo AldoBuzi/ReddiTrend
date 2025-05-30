@@ -1,38 +1,54 @@
-apiVersion: batch/v1
-kind: Job
+apiVersion: v1
+kind: Pod
 metadata:
   name: spark-kafka-consumer
   namespace: kafka
 spec:
-  template:
-    spec:
-      containers:
-      - name: spark-consumer
-        image: reddit-spark-consumer:latest
-        imagePullPolicy: IfNotPresent # pull from local storage
-        resources:
-            requests:
-              memory: "4Gi"
-              cpu: "2"
-            limits:
-              memory: "6Gi"
-              cpu: "4"
-        command:
-          - /opt/bitnami/spark/bin/spark-submit
-          - --master
-          - local[*] # Run Spark locally with as many worker threads as logical cores on your machine.
-          - --driver-memory 
-          - 16g 
-          - --conf 
-          - spark.kryoserializer.buffer.max=2000M
-          - --deploy-mode
-          - client # default is client
-          - --conf # specify path for cache and other stuff as an absolute path
-          - spark.jars.ivy=/tmp/.ivy2
-          - --packages #required packages by spark structured streaming + kafka
-          - org.apache.spark:spark-sql-kafka-0-10_2.12:3.5.5,graphframes:graphframes:0.8.4-spark3.5-s_2.12,com.johnsnowlabs.nlp:spark-nlp_2.12:6.0.2 # add graphframes to use graphx in python
-          - app/consumer.py
-        #TODO: fix this, running as a root is not ok
-        securityContext:
-          runAsUser: 0 # run as root
-      restartPolicy: Never
+    containers:
+    - name: spark-consumer
+      image: reddit-spark-consumer:latest
+      imagePullPolicy: Never
+      resources:
+          requests:
+            memory: "4Gi"
+            cpu: "2"
+          limits:
+            memory: "6Gi"
+            cpu: "4"
+      command:
+        - /opt/bitnami/spark/bin/spark-submit
+        - --master
+        - k8s://https://192.168.49.2:8443 #local[*] # Run Spark locally with as many worker threads as logical cores on your machine.
+        - --deploy-mode
+        - cluster # default is client, submitter launched driver outside of cluster
+        - --conf # specify path for cache and other stuff as an absolute path
+        - spark.jars.ivy=/tmp/.ivy2
+        - --conf 
+        - spark.kubernetes.namespace=kafka
+        - --conf
+        - spark.kubernetes.authenticate.driver.serviceAccountName=default
+        - --conf
+        - spark.kubernetes.container.image=spark-launcher:latest
+        - --conf 
+        - spark.driver.memory=2g
+        - --conf 
+        - spark.driver.memoryOverhead=512m
+        - --conf 
+        - spark.executor.memory=2g
+        - --conf 
+        - spark.executor.instances=2
+        - --conf 
+        - spark.kubernetes.executor.limit.cores=1
+        - --conf 
+        - spark.kubernetes.driver.limit.cores=1
+        - --conf 
+        - spark.kubernetes.executor.request.cores=0.5
+        - --conf
+        - spark.kubernetes.driver.request.cores=0.5
+        - --packages #required packages by spark structured streaming + kafka
+        - org.apache.spark:spark-sql-kafka-0-10_2.12:3.5.5,graphframes:graphframes:0.8.4-spark3.5-s_2.12,com.johnsnowlabs.nlp:spark-nlp_2.12:6.0.2 # add graphframes to use graphx in python
+        - local:///opt/bitnami/spark/app/consumer.py
+      #TODO: fix this, running as a root is not ok
+      securityContext:
+        runAsUser: 0 # run as root
+    restartPolicy: Never

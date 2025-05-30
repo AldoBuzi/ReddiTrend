@@ -2,7 +2,12 @@
 
 # Todo: Finish this and check that this works
 
-minikube start -p ReddiTrend-Cluster
+if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+  echo "⚠️ Please source this script: 'source $0'"
+  exit 1
+fi
+
+minikube start -p ReddiTrend-Cluster --memory=12000 --cpus=4
 
 kubectl create namespace kafka
 
@@ -24,6 +29,12 @@ kubectl apply -f kafka/kraft-kafka.yaml -n kafka
 
 sleep 1
 
+kubectl apply -f spark-rbac.yaml -n kafka
+
+sleep 1
+
 kubectl apply -f kafka/kafka-topic.yaml -n kafka
 
 kubectl wait kafka/my-cluster --for=condition=Ready --timeout=300s -n kafka
+
+eval $(minikube -p ReddiTrend-Cluster docker-env)

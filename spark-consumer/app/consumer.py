@@ -1,25 +1,30 @@
-from pyspark.sql import SparkSession
-from app.spark import init_spark
-from pyspark.sql.functions import from_json, col
-from pyspark.sql.types import StructType, StringType, IntegerType, ArrayType
+from pyspark.sql import DataFrame
+from app.schema import spark, schema
+from app.graph import add_vertices
+from pyspark.sql.functions import from_json, col, udf
 from keybert import KeyBERT
-import pandas as pd
-pd.set_option("display.max_colwidth", None)
+from pyspark.sql.types import  StringType, ArrayType
 
+def extract_keywords_udf(text, accuracy = 0.7):
+    kw_model = KeyBERT()
+    if text:
+        keywords = kw_model.extract_keywords(text, keyphrase_ngram_range=(1, 2), top_n=5)
+        # Just return keywords, or filter by relevance if needed
+        return [kw[0] for kw in keywords if kw[1] > accuracy]
+    return []
+# Register UDF
+extract_keywords = udf(extract_keywords_udf, ArrayType(StringType()))
 
-kw_model = KeyBERT()
-
-def extract_keywords(batch_df, batch_id):
-    # Convert Spark DataFrame to pandas
-    pdf = batch_df.toPandas()
-    # Apply KeyBERT
-    pdf["keywords"] = pdf["title"].apply(lambda x: kw_model.extract_keywords(x,keyphrase_ngram_range=(1, 2), top_n=5))
-
+def process_batch(batch_df: DataFrame, batch_id):
+    keywords_df = batch_df.withColumn("keywords", extract_keywords(batch_df["title"]))
+    keywords_df.show(truncate=False)  # Safe way to debug batch
+    
+    # Convert back to Spark DataFrame including keywords as array<string>
+    #vertices = add_vertices(spark=spark,df=keywords_df, debug=True)
     # Print the result
-    print(f"=== BATCH {batch_id} ===")
-    print(pdf[:])
+    print(f"============== BATCH {batch_id} ==============")
+    keywords_df.show(truncate=False) #safe there because this method is used inside "foreachBatch"
 
-spark = init_spark("ReddiTrendConsumer")
 
 
 # Read from Kafka topic
@@ -33,18 +38,6 @@ df = spark.readStream \
     .option("startingOffsets", "latest") \
     .load()
 
-schema = StructType() \
-    .add("timestamp", IntegerType()) \
-    .add("title", StringType()) \
-    .add("karma", IntegerType()) \
-    .add("subreddit", StringType()) \
-    .add("text",StringType())\
-    .add("comments", ArrayType(
-        StructType()
-        .add("text", StringType())
-        .add("karma", IntegerType())
-    )) \
-    .add("link", StringType()) 
 
 # Parse Kafka message value
 parsed = df.selectExpr("CAST(value AS STRING) as json_data")
@@ -56,8 +49,8 @@ query = parsed_df.select("data.*") \
     .writeStream \
     .outputMode("append") \
     .format("console") \
-    .foreachBatch(extract_keywords) \
-    .option("truncate", False) \
-    .start()\
-    .awaitTermination()
+    .foreachBatch(process_batch) \
+    .option("truncate", True) \
+    .start()
+query.awaitTermination()
 
