@@ -15,7 +15,7 @@ def get_vertex(keyword: str):
     
     raise HTTPException(status_code=404, detail="Vertex not found")
 
-@app.get("/vertices", response_model=List[Vertex])
+@app.get("/vertices", response_model=list[Vertex])
 def get_all_vertices():
     query = "SELECT keyword, count, sentiment FROM graph.vertices"
     results = session.execute(query)
@@ -31,7 +31,7 @@ def get_edge(keyword_x: str, keyword_y: str):
     
     raise HTTPException(status_code=404, detail="Edge not found")
 
-@app.get("/edges", response_model=List[Edges])
+@app.get("/edges", response_model=list[Edge])
 def get_all_edges():
     query = "SELECT keyword_x, keyword_y, count FROM graph.vertices"
     results = session.execute(query)
