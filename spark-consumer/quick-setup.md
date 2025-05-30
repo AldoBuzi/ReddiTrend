@@ -27,5 +27,11 @@ chmod +x apply-changes.sh
 ```
 Then, you can just type:
 ```
-. apply-changes.sh
+source apply-changes.sh
+```
+
+## 6. Start Spark Dashboard
+Run the following commmand:
+```
+source start-spak-monitor.sh
 ```

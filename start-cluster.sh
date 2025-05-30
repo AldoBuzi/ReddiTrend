@@ -35,6 +35,10 @@ sleep 1
 
 kubectl apply -f kafka/kafka-topic.yaml -n kafka
 
+sleep 1
+
 kubectl wait kafka/my-cluster --for=condition=Ready --timeout=300s -n kafka
+
+kubectl apply -f metrics-server/components.yaml
 
 eval $(minikube -p ReddiTrend-Cluster docker-env)
