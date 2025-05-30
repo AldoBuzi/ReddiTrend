@@ -4,14 +4,13 @@ CREATE KEYSPACE IF NOT EXISTS graph WITH REPLICATION = { 'class' : 'SimpleStrate
 -- Create the table vertices
 CREATE TABLE IF NOT EXISTS graph.vertices (
     keyword text PRIMARY KEY,
-    count int,
-    sentiment float
+    count counter
 );
 
 -- Create the table edges
 CREATE TABLE IF NOT EXISTS graph.edges (
     keyword_x text,
     keyword_y text,
-    count int,
+    count counter,
     PRIMARY KEY (keyword_x, keyword_y)
 );

@@ -10,10 +10,10 @@ spec:
         image: cassandra:3.11
         command: ["sh", "-c"]
         args:
-          - cqlsh cassandra-service < /schema/schema.cql
+          - cqlsh cassandra-service < /schema/schema.cql #connect to cassandra-service and execute the schema file
         volumeMounts:
         - name: schema-volume
-          mountPath: /schema
+          mountPath: /schema # Mounts the ConfigMap (cassandra-schema) at /schema
       restartPolicy: OnFailure
       volumes:
       - name: schema-volume

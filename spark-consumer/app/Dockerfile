@@ -5,6 +5,7 @@ USER root
 # Copy your Spark script into the image
 RUN pip install graphframes
 RUN pip install keybert
+RUN pip install cassandra-driver
 #RUN pip install pandas
 
 #RUN pip install vaderSentiment

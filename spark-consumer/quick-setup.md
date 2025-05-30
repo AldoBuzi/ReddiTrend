@@ -35,3 +35,7 @@ Run the following commmand:
 ```
 source start-spak-monitor.sh
 ```
+You can access the dashboard in the following page:
+```
+http://localhost:4040/
+```
