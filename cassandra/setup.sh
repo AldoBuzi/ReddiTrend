@@ -7,4 +7,4 @@ kubectl apply -f cassandra.yaml -n kafka
 kubectl create configmap cassandra-schema --from-file=schema.cql -n kafka
 
 # Deploy the schema initialization
-kubectl apply -f cassandra-init.yaml
+kubectl apply -f cassandra-init.yaml -n kafka
