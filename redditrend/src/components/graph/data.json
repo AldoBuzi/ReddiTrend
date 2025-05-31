@@ -1,0 +1,57 @@
+{
+    "nodes": [
+      {
+        "key": "node1",
+        "attributes": {
+          "label": "Clash",
+          "x": 0,
+          "y": 0,
+          "size": 10,
+          "color": "#FF0000"
+        }
+      },
+      {
+        "key": "node2",
+        "attributes": {
+          "label": "Royale",
+          "x": 1,
+          "y": 1,
+          "size": 10,
+          "color": "#00FF00"
+        }
+      },
+      {
+        "key": "node3",
+        "attributes": {
+          "label": "Pippo",
+          "x": 0,
+          "y": 1,
+          "size": 10,
+          "color": "#00FF00"
+        }
+      }
+    ],
+    "edges": [
+      {
+        "key": "edge1",
+        "source": "node1",
+        "target": "node2",
+        "attributes": {
+          "label": "Edge from 1 to 2",
+          "size": 1,
+          "color": "#999"
+        }
+      },
+      {
+        "key": "edge2",
+        "source": "node1",
+        "target": "node3",
+        "attributes": {
+          "label": "Edge from 1 to 2",
+          "size": 1,
+          "color": "#999"
+        }
+      }
+    ]
+  }
+  

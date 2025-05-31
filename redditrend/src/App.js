@@ -3,7 +3,7 @@ import { Navbar, Container, Button, Nav } from 'react-bootstrap';
 import redditLogo from './assets/reddit-logo.svg';
 import LightDarkThemeToggle from './components/LightDarkThemeToggle';
 import SearchBar from './components/SearchBar';
-import Graph from './components/Graph';
+import SigmaGraph from './components/graph/SigmaGraph';
 
 function App() {
   return (
@@ -25,7 +25,7 @@ function App() {
         </Container>
       </Navbar>
       <SearchBar />
-      <Graph />
+      <SigmaGraph />
     </>
   );
 }
