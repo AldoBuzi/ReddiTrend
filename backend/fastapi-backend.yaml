@@ -27,7 +27,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: fastapi-backend-service
+  name: fastapi-service
 spec:
   selector:
     app: fastapi-backend
