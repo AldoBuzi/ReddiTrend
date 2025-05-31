@@ -30,15 +30,13 @@ spec:
         - --conf
         - spark.kubernetes.container.image=spark-launcher:latest
         - --conf 
-        - spark.executor.instances=3
+        - spark.executor.instances=1
         - --conf 
         - spark.driver.memory=2g
         - --conf 
         - spark.driver.memoryOverhead=512m
         - --conf 
         - spark.executor.memory=2g
-        - --conf 
-        - spark.executor.instances=2
         - --conf 
         - spark.kubernetes.executor.limit.cores=1
         - --conf 
