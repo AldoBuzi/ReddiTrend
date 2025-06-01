@@ -57,9 +57,4 @@ def get_top_nodes():
     for row in rows:
         nodes.append([(row.keyword_x, {"label": row.keyword_x, "count": row.count_x}),(row.keyword_y, {"label": row.keyword_y, "count": row.count_y})])
         edges.append([(row.keyword_x,row.keyword_y, {"label": row.keyword_x+"-"+row.keyword_y, "count": row.count})])
-    try:
-        with open('top_nodes_and_edges.json', 'w') as f:
-            json.dump({"nodes": nodes, "edges": edges}, f, indent=2)
-    except Exception as e:
-        print(f"Error exporting Cassandra data: {e}")
     return {"nodes": nodes, "edges": edges}

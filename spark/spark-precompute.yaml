@@ -3,12 +3,13 @@ kind: CronJob
 metadata:
   name: spark-top-nodes-precompute
 spec:
-  schedule: "*/5 * * * *"  # every 5 minutes
+  schedule: "*/1 * * * *"  # every 5 minutes
   concurrencyPolicy: Forbid
   jobTemplate:
     spec:
       template:
         spec:
+          serviceAccountName: spark
           restartPolicy: Never
           containers:
             - name: spark-precompute
@@ -27,7 +28,7 @@ spec:
                 - --conf 
                 - spark.kubernetes.namespace=kafka
                 - --conf
-                - spark.kubernetes.authenticate.driver.serviceAccountName=default
+                - spark.kubernetes.authenticate.driver.serviceAccountName=spark
                 - --conf 
                 - spark.executor.instances=1
                 - --name 

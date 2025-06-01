@@ -4,6 +4,7 @@ metadata:
   name: spark-kafka-consumer
   namespace: kafka
 spec:
+    serviceAccountName: spark
     containers:
     - name: spark-consumer
       image: reddit-spark-consumer:latest
@@ -26,7 +27,7 @@ spec:
         - --conf 
         - spark.kubernetes.namespace=kafka
         - --conf
-        - spark.kubernetes.authenticate.driver.serviceAccountName=default
+        - spark.kubernetes.authenticate.driver.serviceAccountName=spark
         - --conf
         - spark.kubernetes.container.image=spark-launcher:latest
         - --conf 
@@ -48,7 +49,4 @@ spec:
         - --packages #required packages by spark structured streaming + kafka
         - org.apache.spark:spark-sql-kafka-0-10_2.12:3.5.5,graphframes:graphframes:0.8.4-spark3.5-s_2.12,com.datastax.spark:spark-cassandra-connector_2.12:3.5.1 # add graphframes to use graphx in python
         - local:///opt/bitnami/spark/app/consumer.py
-      #TODO: fix this, running as a root is not ok
-      securityContext:
-        runAsUser: 0 # run as root
     restartPolicy: Never
