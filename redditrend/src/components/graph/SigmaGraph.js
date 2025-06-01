@@ -12,14 +12,12 @@ const SigmaGraph = () => {
     const rendererRef = useRef(null);
     const graphRef = useRef(null);
     
-    // Convert to proper React state for UI-affecting state
     const [hoveredNode, setHoveredNode] = useState(null);
     const [hoveredNeighbors, setHoveredNeighbors] = useState(null);
     const [selectedNode, setSelectedNode] = useState(null);
     const [suggestions, setSuggestions] = useState(null);
     const [searchQuery, setSearchQuery] = useState("");
 
-    // Memoize the hover handler to prevent unnecessary re-creations
     const handleSetHoveredNode = useCallback((node) => {
         if (node && graphRef.current) {
             setHoveredNode(node);
@@ -37,7 +35,6 @@ const SigmaGraph = () => {
         }
     }, []);
 
-    // Memoize reducers to prevent unnecessary re-creations
     const nodeReducer = useCallback((node, data) => {
         const res = { ...data };
 
@@ -84,9 +81,7 @@ const SigmaGraph = () => {
     }, [hoveredNode, suggestions]);
 
     useEffect(() => {
-        if (!containerRef.current) return;
-
-        // Instantiate sigma
+        // Instantiate the graph
         const graph = new Graph();
         graph.import(data);
         graphRef.current = graph;
@@ -95,6 +90,7 @@ const SigmaGraph = () => {
         const layout = new ForceSupervisor(graph, { isNodeFixed: (_, attr) => attr.highlighted });
         layout.start();
         
+        // Instantiate the sigma
         const renderer = new Sigma(graph, containerRef.current);
         rendererRef.current = renderer;
 
