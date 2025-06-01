@@ -1,9 +1,7 @@
 import './App.css';
 import { Navbar, Container, Button, Nav } from 'react-bootstrap';
 import redditLogo from './assets/reddit-logo.svg';
-import LightDarkThemeToggle from './components/LightDarkThemeToggle';
-import SearchBar from './components/SearchBar';
-import SigmaGraph from './components/graph/SigmaGraph';
+import SigmaGraph from './components/SigmaGraph';
 
 function App() {
   return (
@@ -20,11 +18,17 @@ function App() {
             ReddiTrend
           </Navbar.Brand>
           <Nav>
-            <LightDarkThemeToggle />
+            <div>
+                <input type="checkbox" className="checkbox" id="checkbox" />
+                <label htmlFor="checkbox" className="checkbox-label" >
+                    <i class="fas fa-moon"></i>
+                    <i class="fas fa-sun"></i>
+                    <span class="ball"></span>
+                </label>
+            </div>
           </Nav>
         </Container>
       </Navbar>
-      <SearchBar />
       <SigmaGraph />
     </>
   );

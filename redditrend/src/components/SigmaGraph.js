@@ -6,6 +6,9 @@ import data from './data.json'
 import ForceSupervisor from "graphology-layout-force/worker"
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
+import forceAtlas2 from 'graphology-layout-forceatlas2';
+import random from 'graphology-layout/random';
+import noverlap from 'graphology-layout-noverlap';
 
 const SigmaGraph = () => {
     const containerRef = useRef(null);
@@ -89,7 +92,20 @@ const SigmaGraph = () => {
         // Create the spring layout and start it
         const layout = new ForceSupervisor(graph, { isNodeFixed: (_, attr) => attr.highlighted });
         layout.start();
-        
+
+        random.assign(graph);
+
+        forceAtlas2.assign(graph, { 
+        iterations: 600,
+        settings: {
+            barnesHutOptimize: true,
+            gravity: 0.05,
+            scalingRatio: 5
+        }
+        });
+
+        noverlap.assign(graph, { maxIterations: 150 });
+                
         // Instantiate the sigma
         const renderer = new Sigma(graph, containerRef.current);
         rendererRef.current = renderer;
@@ -115,7 +131,10 @@ const SigmaGraph = () => {
             isDragging = true;
             draggedNode = e.node;
             graph.setNodeAttribute(draggedNode, "highlighted", true);
-            if (!renderer.getCustomBBox()) renderer.setCustomBBox(renderer.getBBox());
+
+            if (!renderer.getCustomBBox()) {
+                renderer.setCustomBBox(renderer.getBBox());
+            }
         };
 
         // On mouse move, if the drag mode is enabled, we change the position of the draggedNode
@@ -139,6 +158,7 @@ const SigmaGraph = () => {
             if (draggedNode) {
                 graph.removeNodeAttribute(draggedNode, "highlighted");
             }
+
             isDragging = false;
             draggedNode = null;
         };
@@ -181,7 +201,7 @@ const SigmaGraph = () => {
 
     return (
         <div className="d-flex justify-content-center mt-4">
-            <Col>
+            <Col className="h-100">
                 <Row className="d-flex justify-content-center">
                     <div className="d-flex justify-content-center">
                         <input
@@ -211,7 +231,7 @@ const SigmaGraph = () => {
                         ref={containerRef}
                         style={{ 
                             width: '800px', 
-                            height: '600px', 
+                            height: '600px',
                             background: 'white',
                             border: '1px solid #ccc',
                             borderRadius: '8px'
