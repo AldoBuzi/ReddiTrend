@@ -7,7 +7,7 @@ if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
   exit 1
 fi
 
-minikube start -p ReddiTrend-Cluster --memory=12000 --cpus=4
+minikube start -p ReddiTrend-Cluster --memory=13000 --cpus=4
 
 kubectl create namespace kafka
 
@@ -35,6 +35,10 @@ sleep 1
 
 kubectl apply -f kafka/kafka-topic.yaml -n kafka
 
+sleep 1
+
 kubectl wait kafka/my-cluster --for=condition=Ready --timeout=300s -n kafka
+
+kubectl apply -f metrics-server/components.yaml
 
 eval $(minikube -p ReddiTrend-Cluster docker-env)

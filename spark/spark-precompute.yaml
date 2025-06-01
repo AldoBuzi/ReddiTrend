@@ -1,0 +1,50 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: spark-top-nodes-precompute
+spec:
+  schedule: "*/1 * * * *"  # every 5 minutes
+  concurrencyPolicy: Forbid
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          serviceAccountName: spark
+          restartPolicy: Never
+          containers:
+            - name: spark-precompute
+              image: spark-top-nodes:latest
+              imagePullPolicy: Never
+              command: 
+                - /opt/bitnami/spark/bin/spark-submit
+                - --master 
+                - k8s://https://192.168.49.2:8443
+                - --deploy-mode 
+                - cluster
+                - --conf
+                - spark.kubernetes.container.image=spark-top-nodes:latest
+                - --conf # specify path for cache and other stuff as an absolute path
+                - spark.jars.ivy=/tmp/.ivy2
+                - --conf 
+                - spark.kubernetes.namespace=kafka
+                - --conf
+                - spark.kubernetes.authenticate.driver.serviceAccountName=spark
+                - --conf 
+                - spark.executor.instances=1
+                - --name 
+                - spark-top-nodes 
+                - --packages 
+                - org.apache.spark:spark-sql-kafka-0-10_2.12:3.5.5,com.datastax.spark:spark-cassandra-connector_2.12:3.5.1
+                - local:///opt/bitnami/spark/spark-top-nodes.py
+              env:
+                - name: SPARK_CASSANDRA_HOST
+                  value: "cassandra-service"
+                - name: SPARK_CASSANDRA_KEYSPACE
+                  value: "graph"
+          resources:
+            requests:
+              memory: "1Gi"
+              cpu: "1"
+            limits:
+              memory: "2Gi"
+              cpu: "2"

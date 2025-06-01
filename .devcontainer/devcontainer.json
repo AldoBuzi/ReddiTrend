@@ -1,8 +1,8 @@
 {
   "name": "ReddiTrend Dev Container",
   "build": {
-    "dockerfile": "../spark-consumer/Dockerfile",
-    "context": "../spark-consumer"
+    "dockerfile": "Dockerfile",
+    "context": "."
   },
   "workspaceFolder": "/workspace",
   "settings": {
