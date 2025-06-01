@@ -8,5 +8,5 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY main.py .
 COPY connection.py .
 COPY models.py .
+COPY top_nodes_and_edges.json .
 
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]

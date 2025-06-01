@@ -2,6 +2,7 @@ apiVersion: batch/v1
 kind: Job
 metadata:
   name: cassandra-init
+  namespace: kafka
 spec:
   template:
     spec:

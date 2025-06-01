@@ -3,7 +3,7 @@ from cassandra.auth import PlainTextAuthProvider
 import os
 
 def get_session():
-    host = os.getenv("CASSANDRA_HOST", "localhost")
+    host = os.getenv("CASSANDRA_HOST", "cassandra-service")
     port = int(os.getenv("CASSANDRA_PORT", "9042"))
     cluster = Cluster([host], port=port)
     session = cluster.connect()

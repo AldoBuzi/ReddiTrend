@@ -10,7 +10,7 @@ from cassandra.cluster import Cluster
 
 kw_model = None
 
-def extract_keywords_udf(text, accuracy = 0.45):
+def extract_keywords_udf(text, accuracy = 0.35):
     global kw_model
     if kw_model is None:
         from keybert import KeyBERT
