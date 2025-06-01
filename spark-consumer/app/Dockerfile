@@ -18,7 +18,7 @@ RUN pip install graphframes
 RUN pip install keybert
 RUN pip install cassandra-driver
 
-USER spark
+USER root
 
 #RUN pip install vaderSentiment
 

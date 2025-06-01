@@ -31,4 +31,4 @@ def add_vertices(spark: "SparkSession", df: DataFrame, debug=False):
         print("###################################")
         edges_df.show(truncate=False)
         print("###################################")
-    return (df.drop("keywords").select(col("keyword")),edges_df)
+    return (df.drop("keywords"),edges_df)
