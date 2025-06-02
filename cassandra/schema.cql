@@ -7,6 +7,20 @@ CREATE TABLE IF NOT EXISTS graph.vertices (
     count counter
 );
 
+-- Create the table vertices_info
+CREATE TABLE IF NOT EXISTS graph.vertices_info (
+    timestamp int,
+    keyword text,
+    body text,
+    title text,
+    karma int,
+    subreddit text,
+    link text,
+    sentiment float,
+    PRIMARY KEY (timestamp, keyword)
+);
+
+
 -- Create the table edges
 CREATE TABLE IF NOT EXISTS graph.edges (
     keyword_x text,
@@ -19,8 +33,12 @@ CREATE TABLE IF NOT EXISTS graph.edges (
 CREATE TABLE IF NOT EXISTS graph.top_nodes_edges (
     keyword_x text,
     keyword_y text,
-    count_x counter,
-    count_y counter,
-    count counter,
+    count_x int,
+    count_y int,
+    count int,
+    sentiment_x float,
+    sentiment_y float,
+    keyword_x_metadata text,
+    keyword_y_metadata text,
     PRIMARY KEY (keyword_x, keyword_y)
 );

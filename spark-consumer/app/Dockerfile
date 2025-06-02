@@ -17,10 +17,10 @@ ENV PYTHONPATH "${PYTHONPATH}:/app/"
 RUN pip install graphframes
 RUN pip install keybert
 RUN pip install cassandra-driver
+RUN pip install vaderSentiment
 
-USER spark
+USER root
 
-#RUN pip install vaderSentiment
 
 #RUN pip install spark-nlp==6.0.2
 

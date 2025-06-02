@@ -5,3 +5,4 @@ graphframes
 keybert
 praw==7.8.1
 kafka-python==2.2.9
+vaderSentiment
