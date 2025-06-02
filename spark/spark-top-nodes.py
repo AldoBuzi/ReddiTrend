@@ -1,5 +1,7 @@
 from pyspark.sql import SparkSession, DataFrame
 from pyspark.sql.functions import collect_list, struct, to_json
+from pyspark.sql.window import Window
+from pyspark.sql.functions import row_number
 spark: SparkSession = SparkSession.builder\
         .appName("SparkTopNodes")\
         .config("spark.cassandra.connection.host", "cassandra-service") \
@@ -16,9 +18,19 @@ keywords_info = spark.read.format("org.apache.spark.sql.cassandra") \
     .options(table="vertices_info", keyspace="graph") \
     .load()
 
-aggregated_df = keywords_info.groupBy("keyword").agg(
+# Define window partitioned by 'keyword' and ordered by karma
+window_spec = Window.partitionBy("keyword").orderBy(keywords_info["karma"].desc())
+
+# Add row number per group
+ranked = keywords_info.withColumn("row_number", row_number().over(window_spec))
+
+# Keep top 5 rows per keyword
+top5_per_keyword = ranked.filter(ranked.row_number <= 5).drop("row_number")
+
+aggregated_df = top5_per_keyword.groupBy("keyword").agg(
     collect_list(struct("timestamp", "body","title","karma","subreddit","link","sentiment")).alias("metadata_list")
 )
+aggregated_df.show(truncate=True)
 keywords_info_result = aggregated_df.withColumn("json_col", to_json("metadata_list"))
 
 

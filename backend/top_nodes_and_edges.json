@@ -2,17 +2,329 @@
   "nodes": [
     [
       [
-        "siakam",
+        "austin",
         {
-          "label": "siakam",
-          "count": 3
+          "label": "austin",
+          "count": null,
+          "metadata": [
+            {
+              "timestamp": 1748811367,
+              "body": "",
+              "title": "Met Yvette in Austin! Only 3 more cast members left to sign my script",
+              "karma": 11948,
+              "subreddit": "community",
+              "link": "https://reddit.com/r/community/comments/1l0znp2/met_yvette_in_austin_only_3_more_cast_members/"
+            }
+          ]
         }
       ],
       [
-        "trophy",
+        "cast",
         {
-          "label": "trophy",
-          "count": 3
+          "label": "cast",
+          "count": null,
+          "metadata": [
+            {
+              "timestamp": 1748811367,
+              "body": "",
+              "title": "Met Yvette in Austin! Only 3 more cast members left to sign my script",
+              "karma": 11948,
+              "subreddit": "community",
+              "link": "https://reddit.com/r/community/comments/1l0znp2/met_yvette_in_austin_only_3_more_cast_members/"
+            }
+          ]
+        }
+      ]
+    ],
+    [
+      [
+        "austin",
+        {
+          "label": "austin",
+          "count": null,
+          "metadata": [
+            {
+              "timestamp": 1748811367,
+              "body": "",
+              "title": "Met Yvette in Austin! Only 3 more cast members left to sign my script",
+              "karma": 11948,
+              "subreddit": "community",
+              "link": "https://reddit.com/r/community/comments/1l0znp2/met_yvette_in_austin_only_3_more_cast_members/"
+            }
+          ]
+        }
+      ],
+      [
+        "yvette",
+        {
+          "label": "yvette",
+          "count": 5,
+          "metadata": [
+            {
+              "timestamp": 1748811367,
+              "body": "",
+              "title": "Met Yvette in Austin! Only 3 more cast members left to sign my script",
+              "karma": 11948,
+              "subreddit": "community",
+              "link": "https://reddit.com/r/community/comments/1l0znp2/met_yvette_in_austin_only_3_more_cast_members/"
+            }
+          ]
+        }
+      ]
+    ],
+    [
+      [
+        "karol",
+        {
+          "label": "karol",
+          "count": 7,
+          "metadata": [
+            {
+              "timestamp": 1748841046,
+              "body": "",
+              "title": "Conservative Karol Nawrocki wins Poland's presidential election",
+              "karma": 1928,
+              "subreddit": "news",
+              "link": "https://reddit.com/r/news/comments/1l19pj3/conservative_karol_nawrocki_wins_polands/"
+            },
+            {
+              "timestamp": 1748838244,
+              "body": "",
+              "title": "Conservative candidate Karol Nawrocki narrowly won the Polish presidential election today getting 50.89% of the vote",
+              "karma": 1626,
+              "subreddit": "MapPorn",
+              "link": "https://reddit.com/r/MapPorn/comments/1l18xcp/conservative_candidate_karol_nawrocki_narrowly/"
+            }
+          ]
+        }
+      ],
+      [
+        "nawrocki",
+        {
+          "label": "nawrocki",
+          "count": 7,
+          "metadata": [
+            {
+              "timestamp": 1748841046,
+              "body": "",
+              "title": "Conservative Karol Nawrocki wins Poland's presidential election",
+              "karma": 1928,
+              "subreddit": "news",
+              "link": "https://reddit.com/r/news/comments/1l19pj3/conservative_karol_nawrocki_wins_polands/"
+            },
+            {
+              "timestamp": 1748838244,
+              "body": "",
+              "title": "Conservative candidate Karol Nawrocki narrowly won the Polish presidential election today getting 50.89% of the vote",
+              "karma": 1626,
+              "subreddit": "MapPorn",
+              "link": "https://reddit.com/r/MapPorn/comments/1l18xcp/conservative_candidate_karol_nawrocki_narrowly/"
+            }
+          ]
+        }
+      ]
+    ],
+    [
+      [
+        "karol",
+        {
+          "label": "karol",
+          "count": 7,
+          "metadata": [
+            {
+              "timestamp": 1748841046,
+              "body": "",
+              "title": "Conservative Karol Nawrocki wins Poland's presidential election",
+              "karma": 1928,
+              "subreddit": "news",
+              "link": "https://reddit.com/r/news/comments/1l19pj3/conservative_karol_nawrocki_wins_polands/"
+            },
+            {
+              "timestamp": 1748838244,
+              "body": "",
+              "title": "Conservative candidate Karol Nawrocki narrowly won the Polish presidential election today getting 50.89% of the vote",
+              "karma": 1626,
+              "subreddit": "MapPorn",
+              "link": "https://reddit.com/r/MapPorn/comments/1l18xcp/conservative_candidate_karol_nawrocki_narrowly/"
+            }
+          ]
+        }
+      ],
+      [
+        "poland",
+        {
+          "label": "poland",
+          "count": 10,
+          "metadata": [
+            {
+              "timestamp": 1748835849,
+              "body": "",
+              "title": "Poland Let The Intrusive Thoughts Win",
+              "karma": 2059,
+              "subreddit": "YUROP",
+              "link": "https://reddit.com/r/YUROP/comments/1l187c5/poland_let_the_intrusive_thoughts_win/"
+            },
+            {
+              "timestamp": 1748841046,
+              "body": "",
+              "title": "Conservative Karol Nawrocki wins Poland's presidential election",
+              "karma": 1928,
+              "subreddit": "news",
+              "link": "https://reddit.com/r/news/comments/1l19pj3/conservative_karol_nawrocki_wins_polands/"
+            }
+          ]
+        }
+      ]
+    ],
+    [
+      [
+        "karol",
+        {
+          "label": "karol",
+          "count": 7,
+          "metadata": [
+            {
+              "timestamp": 1748841046,
+              "body": "",
+              "title": "Conservative Karol Nawrocki wins Poland's presidential election",
+              "karma": 1928,
+              "subreddit": "news",
+              "link": "https://reddit.com/r/news/comments/1l19pj3/conservative_karol_nawrocki_wins_polands/"
+            },
+            {
+              "timestamp": 1748838244,
+              "body": "",
+              "title": "Conservative candidate Karol Nawrocki narrowly won the Polish presidential election today getting 50.89% of the vote",
+              "karma": 1626,
+              "subreddit": "MapPorn",
+              "link": "https://reddit.com/r/MapPorn/comments/1l18xcp/conservative_candidate_karol_nawrocki_narrowly/"
+            }
+          ]
+        }
+      ],
+      [
+        "polish",
+        {
+          "label": "polish",
+          "count": 7,
+          "metadata": [
+            {
+              "timestamp": 1748832253,
+              "body": "",
+              "title": "Narrowest win in Polish presidential election history",
+              "karma": 9938,
+              "subreddit": "europe",
+              "link": "https://reddit.com/r/europe/comments/1l17352/narrowest_win_in_polish_presidential_election/"
+            },
+            {
+              "timestamp": 1748838244,
+              "body": "",
+              "title": "Conservative candidate Karol Nawrocki narrowly won the Polish presidential election today getting 50.89% of the vote",
+              "karma": 1626,
+              "subreddit": "MapPorn",
+              "link": "https://reddit.com/r/MapPorn/comments/1l18xcp/conservative_candidate_karol_nawrocki_narrowly/"
+            }
+          ]
+        }
+      ]
+    ],
+    [
+      [
+        "gukesh",
+        {
+          "label": "gukesh",
+          "count": 25,
+          "metadata": [
+            {
+              "timestamp": 1748830104,
+              "body": "",
+              "title": "Current World Champion Gukesh defeats Magnus Carlsen for the first time in classical chess.",
+              "karma": 55850,
+              "subreddit": "interestingasfuck",
+              "link": "https://reddit.com/r/interestingasfuck/comments/1l16e6d/current_world_champion_gukesh_defeats_magnus/"
+            },
+            {
+              "timestamp": 1748830172,
+              "body": "",
+              "title": "Current World Champion Gukesh defeats Magnus Carlsen for the first time in classical chess.",
+              "karma": 19638,
+              "subreddit": "sports",
+              "link": "https://reddit.com/r/sports/comments/1l16ey0/current_world_champion_gukesh_defeats_magnus/"
+            },
+            {
+              "timestamp": 1748839936,
+              "body": "",
+              "title": "Current World Champion Gukesh defeats Magnus Carlsen for the first time in classic chess.",
+              "karma": 7964,
+              "subreddit": "nextfuckinglevel",
+              "link": "https://reddit.com/r/nextfuckinglevel/comments/1l19ehp/current_world_champion_gukesh_defeats_magnus/"
+            },
+            {
+              "timestamp": 1748830026,
+              "body": "",
+              "title": "Current World Champion Gukesh defeats Magnus Carlsen for the first time in classical chess.",
+              "karma": 5128,
+              "subreddit": "interesting",
+              "link": "https://reddit.com/r/interesting/comments/1l16da1/current_world_champion_gukesh_defeats_magnus/"
+            },
+            {
+              "timestamp": 1748826826,
+              "body": "\n\nSource: https://www.onmanorama.com/sports/other-sports/2025/06/02/norway-chess-round-round-six-d-gukesh-beats-magnus-carlsen.amp.html",
+              "title": "Gukesh beats Carlsen for first time in classical chess; furious World No. 1 bangs on board",
+              "karma": 4002,
+              "subreddit": "IndiaSpeaks",
+              "link": "https://reddit.com/r/IndiaSpeaks/comments/1l15b6s/gukesh_beats_carlsen_for_first_time_in_classical/"
+            }
+          ]
+        }
+      ],
+      [
+        "magnus",
+        {
+          "label": "magnus",
+          "count": 25,
+          "metadata": [
+            {
+              "timestamp": 1748830104,
+              "body": "",
+              "title": "Current World Champion Gukesh defeats Magnus Carlsen for the first time in classical chess.",
+              "karma": 55850,
+              "subreddit": "interestingasfuck",
+              "link": "https://reddit.com/r/interestingasfuck/comments/1l16e6d/current_world_champion_gukesh_defeats_magnus/"
+            },
+            {
+              "timestamp": 1748830172,
+              "body": "",
+              "title": "Current World Champion Gukesh defeats Magnus Carlsen for the first time in classical chess.",
+              "karma": 19638,
+              "subreddit": "sports",
+              "link": "https://reddit.com/r/sports/comments/1l16ey0/current_world_champion_gukesh_defeats_magnus/"
+            },
+            {
+              "timestamp": 1748839936,
+              "body": "",
+              "title": "Current World Champion Gukesh defeats Magnus Carlsen for the first time in classic chess.",
+              "karma": 7964,
+              "subreddit": "nextfuckinglevel",
+              "link": "https://reddit.com/r/nextfuckinglevel/comments/1l19ehp/current_world_champion_gukesh_defeats_magnus/"
+            },
+            {
+              "timestamp": 1748830026,
+              "body": "",
+              "title": "Current World Champion Gukesh defeats Magnus Carlsen for the first time in classical chess.",
+              "karma": 5128,
+              "subreddit": "interesting",
+              "link": "https://reddit.com/r/interesting/comments/1l16da1/current_world_champion_gukesh_defeats_magnus/"
+            },
+            {
+              "timestamp": 1748841019,
+              "body": "",
+              "title": "World Champion Beats Magnus Carlsen! watch their reaction, OMG",
+              "karma": 1756,
+              "subreddit": "IndianTeenagers",
+              "link": "https://reddit.com/r/IndianTeenagers/comments/1l19p9n/world_champion_beats_magnus_carlsen_watch_their/"
+            }
+          ]
         }
       ]
     ],
@@ -21,1422 +333,2242 @@
         "dad",
         {
           "label": "dad",
-          "count": 3
+          "count": 14,
+          "metadata": [
+            {
+              "timestamp": 1748814786,
+              "body": "",
+              "title": "My dad watched my ~3yr old nephew for my sister today...",
+              "karma": 27535,
+              "subreddit": "KidsAreFuckingStupid",
+              "link": "https://reddit.com/r/KidsAreFuckingStupid/comments/1l110xl/my_dad_watched_my_3yr_old_nephew_for_my_sister/"
+            },
+            {
+              "timestamp": 1748833991,
+              "body": "",
+              "title": "Cat wins, daughter wins, dad will get used to it",
+              "karma": 15318,
+              "subreddit": "holdmycatnip",
+              "link": "https://reddit.com/r/holdmycatnip/comments/1l17n0v/cat_wins_daughter_wins_dad_will_get_used_to_it/"
+            },
+            {
+              "timestamp": 1748832423,
+              "body": "",
+              "title": "Dad sparrow feeding his child at a cafe",
+              "karma": 10221,
+              "subreddit": "BeAmazed",
+              "link": "https://reddit.com/r/BeAmazed/comments/1l1752c/dad_sparrow_feeding_his_child_at_a_cafe/"
+            }
+          ]
+        }
+      ],
+      [
+        "wins",
+        {
+          "label": "wins",
+          "count": null,
+          "metadata": [
+            {
+              "timestamp": 1748833991,
+              "body": "",
+              "title": "Cat wins, daughter wins, dad will get used to it",
+              "karma": 15318,
+              "subreddit": "holdmycatnip",
+              "link": "https://reddit.com/r/holdmycatnip/comments/1l17n0v/cat_wins_daughter_wins_dad_will_get_used_to_it/"
+            }
+          ]
+        }
+      ]
+    ],
+    [
+      [
+        "aitah",
+        {
+          "label": "aitah",
+          "count": 6,
+          "metadata": [
+            {
+              "timestamp": 1748812375,
+              "body": "I (35F) and my husband (36M) are fortunate enough to live in an area of the world that is very beautiful, and as a result, frequently visited for honeymoons.\n\nMy brother in law (30M) and his soon to be wife (28F) are getting married in August and want to honeymoon in the area where my husband and I live, and they asked around a month ago if they could stay with us on their honeymoon. We agreed; they are family and are also tight on funds. We are happy to help and host them.\n\nHowever, they asked my husband last week if they could stay in our bedroom on their honeymoon. We have a two bedroom home, and our guest room has an air mattress that is used for when friends/family stay (otherwise, it is my work-from-home office, hence why we dont have a typical mattress in there). My BIL didn't really get into the specifics of why they didn't want the guest bedroom/air mattress, but the gist seemed to be \"we dont think an air mattress is honeymoon appropriate\".\n\nWhen my husband asked me about it, I was honest with him and said I wasn't comfortable with his brother and his new wife sleeping in our bed on their honeymoon. My husband agreed with me.\n\nApparently us saying no to this request has caused some issue in my husband's family, particularly with his sister whos saying we should just let BIL and his future wife stay in our room as \"it is THEIR honeymoon and they shouldn't have to sleep on an air mattress\".\n\nWe love everyone in this scenario, especially BIL and his future wife, and don't want to cause a rift so my husband is sort of leaning towards acquiesing to their request, however, I am not down to change my mind on this. It honestly really grosses me out because I believe that the reason they want our bedroom is so they can comfortably bang during their honeymoon on a regular, not-air, mattress.",
+              "title": "AITAH for saying that my brother in law and his future wife can't sleep in our bedroom while we host them on their honeymoon?",
+              "karma": 15909,
+              "subreddit": "AITAH",
+              "link": "https://reddit.com/r/AITAH/comments/1l102oj/aitah_for_saying_that_my_brother_in_law_and_his/"
+            }
+          ]
+        }
+      ],
+      [
+        "honeymoon",
+        {
+          "label": "honeymoon",
+          "count": 6,
+          "metadata": [
+            {
+              "timestamp": 1748812375,
+              "body": "I (35F) and my husband (36M) are fortunate enough to live in an area of the world that is very beautiful, and as a result, frequently visited for honeymoons.\n\nMy brother in law (30M) and his soon to be wife (28F) are getting married in August and want to honeymoon in the area where my husband and I live, and they asked around a month ago if they could stay with us on their honeymoon. We agreed; they are family and are also tight on funds. We are happy to help and host them.\n\nHowever, they asked my husband last week if they could stay in our bedroom on their honeymoon. We have a two bedroom home, and our guest room has an air mattress that is used for when friends/family stay (otherwise, it is my work-from-home office, hence why we dont have a typical mattress in there). My BIL didn't really get into the specifics of why they didn't want the guest bedroom/air mattress, but the gist seemed to be \"we dont think an air mattress is honeymoon appropriate\".\n\nWhen my husband asked me about it, I was honest with him and said I wasn't comfortable with his brother and his new wife sleeping in our bed on their honeymoon. My husband agreed with me.\n\nApparently us saying no to this request has caused some issue in my husband's family, particularly with his sister whos saying we should just let BIL and his future wife stay in our room as \"it is THEIR honeymoon and they shouldn't have to sleep on an air mattress\".\n\nWe love everyone in this scenario, especially BIL and his future wife, and don't want to cause a rift so my husband is sort of leaning towards acquiesing to their request, however, I am not down to change my mind on this. It honestly really grosses me out because I believe that the reason they want our bedroom is so they can comfortably bang during their honeymoon on a regular, not-air, mattress.",
+              "title": "AITAH for saying that my brother in law and his future wife can't sleep in our bedroom while we host them on their honeymoon?",
+              "karma": 15909,
+              "subreddit": "AITAH",
+              "link": "https://reddit.com/r/AITAH/comments/1l102oj/aitah_for_saying_that_my_brother_in_law_and_his/"
+            }
+          ]
+        }
+      ]
+    ],
+    [
+      [
+        "bumrah",
+        {
+          "label": "bumrah",
+          "count": 6,
+          "metadata": [
+            {
+              "timestamp": 1748837899,
+              "body": "",
+              "title": "Shreyas Iyer vs Jasprit Bumrah - 10 years ago and now",
+              "karma": 2785,
+              "subreddit": "ipl",
+              "link": "https://reddit.com/r/ipl/comments/1l18tnw/shreyas_iyer_vs_jasprit_bumrah_10_years_ago_and/"
+            }
+          ]
         }
       ],
       [
-        "peter",
+        "iyer",
         {
-          "label": "peter",
-          "count": 3
+          "label": "iyer",
+          "count": 6,
+          "metadata": [
+            {
+              "timestamp": 1748837899,
+              "body": "",
+              "title": "Shreyas Iyer vs Jasprit Bumrah - 10 years ago and now",
+              "karma": 2785,
+              "subreddit": "ipl",
+              "link": "https://reddit.com/r/ipl/comments/1l18tnw/shreyas_iyer_vs_jasprit_bumrah_10_years_ago_and/"
+            }
+          ]
         }
       ]
     ],
     [
       [
-        "democrats",
+        "bumrah",
         {
-          "label": "democrats",
-          "count": 3
-        }
-      ],
-      [
-        "maps",
-        {
-          "label": "maps",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "democrats",
-        {
-          "label": "democrats",
-          "count": 3
-        }
-      ],
-      [
-        "republicans",
-        {
-          "label": "republicans",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "democrats",
-        {
-          "label": "democrats",
-          "count": 3
-        }
-      ],
-      [
-        "voters",
-        {
-          "label": "voters",
-          "count": 5
-        }
-      ]
-    ],
-    [
-      [
-        "finally",
-        {
-          "label": "finally",
-          "count": 3
-        }
-      ],
-      [
-        "happened",
-        {
-          "label": "happened",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "bird",
-        {
-          "label": "bird",
-          "count": 3
-        }
-      ],
-      [
-        "lad",
-        {
-          "label": "lad",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "frankenstein",
-        {
-          "label": "frankenstein",
-          "count": 3
-        }
-      ],
-      [
-        "guillermo",
-        {
-          "label": "guillermo",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "frankenstein",
-        {
-          "label": "frankenstein",
-          "count": 3
-        }
-      ],
-      [
-        "toro",
-        {
-          "label": "toro",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "cigar",
-        {
-          "label": "cigar",
-          "count": 3
-        }
-      ],
-      [
-        "cigars",
-        {
-          "label": "cigars",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "cigar",
-        {
-          "label": "cigar",
-          "count": 3
-        }
-      ],
-      [
-        "cuba",
-        {
-          "label": "cuba",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "cigar",
-        {
-          "label": "cigar",
-          "count": 3
-        }
-      ],
-      [
-        "cuban",
-        {
-          "label": "cuban",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "cigar",
-        {
-          "label": "cigar",
-          "count": 3
-        }
-      ],
-      [
-        "kennedy",
-        {
-          "label": "kennedy",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "crops",
-        {
-          "label": "crops",
-          "count": 3
-        }
-      ],
-      [
-        "farm",
-        {
-          "label": "farm",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "crops",
-        {
-          "label": "crops",
-          "count": 3
-        }
-      ],
-      [
-        "farmer",
-        {
-          "label": "farmer",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "crops",
-        {
-          "label": "crops",
-          "count": 3
-        }
-      ],
-      [
-        "jason",
-        {
-          "label": "jason",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "shot",
-        {
-          "label": "shot",
-          "count": 3
-        }
-      ],
-      [
-        "square",
-        {
-          "label": "square",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "eliminated",
-        {
-          "label": "eliminated",
-          "count": 3
-        }
-      ],
-      [
-        "knicks",
-        {
-          "label": "knicks",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "cuba",
-        {
-          "label": "cuba",
-          "count": 3
-        }
-      ],
-      [
-        "cuban",
-        {
-          "label": "cuban",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "cuba",
-        {
-          "label": "cuba",
-          "count": 3
-        }
-      ],
-      [
-        "kennedy",
-        {
-          "label": "kennedy",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "paddy",
-        {
-          "label": "paddy",
-          "count": 3
-        }
-      ],
-      [
-        "palestine",
-        {
-          "label": "palestine",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "failure",
-        {
-          "label": "failure",
-          "count": 3
-        }
-      ],
-      [
-        "systemic",
-        {
-          "label": "systemic",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "drummer",
-        {
-          "label": "drummer",
-          "count": 3
-        }
-      ],
-      [
-        "stick",
-        {
-          "label": "stick",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "sandra",
-        {
-          "label": "sandra",
-          "count": 3
-        }
-      ],
-      [
-        "waitress",
-        {
-          "label": "waitress",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "cutie",
-        {
-          "label": "cutie",
-          "count": 3
-        }
-      ],
-      [
-        "fb",
-        {
-          "label": "fb",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "republicans",
-        {
-          "label": "republicans",
-          "count": 3
-        }
-      ],
-      [
-        "voters",
-        {
-          "label": "voters",
-          "count": 5
-        }
-      ]
-    ],
-    [
-      [
-        "baby",
-        {
-          "label": "baby",
-          "count": 3
-        }
-      ],
-      [
-        "kangaroo",
-        {
-          "label": "kangaroo",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "photo",
-        {
-          "label": "photo",
-          "count": 5
-        }
-      ],
-      [
-        "shot",
-        {
-          "label": "shot",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "photo",
-        {
-          "label": "photo",
-          "count": 5
-        }
-      ],
-      [
-        "square",
-        {
-          "label": "square",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "exposed",
-        {
-          "label": "exposed",
-          "count": 3
-        }
-      ],
-      [
-        "failure",
-        {
-          "label": "failure",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "exposed",
-        {
-          "label": "exposed",
-          "count": 3
-        }
-      ],
-      [
-        "systemic",
-        {
-          "label": "systemic",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "athletes",
-        {
-          "label": "athletes",
-          "count": 3
-        }
-      ],
-      [
-        "cold",
-        {
-          "label": "cold",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "athletes",
-        {
-          "label": "athletes",
-          "count": 3
-        }
-      ],
-      [
-        "sports",
-        {
-          "label": "sports",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "forget",
-        {
-          "label": "forget",
-          "count": 5
-        }
-      ],
-      [
-        "voters",
-        {
-          "label": "voters",
-          "count": 5
-        }
-      ]
-    ],
-    [
-      [
-        "don",
-        {
-          "label": "don",
-          "count": 3
-        }
-      ],
-      [
-        "forget",
-        {
-          "label": "forget",
-          "count": 5
-        }
-      ]
-    ],
-    [
-      [
-        "mvp",
-        {
-          "label": "mvp",
-          "count": 3
-        }
-      ],
-      [
-        "raptors",
-        {
-          "label": "raptors",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "mvp",
-        {
-          "label": "mvp",
-          "count": 3
-        }
-      ],
-      [
-        "siakam",
-        {
-          "label": "siakam",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "mvp",
-        {
-          "label": "mvp",
-          "count": 3
-        }
-      ],
-      [
-        "trophy",
-        {
-          "label": "trophy",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "championship",
-        {
-          "label": "championship",
-          "count": 3
-        }
-      ],
-      [
-        "eliminated",
-        {
-          "label": "eliminated",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "championship",
-        {
-          "label": "championship",
-          "count": 3
-        }
-      ],
-      [
-        "knicks",
-        {
-          "label": "knicks",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "andor",
-        {
-          "label": "andor",
-          "count": 3
-        }
-      ],
-      [
-        "gaza",
-        {
-          "label": "gaza",
-          "count": 5
-        }
-      ]
-    ],
-    [
-      [
-        "tim",
-        {
-          "label": "tim",
-          "count": 3
-        }
-      ],
-      [
-        "walz",
-        {
-          "label": "walz",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "oc",
-        {
-          "label": "oc",
-          "count": 3
-        }
-      ],
-      [
-        "photo",
-        {
-          "label": "photo",
-          "count": 5
-        }
-      ]
-    ],
-    [
-      [
-        "oc",
-        {
-          "label": "oc",
-          "count": 3
-        }
-      ],
-      [
-        "shot",
-        {
-          "label": "shot",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "oc",
-        {
-          "label": "oc",
-          "count": 3
-        }
-      ],
-      [
-        "square",
-        {
-          "label": "square",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "forever",
-        {
-          "label": "forever",
-          "count": 3
-        }
-      ],
-      [
-        "funny",
-        {
-          "label": "funny",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "guillermo",
-        {
-          "label": "guillermo",
-          "count": 3
-        }
-      ],
-      [
-        "toro",
-        {
-          "label": "toro",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "maps",
-        {
-          "label": "maps",
-          "count": 3
-        }
-      ],
-      [
-        "republicans",
-        {
-          "label": "republicans",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "maps",
-        {
-          "label": "maps",
-          "count": 3
-        }
-      ],
-      [
-        "voters",
-        {
-          "label": "voters",
-          "count": 5
-        }
-      ]
-    ],
-    [
-      [
-        "childbirths",
-        {
-          "label": "childbirths",
-          "count": 3
-        }
-      ],
-      [
-        "march",
-        {
-          "label": "march",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "cuban",
-        {
-          "label": "cuban",
-          "count": 3
-        }
-      ],
-      [
-        "kennedy",
-        {
-          "label": "kennedy",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "cold",
-        {
-          "label": "cold",
-          "count": 3
-        }
-      ],
-      [
-        "sports",
-        {
-          "label": "sports",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "drones",
-        {
-          "label": "drones",
-          "count": 3
-        }
-      ],
-      [
-        "fpv",
-        {
-          "label": "fpv",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "fighter",
-        {
-          "label": "fighter",
-          "count": 3
-        }
-      ],
-      [
-        "irish",
-        {
-          "label": "irish",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "fighter",
-        {
-          "label": "fighter",
-          "count": 3
-        }
-      ],
-      [
-        "mma",
-        {
-          "label": "mma",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "fighter",
-        {
-          "label": "fighter",
-          "count": 3
-        }
-      ],
-      [
-        "paddy",
-        {
-          "label": "paddy",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "fighter",
-        {
-          "label": "fighter",
-          "count": 3
-        }
-      ],
-      [
-        "palestine",
-        {
-          "label": "palestine",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "born",
-        {
-          "label": "born",
-          "count": 3
-        }
-      ],
-      [
-        "inside",
-        {
-          "label": "inside",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "born",
-        {
-          "label": "born",
-          "count": 3
-        }
-      ],
-      [
-        "strangeandfunny",
-        {
-          "label": "strangeandfunny",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "dog",
-        {
-          "label": "dog",
-          "count": 3
-        }
-      ],
-      [
-        "drummer",
-        {
-          "label": "drummer",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "dog",
-        {
-          "label": "dog",
-          "count": 3
-        }
-      ],
-      [
-        "stick",
-        {
-          "label": "stick",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "mma",
-        {
-          "label": "mma",
-          "count": 3
-        }
-      ],
-      [
-        "paddy",
-        {
-          "label": "paddy",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "mma",
-        {
-          "label": "mma",
-          "count": 3
-        }
-      ],
-      [
-        "palestine",
-        {
-          "label": "palestine",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "inside",
-        {
-          "label": "inside",
-          "count": 3
-        }
-      ],
-      [
-        "strangeandfunny",
-        {
-          "label": "strangeandfunny",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "arguing",
-        {
-          "label": "arguing",
-          "count": 3
-        }
-      ],
-      [
-        "fish",
-        {
-          "label": "fish",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "bully",
-        {
-          "label": "bully",
-          "count": 3
-        }
-      ],
-      [
-        "tim",
-        {
-          "label": "tim",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "bully",
-        {
-          "label": "bully",
-          "count": 3
-        }
-      ],
-      [
-        "walz",
-        {
-          "label": "walz",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "gate",
-        {
-          "label": "gate",
-          "count": 3
-        }
-      ],
-      [
-        "lock",
-        {
-          "label": "lock",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "cigars",
-        {
-          "label": "cigars",
-          "count": 3
-        }
-      ],
-      [
-        "cuba",
-        {
-          "label": "cuba",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "cigars",
-        {
-          "label": "cigars",
-          "count": 3
-        }
-      ],
-      [
-        "cuban",
-        {
-          "label": "cuban",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "cigars",
-        {
-          "label": "cigars",
-          "count": 3
-        }
-      ],
-      [
-        "kennedy",
-        {
-          "label": "kennedy",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "raptors",
-        {
-          "label": "raptors",
-          "count": 3
-        }
-      ],
-      [
-        "siakam",
-        {
-          "label": "siakam",
-          "count": 3
-        }
-      ]
-    ],
+          "label": "bumrah",
+          "count": 6,
+          "metadata": [
+            {
+              "timestamp": 1748837899,
+              "body": "",
+              "title": "Shreyas Iyer vs Jasprit Bumrah - 10 years ago and now",
+              "karma": 2785,
+              "subreddit": "ipl",
+              "link": "https://reddit.com/r/ipl/comments/1l18tnw/shreyas_iyer_vs_jasprit_bumrah_10_years_ago_and/"
+            }
+          ]
+        }
+      ],
+      [
+        "jasprit",
+        {
+          "label": "jasprit",
+          "count": 6,
+          "metadata": [
+            {
+              "timestamp": 1748837899,
+              "body": "",
+              "title": "Shreyas Iyer vs Jasprit Bumrah - 10 years ago and now",
+              "karma": 2785,
+              "subreddit": "ipl",
+              "link": "https://reddit.com/r/ipl/comments/1l18tnw/shreyas_iyer_vs_jasprit_bumrah_10_years_ago_and/"
+            }
+          ]
+        }
+      ]
+    ],
     [
       [
-        "raptors",
-        {
-          "label": "raptors",
-          "count": 3
-        }
+        "bumrah",
+        {
+          "label": "bumrah",
+          "count": 6,
+          "metadata": [
+            {
+              "timestamp": 1748837899,
+              "body": "",
+              "title": "Shreyas Iyer vs Jasprit Bumrah - 10 years ago and now",
+              "karma": 2785,
+              "subreddit": "ipl",
+              "link": "https://reddit.com/r/ipl/comments/1l18tnw/shreyas_iyer_vs_jasprit_bumrah_10_years_ago_and/"
+            }
+          ]
+        }
       ],
-      [
-        "trophy",
-        {
-          "label": "trophy",
-          "count": 3
+      [
+        "shreyas",
+        {
+          "label": "shreyas",
+          "count": 6,
+          "metadata": [
+            {
+              "timestamp": 1748837899,
+              "body": "",
+              "title": "Shreyas Iyer vs Jasprit Bumrah - 10 years ago and now",
+              "karma": 2785,
+              "subreddit": "ipl",
+              "link": "https://reddit.com/r/ipl/comments/1l18tnw/shreyas_iyer_vs_jasprit_bumrah_10_years_ago_and/"
+            }
+          ]
         }
       ]
     ],
     [
       [
-        "crying",
+        "play",
         {
-          "label": "crying",
-          "count": 3
+          "label": "play",
+          "count": 9,
+          "metadata": [
+            {
+              "timestamp": 1748815172,
+              "body": "For the duration of pride month you will no longer be allowed to play the straight. This is due to the abnormal levels of gay during pride month and doing anything straight will potentially have dire consequences.\n\nEdit: Jesus Christ I didn't expect this to blow up. I thought it was going to be a simple funny haha joke I made at a pride parade.",
+              "title": "NEW PLAY RULE FOR PRIDE MONTH.",
+              "karma": 6950,
+              "subreddit": "balatro",
+              "link": "https://reddit.com/r/balatro/comments/1l116am/new_play_rule_for_pride_month/"
+            },
+            {
+              "timestamp": 1748855185,
+              "body": "Hi everybody! \n\nSome of you may remember a post from about 20 days ago, It was this picture above and I was talking about how I was overcome with emotion, I had been in remission, and things were still very tough, my mum bought me this Steamdeck, and it was just perfect. \n\nA lot can change in 20 days, and as I said I \"had\" been in remission. I was admitted not too long after my original post after experiencing some incredibly intense pain. \n\nSurgery hasn't worked how we hoped, the trial combination chemo hasn't worked as we hoped, and I am far too sick to even attempt it again. \n\nThe reality of the cancer growth, my own health, and ability to fight back, on top of other mitigating factors. It's now come to a point of just making myself comfortable. \n\nWhen I first posted about my Steamdeck, I was wanting to play games for nostalgia, games I had missed, but with a change in the wind, so does my priorities. \n\nSo, I ask, \n\nWhat games should I play before I die? \n\nPlease think deeply on this, and drop your recommendation. \n\nIf anyone wants to drop a private message to talk about my diagnosis or what the final few months look like, by all means please don't hesitate. I am more than open to discuss it. \n\nAll the best\nM\n\n\n\n",
+              "title": "What to play before I die : A Steamdeck Story",
+              "karma": 880,
+              "subreddit": "SteamDeck",
+              "link": "https://reddit.com/r/SteamDeck/comments/1l1da2v/what_to_play_before_i_die_a_steamdeck_story/"
+            }
+          ]
+        }
+      ],
+      [
+        "pride",
+        {
+          "label": "pride",
+          "count": 13,
+          "metadata": [
+            {
+              "timestamp": 1748831239,
+              "body": "",
+              "title": "In honor of pride month, here\u2019s me immediately after coming out as a lesbian",
+              "karma": 7588,
+              "subreddit": "blunderyears",
+              "link": "https://reddit.com/r/blunderyears/comments/1l16rjm/in_honor_of_pride_month_heres_me_immediately/"
+            },
+            {
+              "timestamp": 1748815172,
+              "body": "For the duration of pride month you will no longer be allowed to play the straight. This is due to the abnormal levels of gay during pride month and doing anything straight will potentially have dire consequences.\n\nEdit: Jesus Christ I didn't expect this to blow up. I thought it was going to be a simple funny haha joke I made at a pride parade.",
+              "title": "NEW PLAY RULE FOR PRIDE MONTH.",
+              "karma": 6950,
+              "subreddit": "balatro",
+              "link": "https://reddit.com/r/balatro/comments/1l116am/new_play_rule_for_pride_month/"
+            },
+            {
+              "timestamp": 1748828569,
+              "body": "",
+              "title": "Happy Pride Month! \ud83c\udff3\ufe0f\u200d\ud83c\udf08",
+              "karma": 6691,
+              "subreddit": "PoliticalHumor",
+              "link": "https://reddit.com/r/PoliticalHumor/comments/1l15vxa/happy_pride_month/"
+            }
+          ]
+        }
+      ]
+    ],
+    [
+      [
+        "god",
+        {
+          "label": "god",
+          "count": null,
+          "metadata": [
+            {
+              "timestamp": 1748828278,
+              "body": "",
+              "title": "God I hate these people",
+              "karma": 13963,
+              "subreddit": "AdviceAnimals",
+              "link": "https://reddit.com/r/AdviceAnimals/comments/1l15shq/god_i_hate_these_people/"
+            }
+          ]
+        }
+      ],
+      [
+        "hate",
+        {
+          "label": "hate",
+          "count": null,
+          "metadata": [
+            {
+              "timestamp": 1748828278,
+              "body": "",
+              "title": "God I hate these people",
+              "karma": 13963,
+              "subreddit": "AdviceAnimals",
+              "link": "https://reddit.com/r/AdviceAnimals/comments/1l15shq/god_i_hate_these_people/"
+            }
+          ]
+        }
+      ]
+    ],
+    [
+      [
+        "god",
+        {
+          "label": "god",
+          "count": null,
+          "metadata": [
+            {
+              "timestamp": 1748828278,
+              "body": "",
+              "title": "God I hate these people",
+              "karma": 13963,
+              "subreddit": "AdviceAnimals",
+              "link": "https://reddit.com/r/AdviceAnimals/comments/1l15shq/god_i_hate_these_people/"
+            }
+          ]
+        }
+      ],
+      [
+        "people",
+        {
+          "label": "people",
+          "count": 10,
+          "metadata": [
+            {
+              "timestamp": 1748828278,
+              "body": "",
+              "title": "God I hate these people",
+              "karma": 13963,
+              "subreddit": "AdviceAnimals",
+              "link": "https://reddit.com/r/AdviceAnimals/comments/1l15shq/god_i_hate_these_people/"
+            },
+            {
+              "timestamp": 1748821863,
+              "body": "",
+              "title": "who the fuck are these people fooling omg",
+              "karma": 7786,
+              "subreddit": "whenthe",
+              "link": "https://reddit.com/r/whenthe/comments/1l13mgq/who_the_fuck_are_these_people_fooling_omg/"
+            }
+          ]
+        }
+      ]
+    ],
+    [
+      [
+        "chess",
+        {
+          "label": "chess",
+          "count": 25,
+          "metadata": [
+            {
+              "timestamp": 1748830104,
+              "body": "",
+              "title": "Current World Champion Gukesh defeats Magnus Carlsen for the first time in classical chess.",
+              "karma": 55850,
+              "subreddit": "interestingasfuck",
+              "link": "https://reddit.com/r/interestingasfuck/comments/1l16e6d/current_world_champion_gukesh_defeats_magnus/"
+            },
+            {
+              "timestamp": 1748830172,
+              "body": "",
+              "title": "Current World Champion Gukesh defeats Magnus Carlsen for the first time in classical chess.",
+              "karma": 19638,
+              "subreddit": "sports",
+              "link": "https://reddit.com/r/sports/comments/1l16ey0/current_world_champion_gukesh_defeats_magnus/"
+            },
+            {
+              "timestamp": 1748839936,
+              "body": "",
+              "title": "Current World Champion Gukesh defeats Magnus Carlsen for the first time in classic chess.",
+              "karma": 7964,
+              "subreddit": "nextfuckinglevel",
+              "link": "https://reddit.com/r/nextfuckinglevel/comments/1l19ehp/current_world_champion_gukesh_defeats_magnus/"
+            },
+            {
+              "timestamp": 1748830026,
+              "body": "",
+              "title": "Current World Champion Gukesh defeats Magnus Carlsen for the first time in classical chess.",
+              "karma": 5128,
+              "subreddit": "interesting",
+              "link": "https://reddit.com/r/interesting/comments/1l16da1/current_world_champion_gukesh_defeats_magnus/"
+            },
+            {
+              "timestamp": 1748826826,
+              "body": "\n\nSource: https://www.onmanorama.com/sports/other-sports/2025/06/02/norway-chess-round-round-six-d-gukesh-beats-magnus-carlsen.amp.html",
+              "title": "Gukesh beats Carlsen for first time in classical chess; furious World No. 1 bangs on board",
+              "karma": 4002,
+              "subreddit": "IndiaSpeaks",
+              "link": "https://reddit.com/r/IndiaSpeaks/comments/1l15b6s/gukesh_beats_carlsen_for_first_time_in_classical/"
+            }
+          ]
+        }
+      ],
+      [
+        "gukesh",
+        {
+          "label": "gukesh",
+          "count": 25,
+          "metadata": [
+            {
+              "timestamp": 1748830104,
+              "body": "",
+              "title": "Current World Champion Gukesh defeats Magnus Carlsen for the first time in classical chess.",
+              "karma": 55850,
+              "subreddit": "interestingasfuck",
+              "link": "https://reddit.com/r/interestingasfuck/comments/1l16e6d/current_world_champion_gukesh_defeats_magnus/"
+            },
+            {
+              "timestamp": 1748830172,
+              "body": "",
+              "title": "Current World Champion Gukesh defeats Magnus Carlsen for the first time in classical chess.",
+              "karma": 19638,
+              "subreddit": "sports",
+              "link": "https://reddit.com/r/sports/comments/1l16ey0/current_world_champion_gukesh_defeats_magnus/"
+            },
+            {
+              "timestamp": 1748839936,
+              "body": "",
+              "title": "Current World Champion Gukesh defeats Magnus Carlsen for the first time in classic chess.",
+              "karma": 7964,
+              "subreddit": "nextfuckinglevel",
+              "link": "https://reddit.com/r/nextfuckinglevel/comments/1l19ehp/current_world_champion_gukesh_defeats_magnus/"
+            },
+            {
+              "timestamp": 1748830026,
+              "body": "",
+              "title": "Current World Champion Gukesh defeats Magnus Carlsen for the first time in classical chess.",
+              "karma": 5128,
+              "subreddit": "interesting",
+              "link": "https://reddit.com/r/interesting/comments/1l16da1/current_world_champion_gukesh_defeats_magnus/"
+            },
+            {
+              "timestamp": 1748826826,
+              "body": "\n\nSource: https://www.onmanorama.com/sports/other-sports/2025/06/02/norway-chess-round-round-six-d-gukesh-beats-magnus-carlsen.amp.html",
+              "title": "Gukesh beats Carlsen for first time in classical chess; furious World No. 1 bangs on board",
+              "karma": 4002,
+              "subreddit": "IndiaSpeaks",
+              "link": "https://reddit.com/r/IndiaSpeaks/comments/1l15b6s/gukesh_beats_carlsen_for_first_time_in_classical/"
+            }
+          ]
+        }
+      ]
+    ],
+    [
+      [
+        "chess",
+        {
+          "label": "chess",
+          "count": 25,
+          "metadata": [
+            {
+              "timestamp": 1748830104,
+              "body": "",
+              "title": "Current World Champion Gukesh defeats Magnus Carlsen for the first time in classical chess.",
+              "karma": 55850,
+              "subreddit": "interestingasfuck",
+              "link": "https://reddit.com/r/interestingasfuck/comments/1l16e6d/current_world_champion_gukesh_defeats_magnus/"
+            },
+            {
+              "timestamp": 1748830172,
+              "body": "",
+              "title": "Current World Champion Gukesh defeats Magnus Carlsen for the first time in classical chess.",
+              "karma": 19638,
+              "subreddit": "sports",
+              "link": "https://reddit.com/r/sports/comments/1l16ey0/current_world_champion_gukesh_defeats_magnus/"
+            },
+            {
+              "timestamp": 1748839936,
+              "body": "",
+              "title": "Current World Champion Gukesh defeats Magnus Carlsen for the first time in classic chess.",
+              "karma": 7964,
+              "subreddit": "nextfuckinglevel",
+              "link": "https://reddit.com/r/nextfuckinglevel/comments/1l19ehp/current_world_champion_gukesh_defeats_magnus/"
+            },
+            {
+              "timestamp": 1748830026,
+              "body": "",
+              "title": "Current World Champion Gukesh defeats Magnus Carlsen for the first time in classical chess.",
+              "karma": 5128,
+              "subreddit": "interesting",
+              "link": "https://reddit.com/r/interesting/comments/1l16da1/current_world_champion_gukesh_defeats_magnus/"
+            },
+            {
+              "timestamp": 1748826826,
+              "body": "\n\nSource: https://www.onmanorama.com/sports/other-sports/2025/06/02/norway-chess-round-round-six-d-gukesh-beats-magnus-carlsen.amp.html",
+              "title": "Gukesh beats Carlsen for first time in classical chess; furious World No. 1 bangs on board",
+              "karma": 4002,
+              "subreddit": "IndiaSpeaks",
+              "link": "https://reddit.com/r/IndiaSpeaks/comments/1l15b6s/gukesh_beats_carlsen_for_first_time_in_classical/"
+            }
+          ]
+        }
+      ],
+      [
+        "magnus",
+        {
+          "label": "magnus",
+          "count": 25,
+          "metadata": [
+            {
+              "timestamp": 1748830104,
+              "body": "",
+              "title": "Current World Champion Gukesh defeats Magnus Carlsen for the first time in classical chess.",
+              "karma": 55850,
+              "subreddit": "interestingasfuck",
+              "link": "https://reddit.com/r/interestingasfuck/comments/1l16e6d/current_world_champion_gukesh_defeats_magnus/"
+            },
+            {
+              "timestamp": 1748830172,
+              "body": "",
+              "title": "Current World Champion Gukesh defeats Magnus Carlsen for the first time in classical chess.",
+              "karma": 19638,
+              "subreddit": "sports",
+              "link": "https://reddit.com/r/sports/comments/1l16ey0/current_world_champion_gukesh_defeats_magnus/"
+            },
+            {
+              "timestamp": 1748839936,
+              "body": "",
+              "title": "Current World Champion Gukesh defeats Magnus Carlsen for the first time in classic chess.",
+              "karma": 7964,
+              "subreddit": "nextfuckinglevel",
+              "link": "https://reddit.com/r/nextfuckinglevel/comments/1l19ehp/current_world_champion_gukesh_defeats_magnus/"
+            },
+            {
+              "timestamp": 1748830026,
+              "body": "",
+              "title": "Current World Champion Gukesh defeats Magnus Carlsen for the first time in classical chess.",
+              "karma": 5128,
+              "subreddit": "interesting",
+              "link": "https://reddit.com/r/interesting/comments/1l16da1/current_world_champion_gukesh_defeats_magnus/"
+            },
+            {
+              "timestamp": 1748841019,
+              "body": "",
+              "title": "World Champion Beats Magnus Carlsen! watch their reaction, OMG",
+              "karma": 1756,
+              "subreddit": "IndianTeenagers",
+              "link": "https://reddit.com/r/IndianTeenagers/comments/1l19p9n/world_champion_beats_magnus_carlsen_watch_their/"
+            }
+          ]
+        }
+      ]
+    ],
+    [
+      [
+        "smart",
+        {
+          "label": "smart",
+          "count": null,
+          "metadata": [
+            {
+              "timestamp": 1748823546,
+              "body": "",
+              "title": "Work smart, not hard",
+              "karma": 19528,
+              "subreddit": "Satisfyingasfuck",
+              "link": "https://reddit.com/r/Satisfyingasfuck/comments/1l147gc/work_smart_not_hard/"
+            }
+          ]
+        }
+      ],
+      [
+        "work",
+        {
+          "label": "work",
+          "count": 5,
+          "metadata": [
+            {
+              "timestamp": 1748823546,
+              "body": "",
+              "title": "Work smart, not hard",
+              "karma": 19528,
+              "subreddit": "Satisfyingasfuck",
+              "link": "https://reddit.com/r/Satisfyingasfuck/comments/1l147gc/work_smart_not_hard/"
+            }
+          ]
+        }
+      ]
+    ],
+    [
+      [
+        "carlsen",
+        {
+          "label": "carlsen",
+          "count": 30,
+          "metadata": [
+            {
+              "timestamp": 1748830104,
+              "body": "",
+              "title": "Current World Champion Gukesh defeats Magnus Carlsen for the first time in classical chess.",
+              "karma": 55850,
+              "subreddit": "interestingasfuck",
+              "link": "https://reddit.com/r/interestingasfuck/comments/1l16e6d/current_world_champion_gukesh_defeats_magnus/"
+            },
+            {
+              "timestamp": 1748830172,
+              "body": "",
+              "title": "Current World Champion Gukesh defeats Magnus Carlsen for the first time in classical chess.",
+              "karma": 19638,
+              "subreddit": "sports",
+              "link": "https://reddit.com/r/sports/comments/1l16ey0/current_world_champion_gukesh_defeats_magnus/"
+            },
+            {
+              "timestamp": 1748839936,
+              "body": "",
+              "title": "Current World Champion Gukesh defeats Magnus Carlsen for the first time in classic chess.",
+              "karma": 7964,
+              "subreddit": "nextfuckinglevel",
+              "link": "https://reddit.com/r/nextfuckinglevel/comments/1l19ehp/current_world_champion_gukesh_defeats_magnus/"
+            },
+            {
+              "timestamp": 1748830026,
+              "body": "",
+              "title": "Current World Champion Gukesh defeats Magnus Carlsen for the first time in classical chess.",
+              "karma": 5128,
+              "subreddit": "interesting",
+              "link": "https://reddit.com/r/interesting/comments/1l16da1/current_world_champion_gukesh_defeats_magnus/"
+            },
+            {
+              "timestamp": 1748826826,
+              "body": "\n\nSource: https://www.onmanorama.com/sports/other-sports/2025/06/02/norway-chess-round-round-six-d-gukesh-beats-magnus-carlsen.amp.html",
+              "title": "Gukesh beats Carlsen for first time in classical chess; furious World No. 1 bangs on board",
+              "karma": 4002,
+              "subreddit": "IndiaSpeaks",
+              "link": "https://reddit.com/r/IndiaSpeaks/comments/1l15b6s/gukesh_beats_carlsen_for_first_time_in_classical/"
+            }
+          ]
+        }
+      ],
+      [
+        "chess",
+        {
+          "label": "chess",
+          "count": 25,
+          "metadata": [
+            {
+              "timestamp": 1748830104,
+              "body": "",
+              "title": "Current World Champion Gukesh defeats Magnus Carlsen for the first time in classical chess.",
+              "karma": 55850,
+              "subreddit": "interestingasfuck",
+              "link": "https://reddit.com/r/interestingasfuck/comments/1l16e6d/current_world_champion_gukesh_defeats_magnus/"
+            },
+            {
+              "timestamp": 1748830172,
+              "body": "",
+              "title": "Current World Champion Gukesh defeats Magnus Carlsen for the first time in classical chess.",
+              "karma": 19638,
+              "subreddit": "sports",
+              "link": "https://reddit.com/r/sports/comments/1l16ey0/current_world_champion_gukesh_defeats_magnus/"
+            },
+            {
+              "timestamp": 1748839936,
+              "body": "",
+              "title": "Current World Champion Gukesh defeats Magnus Carlsen for the first time in classic chess.",
+              "karma": 7964,
+              "subreddit": "nextfuckinglevel",
+              "link": "https://reddit.com/r/nextfuckinglevel/comments/1l19ehp/current_world_champion_gukesh_defeats_magnus/"
+            },
+            {
+              "timestamp": 1748830026,
+              "body": "",
+              "title": "Current World Champion Gukesh defeats Magnus Carlsen for the first time in classical chess.",
+              "karma": 5128,
+              "subreddit": "interesting",
+              "link": "https://reddit.com/r/interesting/comments/1l16da1/current_world_champion_gukesh_defeats_magnus/"
+            },
+            {
+              "timestamp": 1748826826,
+              "body": "\n\nSource: https://www.onmanorama.com/sports/other-sports/2025/06/02/norway-chess-round-round-six-d-gukesh-beats-magnus-carlsen.amp.html",
+              "title": "Gukesh beats Carlsen for first time in classical chess; furious World No. 1 bangs on board",
+              "karma": 4002,
+              "subreddit": "IndiaSpeaks",
+              "link": "https://reddit.com/r/IndiaSpeaks/comments/1l15b6s/gukesh_beats_carlsen_for_first_time_in_classical/"
+            }
+          ]
+        }
+      ]
+    ],
+    [
+      [
+        "carlsen",
+        {
+          "label": "carlsen",
+          "count": 30,
+          "metadata": [
+            {
+              "timestamp": 1748830104,
+              "body": "",
+              "title": "Current World Champion Gukesh defeats Magnus Carlsen for the first time in classical chess.",
+              "karma": 55850,
+              "subreddit": "interestingasfuck",
+              "link": "https://reddit.com/r/interestingasfuck/comments/1l16e6d/current_world_champion_gukesh_defeats_magnus/"
+            },
+            {
+              "timestamp": 1748830172,
+              "body": "",
+              "title": "Current World Champion Gukesh defeats Magnus Carlsen for the first time in classical chess.",
+              "karma": 19638,
+              "subreddit": "sports",
+              "link": "https://reddit.com/r/sports/comments/1l16ey0/current_world_champion_gukesh_defeats_magnus/"
+            },
+            {
+              "timestamp": 1748839936,
+              "body": "",
+              "title": "Current World Champion Gukesh defeats Magnus Carlsen for the first time in classic chess.",
+              "karma": 7964,
+              "subreddit": "nextfuckinglevel",
+              "link": "https://reddit.com/r/nextfuckinglevel/comments/1l19ehp/current_world_champion_gukesh_defeats_magnus/"
+            },
+            {
+              "timestamp": 1748830026,
+              "body": "",
+              "title": "Current World Champion Gukesh defeats Magnus Carlsen for the first time in classical chess.",
+              "karma": 5128,
+              "subreddit": "interesting",
+              "link": "https://reddit.com/r/interesting/comments/1l16da1/current_world_champion_gukesh_defeats_magnus/"
+            },
+            {
+              "timestamp": 1748826826,
+              "body": "\n\nSource: https://www.onmanorama.com/sports/other-sports/2025/06/02/norway-chess-round-round-six-d-gukesh-beats-magnus-carlsen.amp.html",
+              "title": "Gukesh beats Carlsen for first time in classical chess; furious World No. 1 bangs on board",
+              "karma": 4002,
+              "subreddit": "IndiaSpeaks",
+              "link": "https://reddit.com/r/IndiaSpeaks/comments/1l15b6s/gukesh_beats_carlsen_for_first_time_in_classical/"
+            }
+          ]
+        }
+      ],
+      [
+        "gukesh",
+        {
+          "label": "gukesh",
+          "count": 25,
+          "metadata": [
+            {
+              "timestamp": 1748830104,
+              "body": "",
+              "title": "Current World Champion Gukesh defeats Magnus Carlsen for the first time in classical chess.",
+              "karma": 55850,
+              "subreddit": "interestingasfuck",
+              "link": "https://reddit.com/r/interestingasfuck/comments/1l16e6d/current_world_champion_gukesh_defeats_magnus/"
+            },
+            {
+              "timestamp": 1748830172,
+              "body": "",
+              "title": "Current World Champion Gukesh defeats Magnus Carlsen for the first time in classical chess.",
+              "karma": 19638,
+              "subreddit": "sports",
+              "link": "https://reddit.com/r/sports/comments/1l16ey0/current_world_champion_gukesh_defeats_magnus/"
+            },
+            {
+              "timestamp": 1748839936,
+              "body": "",
+              "title": "Current World Champion Gukesh defeats Magnus Carlsen for the first time in classic chess.",
+              "karma": 7964,
+              "subreddit": "nextfuckinglevel",
+              "link": "https://reddit.com/r/nextfuckinglevel/comments/1l19ehp/current_world_champion_gukesh_defeats_magnus/"
+            },
+            {
+              "timestamp": 1748830026,
+              "body": "",
+              "title": "Current World Champion Gukesh defeats Magnus Carlsen for the first time in classical chess.",
+              "karma": 5128,
+              "subreddit": "interesting",
+              "link": "https://reddit.com/r/interesting/comments/1l16da1/current_world_champion_gukesh_defeats_magnus/"
+            },
+            {
+              "timestamp": 1748826826,
+              "body": "\n\nSource: https://www.onmanorama.com/sports/other-sports/2025/06/02/norway-chess-round-round-six-d-gukesh-beats-magnus-carlsen.amp.html",
+              "title": "Gukesh beats Carlsen for first time in classical chess; furious World No. 1 bangs on board",
+              "karma": 4002,
+              "subreddit": "IndiaSpeaks",
+              "link": "https://reddit.com/r/IndiaSpeaks/comments/1l15b6s/gukesh_beats_carlsen_for_first_time_in_classical/"
+            }
+          ]
+        }
+      ]
+    ],
+    [
+      [
+        "carlsen",
+        {
+          "label": "carlsen",
+          "count": 30,
+          "metadata": [
+            {
+              "timestamp": 1748830104,
+              "body": "",
+              "title": "Current World Champion Gukesh defeats Magnus Carlsen for the first time in classical chess.",
+              "karma": 55850,
+              "subreddit": "interestingasfuck",
+              "link": "https://reddit.com/r/interestingasfuck/comments/1l16e6d/current_world_champion_gukesh_defeats_magnus/"
+            },
+            {
+              "timestamp": 1748830172,
+              "body": "",
+              "title": "Current World Champion Gukesh defeats Magnus Carlsen for the first time in classical chess.",
+              "karma": 19638,
+              "subreddit": "sports",
+              "link": "https://reddit.com/r/sports/comments/1l16ey0/current_world_champion_gukesh_defeats_magnus/"
+            },
+            {
+              "timestamp": 1748839936,
+              "body": "",
+              "title": "Current World Champion Gukesh defeats Magnus Carlsen for the first time in classic chess.",
+              "karma": 7964,
+              "subreddit": "nextfuckinglevel",
+              "link": "https://reddit.com/r/nextfuckinglevel/comments/1l19ehp/current_world_champion_gukesh_defeats_magnus/"
+            },
+            {
+              "timestamp": 1748830026,
+              "body": "",
+              "title": "Current World Champion Gukesh defeats Magnus Carlsen for the first time in classical chess.",
+              "karma": 5128,
+              "subreddit": "interesting",
+              "link": "https://reddit.com/r/interesting/comments/1l16da1/current_world_champion_gukesh_defeats_magnus/"
+            },
+            {
+              "timestamp": 1748826826,
+              "body": "\n\nSource: https://www.onmanorama.com/sports/other-sports/2025/06/02/norway-chess-round-round-six-d-gukesh-beats-magnus-carlsen.amp.html",
+              "title": "Gukesh beats Carlsen for first time in classical chess; furious World No. 1 bangs on board",
+              "karma": 4002,
+              "subreddit": "IndiaSpeaks",
+              "link": "https://reddit.com/r/IndiaSpeaks/comments/1l15b6s/gukesh_beats_carlsen_for_first_time_in_classical/"
+            }
+          ]
+        }
+      ],
+      [
+        "magnus",
+        {
+          "label": "magnus",
+          "count": 25,
+          "metadata": [
+            {
+              "timestamp": 1748830104,
+              "body": "",
+              "title": "Current World Champion Gukesh defeats Magnus Carlsen for the first time in classical chess.",
+              "karma": 55850,
+              "subreddit": "interestingasfuck",
+              "link": "https://reddit.com/r/interestingasfuck/comments/1l16e6d/current_world_champion_gukesh_defeats_magnus/"
+            },
+            {
+              "timestamp": 1748830172,
+              "body": "",
+              "title": "Current World Champion Gukesh defeats Magnus Carlsen for the first time in classical chess.",
+              "karma": 19638,
+              "subreddit": "sports",
+              "link": "https://reddit.com/r/sports/comments/1l16ey0/current_world_champion_gukesh_defeats_magnus/"
+            },
+            {
+              "timestamp": 1748839936,
+              "body": "",
+              "title": "Current World Champion Gukesh defeats Magnus Carlsen for the first time in classic chess.",
+              "karma": 7964,
+              "subreddit": "nextfuckinglevel",
+              "link": "https://reddit.com/r/nextfuckinglevel/comments/1l19ehp/current_world_champion_gukesh_defeats_magnus/"
+            },
+            {
+              "timestamp": 1748830026,
+              "body": "",
+              "title": "Current World Champion Gukesh defeats Magnus Carlsen for the first time in classical chess.",
+              "karma": 5128,
+              "subreddit": "interesting",
+              "link": "https://reddit.com/r/interesting/comments/1l16da1/current_world_champion_gukesh_defeats_magnus/"
+            },
+            {
+              "timestamp": 1748841019,
+              "body": "",
+              "title": "World Champion Beats Magnus Carlsen! watch their reaction, OMG",
+              "karma": 1756,
+              "subreddit": "IndianTeenagers",
+              "link": "https://reddit.com/r/IndianTeenagers/comments/1l19p9n/world_champion_beats_magnus_carlsen_watch_their/"
+            }
+          ]
+        }
+      ]
+    ],
+    [
+      [
+        "mudroom",
+        {
+          "label": "mudroom",
+          "count": 7,
+          "metadata": [
+            {
+              "timestamp": 1748815446,
+              "body": "",
+              "title": "Turned my entry closet into a cozy nook/mudroom :)",
+              "karma": 10001,
+              "subreddit": "CozyPlaces",
+              "link": "https://reddit.com/r/CozyPlaces/comments/1l11a7v/turned_my_entry_closet_into_a_cozy_nookmudroom/"
+            }
+          ]
+        }
+      ],
+      [
+        "nook",
+        {
+          "label": "nook",
+          "count": 7,
+          "metadata": [
+            {
+              "timestamp": 1748815446,
+              "body": "",
+              "title": "Turned my entry closet into a cozy nook/mudroom :)",
+              "karma": 10001,
+              "subreddit": "CozyPlaces",
+              "link": "https://reddit.com/r/CozyPlaces/comments/1l11a7v/turned_my_entry_closet_into_a_cozy_nookmudroom/"
+            }
+          ]
+        }
+      ]
+    ],
+    [
+      [
+        "lesbian",
+        {
+          "label": "lesbian",
+          "count": 9,
+          "metadata": [
+            {
+              "timestamp": 1748831239,
+              "body": "",
+              "title": "In honor of pride month, here\u2019s me immediately after coming out as a lesbian",
+              "karma": 7588,
+              "subreddit": "blunderyears",
+              "link": "https://reddit.com/r/blunderyears/comments/1l16rjm/in_honor_of_pride_month_heres_me_immediately/"
+            },
+            {
+              "timestamp": 1748853025,
+              "body": "",
+              "title": "First lesbian wedding in the history of the Philippines, in a revolutionary base.",
+              "karma": 1239,
+              "subreddit": "lgbt",
+              "link": "https://reddit.com/r/lgbt/comments/1l1cr1x/first_lesbian_wedding_in_the_history_of_the/"
+            }
+          ]
+        }
+      ],
+      [
+        "pride",
+        {
+          "label": "pride",
+          "count": 13,
+          "metadata": [
+            {
+              "timestamp": 1748831239,
+              "body": "",
+              "title": "In honor of pride month, here\u2019s me immediately after coming out as a lesbian",
+              "karma": 7588,
+              "subreddit": "blunderyears",
+              "link": "https://reddit.com/r/blunderyears/comments/1l16rjm/in_honor_of_pride_month_heres_me_immediately/"
+            },
+            {
+              "timestamp": 1748815172,
+              "body": "For the duration of pride month you will no longer be allowed to play the straight. This is due to the abnormal levels of gay during pride month and doing anything straight will potentially have dire consequences.\n\nEdit: Jesus Christ I didn't expect this to blow up. I thought it was going to be a simple funny haha joke I made at a pride parade.",
+              "title": "NEW PLAY RULE FOR PRIDE MONTH.",
+              "karma": 6950,
+              "subreddit": "balatro",
+              "link": "https://reddit.com/r/balatro/comments/1l116am/new_play_rule_for_pride_month/"
+            },
+            {
+              "timestamp": 1748828569,
+              "body": "",
+              "title": "Happy Pride Month! \ud83c\udff3\ufe0f\u200d\ud83c\udf08",
+              "karma": 6691,
+              "subreddit": "PoliticalHumor",
+              "link": "https://reddit.com/r/PoliticalHumor/comments/1l15vxa/happy_pride_month/"
+            }
+          ]
+        }
+      ]
+    ],
+    [
+      [
+        "lesbian",
+        {
+          "label": "lesbian",
+          "count": 9,
+          "metadata": [
+            {
+              "timestamp": 1748831239,
+              "body": "",
+              "title": "In honor of pride month, here\u2019s me immediately after coming out as a lesbian",
+              "karma": 7588,
+              "subreddit": "blunderyears",
+              "link": "https://reddit.com/r/blunderyears/comments/1l16rjm/in_honor_of_pride_month_heres_me_immediately/"
+            },
+            {
+              "timestamp": 1748853025,
+              "body": "",
+              "title": "First lesbian wedding in the history of the Philippines, in a revolutionary base.",
+              "karma": 1239,
+              "subreddit": "lgbt",
+              "link": "https://reddit.com/r/lgbt/comments/1l1cr1x/first_lesbian_wedding_in_the_history_of_the/"
+            }
+          ]
+        }
+      ],
+      [
+        "wedding",
+        {
+          "label": "wedding",
+          "count": 5,
+          "metadata": [
+            {
+              "timestamp": 1748853025,
+              "body": "",
+              "title": "First lesbian wedding in the history of the Philippines, in a revolutionary base.",
+              "karma": 1239,
+              "subreddit": "lgbt",
+              "link": "https://reddit.com/r/lgbt/comments/1l1cr1x/first_lesbian_wedding_in_the_history_of_the/"
+            }
+          ]
+        }
+      ]
+    ],
+    [
+      [
+        "cat",
+        {
+          "label": "cat",
+          "count": 19,
+          "metadata": [
+            {
+              "timestamp": 1748812554,
+              "body": "Nap time must be completed at all cost. ",
+              "title": "Spotted cat getting comfy under the blanket",
+              "karma": 26265,
+              "subreddit": "Eyebleach",
+              "link": "https://reddit.com/r/Eyebleach/comments/1l1059t/spotted_cat_getting_comfy_under_the_blanket/"
+            },
+            {
+              "timestamp": 1748819439,
+              "body": "My cat is 9 months old, well she was. My birthday is in two days too. Today, I was visiting my dad when my cat fell off the window from the 7th floor. My sister was supposed to be watching her. I came home literally two minutes later. She was bleeding and having trouble breathing. We took her to the vet immediately and they said we had to either put her to sleep or pay 3000$ for her intensive care, which only had a 50% of survival as she was bleeding from her lungs. We decided to let her go as we couldn't afford it. I was so sad, I can't stop crying. It's been around 2 hours since I last saw her. She was just a baby. The veterans were kind enough to let me pet her before and after they put her to sleep. I sat with her for 15 minutes I think before I had to finally say goodbye and leave her. I kept her collar. I'm crying as I type this because she was my everything. There's no one to jump on me in the mornings anymore, no one to try and open the door when I'm in the bathroom, and no one to sleep on me anymore. I miss when she'd sleep on my legs, sleep in the middle of my bed so I only had to sleep on the edge. I miss everything about her so much. I have school tomorrow, and my birthday is in two days. I don't know if I should celebrate, or if I even want to. Anyways, here are some photos of her. She was so cute and energetic, and she was very fierce yet playful and social. Her name was Lia.\n\n",
+              "title": "My cat died today. I miss her so much.",
+              "karma": 24718,
+              "subreddit": "cats",
+              "link": "https://reddit.com/r/cats/comments/1l12rtd/my_cat_died_today_i_miss_her_so_much/"
+            },
+            {
+              "timestamp": 1748833991,
+              "body": "",
+              "title": "Cat wins, daughter wins, dad will get used to it",
+              "karma": 15318,
+              "subreddit": "holdmycatnip",
+              "link": "https://reddit.com/r/holdmycatnip/comments/1l17n0v/cat_wins_daughter_wins_dad_will_get_used_to_it/"
+            },
+            {
+              "timestamp": 1748828573,
+              "body": "",
+              "title": "Do you ever take boudoir pics of your cat?",
+              "karma": 4718,
+              "subreddit": "cats",
+              "link": "https://reddit.com/r/cats/comments/1l15vyv/do_you_ever_take_boudoir_pics_of_your_cat/"
+            }
+          ]
         }
       ],
       [
         "dad",
         {
           "label": "dad",
-          "count": 3
+          "count": 14,
+          "metadata": [
+            {
+              "timestamp": 1748814786,
+              "body": "",
+              "title": "My dad watched my ~3yr old nephew for my sister today...",
+              "karma": 27535,
+              "subreddit": "KidsAreFuckingStupid",
+              "link": "https://reddit.com/r/KidsAreFuckingStupid/comments/1l110xl/my_dad_watched_my_3yr_old_nephew_for_my_sister/"
+            },
+            {
+              "timestamp": 1748833991,
+              "body": "",
+              "title": "Cat wins, daughter wins, dad will get used to it",
+              "karma": 15318,
+              "subreddit": "holdmycatnip",
+              "link": "https://reddit.com/r/holdmycatnip/comments/1l17n0v/cat_wins_daughter_wins_dad_will_get_used_to_it/"
+            },
+            {
+              "timestamp": 1748832423,
+              "body": "",
+              "title": "Dad sparrow feeding his child at a cafe",
+              "karma": 10221,
+              "subreddit": "BeAmazed",
+              "link": "https://reddit.com/r/BeAmazed/comments/1l1752c/dad_sparrow_feeding_his_child_at_a_cafe/"
+            }
+          ]
         }
       ]
     ],
     [
       [
-        "crying",
+        "cat",
         {
-          "label": "crying",
-          "count": 3
+          "label": "cat",
+          "count": 19,
+          "metadata": [
+            {
+              "timestamp": 1748812554,
+              "body": "Nap time must be completed at all cost. ",
+              "title": "Spotted cat getting comfy under the blanket",
+              "karma": 26265,
+              "subreddit": "Eyebleach",
+              "link": "https://reddit.com/r/Eyebleach/comments/1l1059t/spotted_cat_getting_comfy_under_the_blanket/"
+            },
+            {
+              "timestamp": 1748819439,
+              "body": "My cat is 9 months old, well she was. My birthday is in two days too. Today, I was visiting my dad when my cat fell off the window from the 7th floor. My sister was supposed to be watching her. I came home literally two minutes later. She was bleeding and having trouble breathing. We took her to the vet immediately and they said we had to either put her to sleep or pay 3000$ for her intensive care, which only had a 50% of survival as she was bleeding from her lungs. We decided to let her go as we couldn't afford it. I was so sad, I can't stop crying. It's been around 2 hours since I last saw her. She was just a baby. The veterans were kind enough to let me pet her before and after they put her to sleep. I sat with her for 15 minutes I think before I had to finally say goodbye and leave her. I kept her collar. I'm crying as I type this because she was my everything. There's no one to jump on me in the mornings anymore, no one to try and open the door when I'm in the bathroom, and no one to sleep on me anymore. I miss when she'd sleep on my legs, sleep in the middle of my bed so I only had to sleep on the edge. I miss everything about her so much. I have school tomorrow, and my birthday is in two days. I don't know if I should celebrate, or if I even want to. Anyways, here are some photos of her. She was so cute and energetic, and she was very fierce yet playful and social. Her name was Lia.\n\n",
+              "title": "My cat died today. I miss her so much.",
+              "karma": 24718,
+              "subreddit": "cats",
+              "link": "https://reddit.com/r/cats/comments/1l12rtd/my_cat_died_today_i_miss_her_so_much/"
+            },
+            {
+              "timestamp": 1748833991,
+              "body": "",
+              "title": "Cat wins, daughter wins, dad will get used to it",
+              "karma": 15318,
+              "subreddit": "holdmycatnip",
+              "link": "https://reddit.com/r/holdmycatnip/comments/1l17n0v/cat_wins_daughter_wins_dad_will_get_used_to_it/"
+            },
+            {
+              "timestamp": 1748828573,
+              "body": "",
+              "title": "Do you ever take boudoir pics of your cat?",
+              "karma": 4718,
+              "subreddit": "cats",
+              "link": "https://reddit.com/r/cats/comments/1l15vyv/do_you_ever_take_boudoir_pics_of_your_cat/"
+            }
+          ]
         }
       ],
       [
-        "peter",
+        "wins",
         {
-          "label": "peter",
-          "count": 3
+          "label": "wins",
+          "count": null,
+          "metadata": [
+            {
+              "timestamp": 1748833991,
+              "body": "",
+              "title": "Cat wins, daughter wins, dad will get used to it",
+              "karma": 15318,
+              "subreddit": "holdmycatnip",
+              "link": "https://reddit.com/r/holdmycatnip/comments/1l17n0v/cat_wins_daughter_wins_dad_will_get_used_to_it/"
+            }
+          ]
         }
       ]
     ],
     [
       [
-        "trial",
+        "argue",
         {
-          "label": "trial",
-          "count": 3
+          "label": "argue",
+          "count": null,
+          "metadata": [
+            {
+              "timestamp": 1748814904,
+              "body": "",
+              "title": "Can't argue with Science...",
+              "karma": 15345,
+              "subreddit": "BlackPeopleTwitter",
+              "link": "https://reddit.com/r/BlackPeopleTwitter/comments/1l112ko/cant_argue_with_science/"
+            }
+          ]
         }
       ],
       [
-        "workweek",
+        "science",
         {
-          "label": "workweek",
-          "count": 3
+          "label": "science",
+          "count": null,
+          "metadata": [
+            {
+              "timestamp": 1748814904,
+              "body": "",
+              "title": "Can't argue with Science...",
+              "karma": 15345,
+              "subreddit": "BlackPeopleTwitter",
+              "link": "https://reddit.com/r/BlackPeopleTwitter/comments/1l112ko/cant_argue_with_science/"
+            }
+          ]
         }
       ]
     ],
     [
       [
-        "ice",
+        "jasprit",
         {
-          "label": "ice",
-          "count": 3
+          "label": "jasprit",
+          "count": 6,
+          "metadata": [
+            {
+              "timestamp": 1748837899,
+              "body": "",
+              "title": "Shreyas Iyer vs Jasprit Bumrah - 10 years ago and now",
+              "karma": 2785,
+              "subreddit": "ipl",
+              "link": "https://reddit.com/r/ipl/comments/1l18tnw/shreyas_iyer_vs_jasprit_bumrah_10_years_ago_and/"
+            }
+          ]
         }
       ],
       [
-        "illegally",
+        "shreyas",
         {
-          "label": "illegally",
-          "count": 3
+          "label": "shreyas",
+          "count": 6,
+          "metadata": [
+            {
+              "timestamp": 1748837899,
+              "body": "",
+              "title": "Shreyas Iyer vs Jasprit Bumrah - 10 years ago and now",
+              "karma": 2785,
+              "subreddit": "ipl",
+              "link": "https://reddit.com/r/ipl/comments/1l18tnw/shreyas_iyer_vs_jasprit_bumrah_10_years_ago_and/"
+            }
+          ]
         }
       ]
     ],
     [
       [
-        "larry",
+        "celebrate",
         {
-          "label": "larry",
-          "count": 3
+          "label": "celebrate",
+          "count": null,
+          "metadata": [
+            {
+              "timestamp": 1748845526,
+              "body": "",
+              "title": "Before saying gay people have too many days to celebrate, please look at how many days did these American veterans celebrate",
+              "karma": 1443,
+              "subreddit": "clevercomebacks",
+              "link": "https://reddit.com/r/clevercomebacks/comments/1l1aw05/before_saying_gay_people_have_too_many_days_to/"
+            }
+          ]
         }
       ],
       [
-        "mvp",
+        "veterans",
         {
-          "label": "mvp",
-          "count": 3
+          "label": "veterans",
+          "count": null,
+          "metadata": [
+            {
+              "timestamp": 1748845526,
+              "body": "",
+              "title": "Before saying gay people have too many days to celebrate, please look at how many days did these American veterans celebrate",
+              "karma": 1443,
+              "subreddit": "clevercomebacks",
+              "link": "https://reddit.com/r/clevercomebacks/comments/1l1aw05/before_saying_gay_people_have_too_many_days_to/"
+            }
+          ]
         }
       ]
     ],
     [
       [
-        "larry",
+        "hard",
         {
-          "label": "larry",
-          "count": 3
+          "label": "hard",
+          "count": 10,
+          "metadata": [
+            {
+              "timestamp": 1748823546,
+              "body": "",
+              "title": "Work smart, not hard",
+              "karma": 19528,
+              "subreddit": "Satisfyingasfuck",
+              "link": "https://reddit.com/r/Satisfyingasfuck/comments/1l147gc/work_smart_not_hard/"
+            },
+            {
+              "timestamp": 1748843407,
+              "body": "",
+              "title": "Somebody probably got hard while looking at this",
+              "karma": 2290,
+              "subreddit": "technicallythetruth",
+              "link": "https://reddit.com/r/technicallythetruth/comments/1l1acau/somebody_probably_got_hard_while_looking_at_this/"
+            }
+          ]
         }
       ],
       [
-        "raptors",
+        "smart",
         {
-          "label": "raptors",
-          "count": 3
+          "label": "smart",
+          "count": null,
+          "metadata": [
+            {
+              "timestamp": 1748823546,
+              "body": "",
+              "title": "Work smart, not hard",
+              "karma": 19528,
+              "subreddit": "Satisfyingasfuck",
+              "link": "https://reddit.com/r/Satisfyingasfuck/comments/1l147gc/work_smart_not_hard/"
+            }
+          ]
         }
       ]
     ],
     [
       [
-        "larry",
+        "hard",
         {
-          "label": "larry",
-          "count": 3
+          "label": "hard",
+          "count": 10,
+          "metadata": [
+            {
+              "timestamp": 1748823546,
+              "body": "",
+              "title": "Work smart, not hard",
+              "karma": 19528,
+              "subreddit": "Satisfyingasfuck",
+              "link": "https://reddit.com/r/Satisfyingasfuck/comments/1l147gc/work_smart_not_hard/"
+            },
+            {
+              "timestamp": 1748843407,
+              "body": "",
+              "title": "Somebody probably got hard while looking at this",
+              "karma": 2290,
+              "subreddit": "technicallythetruth",
+              "link": "https://reddit.com/r/technicallythetruth/comments/1l1acau/somebody_probably_got_hard_while_looking_at_this/"
+            }
+          ]
         }
       ],
       [
-        "siakam",
+        "work",
         {
-          "label": "siakam",
-          "count": 3
+          "label": "work",
+          "count": 5,
+          "metadata": [
+            {
+              "timestamp": 1748823546,
+              "body": "",
+              "title": "Work smart, not hard",
+              "karma": 19528,
+              "subreddit": "Satisfyingasfuck",
+              "link": "https://reddit.com/r/Satisfyingasfuck/comments/1l147gc/work_smart_not_hard/"
+            }
+          ]
         }
       ]
     ],
     [
       [
-        "larry",
+        "photos",
         {
-          "label": "larry",
-          "count": 3
+          "label": "photos",
+          "count": 9,
+          "metadata": [
+            {
+              "timestamp": 1748817278,
+              "body": "",
+              "title": "I had professional photos taken of my puppers.",
+              "karma": 16056,
+              "subreddit": "rarepuppers",
+              "link": "https://reddit.com/r/rarepuppers/comments/1l11z4e/i_had_professional_photos_taken_of_my_puppers/"
+            },
+            {
+              "timestamp": 1748836248,
+              "body": "",
+              "title": "Researchers react to first-ever photos",
+              "karma": 13718,
+              "subreddit": "youseeingthisshit",
+              "link": "https://reddit.com/r/youseeingthisshit/comments/1l18bq8/researchers_react_to_firstever_photos/"
+            }
+          ]
         }
       ],
       [
-        "trophy",
+        "researchers",
         {
-          "label": "trophy",
-          "count": 3
+          "label": "researchers",
+          "count": null,
+          "metadata": [
+            {
+              "timestamp": 1748836248,
+              "body": "",
+              "title": "Researchers react to first-ever photos",
+              "karma": 13718,
+              "subreddit": "youseeingthisshit",
+              "link": "https://reddit.com/r/youseeingthisshit/comments/1l18bq8/researchers_react_to_firstever_photos/"
+            }
+          ]
         }
       ]
     ],
     [
       [
-        "farmer",
+        "nawrocki",
         {
-          "label": "farmer",
-          "count": 3
+          "label": "nawrocki",
+          "count": 7,
+          "metadata": [
+            {
+              "timestamp": 1748841046,
+              "body": "",
+              "title": "Conservative Karol Nawrocki wins Poland's presidential election",
+              "karma": 1928,
+              "subreddit": "news",
+              "link": "https://reddit.com/r/news/comments/1l19pj3/conservative_karol_nawrocki_wins_polands/"
+            },
+            {
+              "timestamp": 1748838244,
+              "body": "",
+              "title": "Conservative candidate Karol Nawrocki narrowly won the Polish presidential election today getting 50.89% of the vote",
+              "karma": 1626,
+              "subreddit": "MapPorn",
+              "link": "https://reddit.com/r/MapPorn/comments/1l18xcp/conservative_candidate_karol_nawrocki_narrowly/"
+            }
+          ]
         }
       ],
       [
-        "jason",
+        "poland",
         {
-          "label": "jason",
-          "count": 3
+          "label": "poland",
+          "count": 10,
+          "metadata": [
+            {
+              "timestamp": 1748835849,
+              "body": "",
+              "title": "Poland Let The Intrusive Thoughts Win",
+              "karma": 2059,
+              "subreddit": "YUROP",
+              "link": "https://reddit.com/r/YUROP/comments/1l187c5/poland_let_the_intrusive_thoughts_win/"
+            },
+            {
+              "timestamp": 1748841046,
+              "body": "",
+              "title": "Conservative Karol Nawrocki wins Poland's presidential election",
+              "karma": 1928,
+              "subreddit": "news",
+              "link": "https://reddit.com/r/news/comments/1l19pj3/conservative_karol_nawrocki_wins_polands/"
+            }
+          ]
         }
       ]
     ],
     [
       [
-        "habit",
+        "nawrocki",
         {
-          "label": "habit",
-          "count": 3
+          "label": "nawrocki",
+          "count": 7,
+          "metadata": [
+            {
+              "timestamp": 1748841046,
+              "body": "",
+              "title": "Conservative Karol Nawrocki wins Poland's presidential election",
+              "karma": 1928,
+              "subreddit": "news",
+              "link": "https://reddit.com/r/news/comments/1l19pj3/conservative_karol_nawrocki_wins_polands/"
+            },
+            {
+              "timestamp": 1748838244,
+              "body": "",
+              "title": "Conservative candidate Karol Nawrocki narrowly won the Polish presidential election today getting 50.89% of the vote",
+              "karma": 1626,
+              "subreddit": "MapPorn",
+              "link": "https://reddit.com/r/MapPorn/comments/1l18xcp/conservative_candidate_karol_nawrocki_narrowly/"
+            }
+          ]
         }
       ],
       [
-        "poor",
+        "polish",
         {
-          "label": "poor",
-          "count": 3
+          "label": "polish",
+          "count": 7,
+          "metadata": [
+            {
+              "timestamp": 1748832253,
+              "body": "",
+              "title": "Narrowest win in Polish presidential election history",
+              "karma": 9938,
+              "subreddit": "europe",
+              "link": "https://reddit.com/r/europe/comments/1l17352/narrowest_win_in_polish_presidential_election/"
+            },
+            {
+              "timestamp": 1748838244,
+              "body": "",
+              "title": "Conservative candidate Karol Nawrocki narrowly won the Polish presidential election today getting 50.89% of the vote",
+              "karma": 1626,
+              "subreddit": "MapPorn",
+              "link": "https://reddit.com/r/MapPorn/comments/1l18xcp/conservative_candidate_karol_nawrocki_narrowly/"
+            }
+          ]
         }
       ]
     ],
     [
       [
-        "habit",
+        "drone",
         {
-          "label": "habit",
-          "count": 3
+          "label": "drone",
+          "count": 15,
+          "metadata": [
+            {
+              "timestamp": 1748829362,
+              "body": "",
+              "title": "\u2018An Absolutely Brilliant Result\u2019 \u2013 Zelensky Says All Operatives in \u2018Spiderweb\u2019 Drone Op in Russia Are Safe",
+              "karma": 18321,
+              "subreddit": "worldnews",
+              "link": "https://reddit.com/r/worldnews/comments/1l1650z/an_absolutely_brilliant_result_zelensky_says_all/"
+            },
+            {
+              "timestamp": 1748844133,
+              "body": "",
+              "title": "Zelenskyy: Drone strikes on Russian bombers will go down in \u2018history books\u2019",
+              "karma": 3917,
+              "subreddit": "europe",
+              "link": "https://reddit.com/r/europe/comments/1l1ajdn/zelenskyy_drone_strikes_on_russian_bombers_will/"
+            },
+            {
+              "timestamp": 1748837888,
+              "body": "",
+              "title": "New perspective of the aftermath of the Ukrainian FPV drone attack on Belaya air base, Irkutsk Oblast (June 1st, 2025)",
+              "karma": 2022,
+              "subreddit": "UkraineWarVideoReport",
+              "link": "https://reddit.com/r/UkraineWarVideoReport/comments/1l18tjg/new_perspective_of_the_aftermath_of_the_ukrainian/"
+            }
+          ]
         }
       ],
       [
-        "rich",
+        "zelensky",
         {
-          "label": "rich",
-          "count": 3
+          "label": "zelensky",
+          "count": 9,
+          "metadata": [
+            {
+              "timestamp": 1748829362,
+              "body": "",
+              "title": "\u2018An Absolutely Brilliant Result\u2019 \u2013 Zelensky Says All Operatives in \u2018Spiderweb\u2019 Drone Op in Russia Are Safe",
+              "karma": 18321,
+              "subreddit": "worldnews",
+              "link": "https://reddit.com/r/worldnews/comments/1l1650z/an_absolutely_brilliant_result_zelensky_says_all/"
+            },
+            {
+              "timestamp": 1748832504,
+              "body": "",
+              "title": "Can't wait for Zelensky's next White House visit!",
+              "karma": 6354,
+              "subreddit": "ukraine",
+              "link": "https://reddit.com/r/ukraine/comments/1l1760s/cant_wait_for_zelenskys_next_white_house_visit/"
+            }
+          ]
         }
       ]
     ],
     [
       [
-        "poor",
+        "cast",
         {
-          "label": "poor",
-          "count": 3
+          "label": "cast",
+          "count": 5,
+          "metadata": [
+            {
+              "timestamp": 1748811367,
+              "body": "",
+              "title": "Met Yvette in Austin! Only 3 more cast members left to sign my script",
+              "karma": 11948,
+              "subreddit": "community",
+              "link": "https://reddit.com/r/community/comments/1l0znp2/met_yvette_in_austin_only_3_more_cast_members/"
+            }
+          ]
         }
       ],
       [
-        "rich",
+        "yvette",
         {
-          "label": "rich",
-          "count": 3
+          "label": "yvette",
+          "count": 5,
+          "metadata": [
+            {
+              "timestamp": 1748811367,
+              "body": "",
+              "title": "Met Yvette in Austin! Only 3 more cast members left to sign my script",
+              "karma": 11948,
+              "subreddit": "community",
+              "link": "https://reddit.com/r/community/comments/1l0znp2/met_yvette_in_austin_only_3_more_cast_members/"
+            }
+          ]
         }
       ]
     ],
     [
       [
-        "farm",
+        "cozy",
         {
-          "label": "farm",
-          "count": 3
+          "label": "cozy",
+          "count": 7,
+          "metadata": [
+            {
+              "timestamp": 1748815446,
+              "body": "",
+              "title": "Turned my entry closet into a cozy nook/mudroom :)",
+              "karma": 10001,
+              "subreddit": "CozyPlaces",
+              "link": "https://reddit.com/r/CozyPlaces/comments/1l11a7v/turned_my_entry_closet_into_a_cozy_nookmudroom/"
+            }
+          ]
         }
       ],
       [
-        "farmer",
+        "mudroom",
         {
-          "label": "farmer",
-          "count": 3
+          "label": "mudroom",
+          "count": 7,
+          "metadata": [
+            {
+              "timestamp": 1748815446,
+              "body": "",
+              "title": "Turned my entry closet into a cozy nook/mudroom :)",
+              "karma": 10001,
+              "subreddit": "CozyPlaces",
+              "link": "https://reddit.com/r/CozyPlaces/comments/1l11a7v/turned_my_entry_closet_into_a_cozy_nookmudroom/"
+            }
+          ]
         }
       ]
     ],
     [
       [
-        "farm",
+        "cozy",
         {
-          "label": "farm",
-          "count": 3
+          "label": "cozy",
+          "count": 7,
+          "metadata": [
+            {
+              "timestamp": 1748815446,
+              "body": "",
+              "title": "Turned my entry closet into a cozy nook/mudroom :)",
+              "karma": 10001,
+              "subreddit": "CozyPlaces",
+              "link": "https://reddit.com/r/CozyPlaces/comments/1l11a7v/turned_my_entry_closet_into_a_cozy_nookmudroom/"
+            }
+          ]
         }
       ],
       [
-        "jason",
+        "nook",
         {
-          "label": "jason",
-          "count": 3
+          "label": "nook",
+          "count": 7,
+          "metadata": [
+            {
+              "timestamp": 1748815446,
+              "body": "",
+              "title": "Turned my entry closet into a cozy nook/mudroom :)",
+              "karma": 10001,
+              "subreddit": "CozyPlaces",
+              "link": "https://reddit.com/r/CozyPlaces/comments/1l11a7v/turned_my_entry_closet_into_a_cozy_nookmudroom/"
+            }
+          ]
         }
       ]
     ],
     [
       [
-        "irish",
+        "moldoveni",
         {
-          "label": "irish",
-          "count": 3
+          "label": "moldoveni",
+          "count": null,
+          "metadata": [
+            {
+              "timestamp": 1748854129,
+              "body": "",
+              "title": "Cine nu are unguri \u0219i moldoveni s\u0103-\u0219i cumpere",
+              "karma": 936,
+              "subreddit": "Romania",
+              "link": "https://reddit.com/r/Romania/comments/1l1d0sl/cine_nu_are_unguri_\u0219i_moldoveni_s\u0103\u0219i_cumpere/"
+            }
+          ]
         }
       ],
       [
-        "mma",
+        "unguri",
         {
-          "label": "mma",
-          "count": 3
+          "label": "unguri",
+          "count": null,
+          "metadata": [
+            {
+              "timestamp": 1748854129,
+              "body": "",
+              "title": "Cine nu are unguri \u0219i moldoveni s\u0103-\u0219i cumpere",
+              "karma": 936,
+              "subreddit": "Romania",
+              "link": "https://reddit.com/r/Romania/comments/1l1d0sl/cine_nu_are_unguri_\u0219i_moldoveni_s\u0103\u0219i_cumpere/"
+            }
+          ]
         }
       ]
     ],
     [
       [
-        "irish",
+        "bombers",
         {
-          "label": "irish",
-          "count": 3
+          "label": "bombers",
+          "count": 10,
+          "metadata": [
+            {
+              "timestamp": 1748807507,
+              "body": "",
+              "title": "34% of Russian strategic missile bombers at main airfields damaged in Ukrainian drone operation, SBU reports",
+              "karma": 31260,
+              "subreddit": "worldnews",
+              "link": "https://reddit.com/r/worldnews/comments/1l0y47f/34_of_russian_strategic_missile_bombers_at_main/"
+            },
+            {
+              "timestamp": 1748844133,
+              "body": "",
+              "title": "Zelenskyy: Drone strikes on Russian bombers will go down in \u2018history books\u2019",
+              "karma": 3917,
+              "subreddit": "europe",
+              "link": "https://reddit.com/r/europe/comments/1l1ajdn/zelenskyy_drone_strikes_on_russian_bombers_will/"
+            }
+          ]
         }
       ],
       [
-        "paddy",
+        "drone",
         {
-          "label": "paddy",
-          "count": 3
+          "label": "drone",
+          "count": 15,
+          "metadata": [
+            {
+              "timestamp": 1748829362,
+              "body": "",
+              "title": "\u2018An Absolutely Brilliant Result\u2019 \u2013 Zelensky Says All Operatives in \u2018Spiderweb\u2019 Drone Op in Russia Are Safe",
+              "karma": 18321,
+              "subreddit": "worldnews",
+              "link": "https://reddit.com/r/worldnews/comments/1l1650z/an_absolutely_brilliant_result_zelensky_says_all/"
+            },
+            {
+              "timestamp": 1748844133,
+              "body": "",
+              "title": "Zelenskyy: Drone strikes on Russian bombers will go down in \u2018history books\u2019",
+              "karma": 3917,
+              "subreddit": "europe",
+              "link": "https://reddit.com/r/europe/comments/1l1ajdn/zelenskyy_drone_strikes_on_russian_bombers_will/"
+            },
+            {
+              "timestamp": 1748837888,
+              "body": "",
+              "title": "New perspective of the aftermath of the Ukrainian FPV drone attack on Belaya air base, Irkutsk Oblast (June 1st, 2025)",
+              "karma": 2022,
+              "subreddit": "UkraineWarVideoReport",
+              "link": "https://reddit.com/r/UkraineWarVideoReport/comments/1l18tjg/new_perspective_of_the_aftermath_of_the_ukrainian/"
+            }
+          ]
         }
       ]
     ],
     [
       [
-        "irish",
+        "hate",
         {
-          "label": "irish",
-          "count": 3
+          "label": "hate",
+          "count": null,
+          "metadata": [
+            {
+              "timestamp": 1748828278,
+              "body": "",
+              "title": "God I hate these people",
+              "karma": 13963,
+              "subreddit": "AdviceAnimals",
+              "link": "https://reddit.com/r/AdviceAnimals/comments/1l15shq/god_i_hate_these_people/"
+            }
+          ]
         }
       ],
       [
-        "palestine",
+        "people",
         {
-          "label": "palestine",
-          "count": 3
+          "label": "people",
+          "count": 10,
+          "metadata": [
+            {
+              "timestamp": 1748828278,
+              "body": "",
+              "title": "God I hate these people",
+              "karma": 13963,
+              "subreddit": "AdviceAnimals",
+              "link": "https://reddit.com/r/AdviceAnimals/comments/1l15shq/god_i_hate_these_people/"
+            },
+            {
+              "timestamp": 1748821863,
+              "body": "",
+              "title": "who the fuck are these people fooling omg",
+              "karma": 7786,
+              "subreddit": "whenthe",
+              "link": "https://reddit.com/r/whenthe/comments/1l13mgq/who_the_fuck_are_these_people_fooling_omg/"
+            }
+          ]
+        }
+      ]
+    ],
+    [
+      [
+        "bystander",
+        {
+          "label": "bystander",
+          "count": null,
+          "metadata": [
+            {
+              "timestamp": 1748834183,
+              "body": "",
+              "title": "A Russian bystander reacts to Ukrainian drones emerging from trucks",
+              "karma": 3765,
+              "subreddit": "PublicFreakout",
+              "link": "https://reddit.com/r/PublicFreakout/comments/1l17p3o/a_russian_bystander_reacts_to_ukrainian_drones/"
+            }
+          ]
+        }
+      ],
+      [
+        "trucks",
+        {
+          "label": "trucks",
+          "count": 10,
+          "metadata": [
+            {
+              "timestamp": 1748834183,
+              "body": "",
+              "title": "A Russian bystander reacts to Ukrainian drones emerging from trucks",
+              "karma": 3765,
+              "subreddit": "PublicFreakout",
+              "link": "https://reddit.com/r/PublicFreakout/comments/1l17p3o/a_russian_bystander_reacts_to_ukrainian_drones/"
+            },
+            {
+              "timestamp": 1748840217,
+              "body": "",
+              "title": "A runaway truck ramp is a safety feature on highways designed to stop trucks that have lost their brakes",
+              "karma": 2820,
+              "subreddit": "nextfuckinglevel",
+              "link": "https://reddit.com/r/nextfuckinglevel/comments/1l19hca/a_runaway_truck_ramp_is_a_safety_feature_on/"
+            }
+          ]
+        }
+      ]
+    ],
+    [
+      [
+        "closet",
+        {
+          "label": "closet",
+          "count": 7,
+          "metadata": [
+            {
+              "timestamp": 1748815446,
+              "body": "",
+              "title": "Turned my entry closet into a cozy nook/mudroom :)",
+              "karma": 10001,
+              "subreddit": "CozyPlaces",
+              "link": "https://reddit.com/r/CozyPlaces/comments/1l11a7v/turned_my_entry_closet_into_a_cozy_nookmudroom/"
+            }
+          ]
+        }
+      ],
+      [
+        "cozy",
+        {
+          "label": "cozy",
+          "count": 7,
+          "metadata": [
+            {
+              "timestamp": 1748815446,
+              "body": "",
+              "title": "Turned my entry closet into a cozy nook/mudroom :)",
+              "karma": 10001,
+              "subreddit": "CozyPlaces",
+              "link": "https://reddit.com/r/CozyPlaces/comments/1l11a7v/turned_my_entry_closet_into_a_cozy_nookmudroom/"
+            }
+          ]
+        }
+      ]
+    ],
+    [
+      [
+        "closet",
+        {
+          "label": "closet",
+          "count": 7,
+          "metadata": [
+            {
+              "timestamp": 1748815446,
+              "body": "",
+              "title": "Turned my entry closet into a cozy nook/mudroom :)",
+              "karma": 10001,
+              "subreddit": "CozyPlaces",
+              "link": "https://reddit.com/r/CozyPlaces/comments/1l11a7v/turned_my_entry_closet_into_a_cozy_nookmudroom/"
+            }
+          ]
+        }
+      ],
+      [
+        "mudroom",
+        {
+          "label": "mudroom",
+          "count": 7,
+          "metadata": [
+            {
+              "timestamp": 1748815446,
+              "body": "",
+              "title": "Turned my entry closet into a cozy nook/mudroom :)",
+              "karma": 10001,
+              "subreddit": "CozyPlaces",
+              "link": "https://reddit.com/r/CozyPlaces/comments/1l11a7v/turned_my_entry_closet_into_a_cozy_nookmudroom/"
+            }
+          ]
+        }
+      ]
+    ],
+    [
+      [
+        "closet",
+        {
+          "label": "closet",
+          "count": 7,
+          "metadata": [
+            {
+              "timestamp": 1748815446,
+              "body": "",
+              "title": "Turned my entry closet into a cozy nook/mudroom :)",
+              "karma": 10001,
+              "subreddit": "CozyPlaces",
+              "link": "https://reddit.com/r/CozyPlaces/comments/1l11a7v/turned_my_entry_closet_into_a_cozy_nookmudroom/"
+            }
+          ]
+        }
+      ],
+      [
+        "nook",
+        {
+          "label": "nook",
+          "count": 7,
+          "metadata": [
+            {
+              "timestamp": 1748815446,
+              "body": "",
+              "title": "Turned my entry closet into a cozy nook/mudroom :)",
+              "karma": 10001,
+              "subreddit": "CozyPlaces",
+              "link": "https://reddit.com/r/CozyPlaces/comments/1l11a7v/turned_my_entry_closet_into_a_cozy_nookmudroom/"
+            }
+          ]
+        }
+      ]
+    ],
+    [
+      [
+        "heart",
+        {
+          "label": "heart",
+          "count": 10,
+          "metadata": [
+            {
+              "timestamp": 1748834994,
+              "body": "Men who understand each other need not say much words. \ud83d\ude14",
+              "title": "My heart can\u2019t take much more. R.I.P \ud83d\udda4\ud83e\udea6",
+              "karma": 4268,
+              "subreddit": "ElderScrolls",
+              "link": "https://reddit.com/r/ElderScrolls/comments/1l17y47/my_heart_cant_take_much_more_rip/"
+            },
+            {
+              "timestamp": 1748839618,
+              "body": "",
+              "title": "[28] to [33] after my third open heart surgery. Gang \ud83e\udd18\ud83c\udffd",
+              "karma": 1655,
+              "subreddit": "GlowUps",
+              "link": "https://reddit.com/r/GlowUps/comments/1l19baz/28_to_33_after_my_third_open_heart_surgery_gang/"
+            }
+          ]
+        }
+      ],
+      [
+        "surgery",
+        {
+          "label": "surgery",
+          "count": null,
+          "metadata": [
+            {
+              "timestamp": 1748839618,
+              "body": "",
+              "title": "[28] to [33] after my third open heart surgery. Gang \ud83e\udd18\ud83c\udffd",
+              "karma": 1655,
+              "subreddit": "GlowUps",
+              "link": "https://reddit.com/r/GlowUps/comments/1l19baz/28_to_33_after_my_third_open_heart_surgery_gang/"
+            }
+          ]
+        }
+      ]
+    ],
+    [
+      [
+        "galaxy",
+        {
+          "label": "galaxy",
+          "count": null,
+          "metadata": [
+            {
+              "timestamp": 1748806523,
+              "body": "",
+              "title": "I photographed the Andromeda galaxy from orbit",
+              "karma": 37426,
+              "subreddit": "Damnthatsinteresting",
+              "link": "https://reddit.com/r/Damnthatsinteresting/comments/1l0xq6l/i_photographed_the_andromeda_galaxy_from_orbit/"
+            }
+          ]
+        }
+      ],
+      [
+        "photographed",
+        {
+          "label": "photographed",
+          "count": null,
+          "metadata": [
+            {
+              "timestamp": 1748806523,
+              "body": "",
+              "title": "I photographed the Andromeda galaxy from orbit",
+              "karma": 37426,
+              "subreddit": "Damnthatsinteresting",
+              "link": "https://reddit.com/r/Damnthatsinteresting/comments/1l0xq6l/i_photographed_the_andromeda_galaxy_from_orbit/"
+            }
+          ]
+        }
+      ]
+    ],
+    [
+      [
+        "iyer",
+        {
+          "label": "iyer",
+          "count": 6,
+          "metadata": [
+            {
+              "timestamp": 1748837899,
+              "body": "",
+              "title": "Shreyas Iyer vs Jasprit Bumrah - 10 years ago and now",
+              "karma": 2785,
+              "subreddit": "ipl",
+              "link": "https://reddit.com/r/ipl/comments/1l18tnw/shreyas_iyer_vs_jasprit_bumrah_10_years_ago_and/"
+            }
+          ]
+        }
+      ],
+      [
+        "jasprit",
+        {
+          "label": "jasprit",
+          "count": 6,
+          "metadata": [
+            {
+              "timestamp": 1748837899,
+              "body": "",
+              "title": "Shreyas Iyer vs Jasprit Bumrah - 10 years ago and now",
+              "karma": 2785,
+              "subreddit": "ipl",
+              "link": "https://reddit.com/r/ipl/comments/1l18tnw/shreyas_iyer_vs_jasprit_bumrah_10_years_ago_and/"
+            }
+          ]
+        }
+      ]
+    ],
+    [
+      [
+        "iyer",
+        {
+          "label": "iyer",
+          "count": 6,
+          "metadata": [
+            {
+              "timestamp": 1748837899,
+              "body": "",
+              "title": "Shreyas Iyer vs Jasprit Bumrah - 10 years ago and now",
+              "karma": 2785,
+              "subreddit": "ipl",
+              "link": "https://reddit.com/r/ipl/comments/1l18tnw/shreyas_iyer_vs_jasprit_bumrah_10_years_ago_and/"
+            }
+          ]
+        }
+      ],
+      [
+        "shreyas",
+        {
+          "label": "shreyas",
+          "count": 6,
+          "metadata": [
+            {
+              "timestamp": 1748837899,
+              "body": "",
+              "title": "Shreyas Iyer vs Jasprit Bumrah - 10 years ago and now",
+              "karma": 2785,
+              "subreddit": "ipl",
+              "link": "https://reddit.com/r/ipl/comments/1l18tnw/shreyas_iyer_vs_jasprit_bumrah_10_years_ago_and/"
+            }
+          ]
+        }
+      ]
+    ],
+    [
+      [
+        "animals",
+        {
+          "label": "animals",
+          "count": 9,
+          "metadata": [
+            {
+              "timestamp": 1748831606,
+              "body": "",
+              "title": "Found a shit ton of scratches and dried blood on my car tonight, looks like maybe some rabid animals were fighting near it?",
+              "karma": 6501,
+              "subreddit": "WTF",
+              "link": "https://reddit.com/r/WTF/comments/1l16vpj/found_a_shit_ton_of_scratches_and_dried_blood_on/"
+            },
+            {
+              "timestamp": 1748831304,
+              "body": "",
+              "title": "Found a shit ton of scratches and dried blood on my car today. Looks like from some rabid animals fighting near it?",
+              "karma": 5352,
+              "subreddit": "oddlyterrifying",
+              "link": "https://reddit.com/r/oddlyterrifying/comments/1l16s98/found_a_shit_ton_of_scratches_and_dried_blood_on/"
+            }
+          ]
+        }
+      ],
+      [
+        "scratches",
+        {
+          "label": "scratches",
+          "count": 9,
+          "metadata": [
+            {
+              "timestamp": 1748831606,
+              "body": "",
+              "title": "Found a shit ton of scratches and dried blood on my car tonight, looks like maybe some rabid animals were fighting near it?",
+              "karma": 6501,
+              "subreddit": "WTF",
+              "link": "https://reddit.com/r/WTF/comments/1l16vpj/found_a_shit_ton_of_scratches_and_dried_blood_on/"
+            },
+            {
+              "timestamp": 1748831304,
+              "body": "",
+              "title": "Found a shit ton of scratches and dried blood on my car today. Looks like from some rabid animals fighting near it?",
+              "karma": 5352,
+              "subreddit": "oddlyterrifying",
+              "link": "https://reddit.com/r/oddlyterrifying/comments/1l16s98/found_a_shit_ton_of_scratches_and_dried_blood_on/"
+            }
+          ]
+        }
+      ]
+    ],
+    [
+      [
+        "chief",
+        {
+          "label": "chief",
+          "count": 6,
+          "metadata": [
+            {
+              "timestamp": 1748828745,
+              "body": "",
+              "title": "The Most Hated Man by the DDS is now our PNP CHIEF \ud83d\ude93\ud83d\udea8",
+              "karma": 4403,
+              "subreddit": "Philippines",
+              "link": "https://reddit.com/r/Philippines/comments/1l15xwb/the_most_hated_man_by_the_dds_is_now_our_pnp_chief/"
+            },
+            {
+              "timestamp": 1748847022,
+              "body": "Background of PGen. Nicolas Torre III\n\nELEMENTARY EDUCATION \n\n- Notre Dame of Marbel, Koronadal, South Cotabato\n- Graduated as Class Valedictorian\n\nHIGH SCHOOL EDUCATION \n\n- Koronadal National Comprehensive High School\n- Graduated as Class Salutatorian\n\nTERTIARY EDUCATION\n\n1.) Attended Map\u00faa University \n- Studied Electronics and Communications Engineering\n- DOST (Department of Science and Technology) scholar\n- Completed 72 academic units\n- Qualified for entry into the PNPA\n\n2.) Philippine National Police Academy (PNPA)\n- Graduated in 1993 from Tagapaglunsad Class\n- Earned a Bachelor of Science in Public Safety\n- First PNPA graduate to become PNP Chief\n\nSource: https://en.wikipedia.org/wiki/Nicolas_Torre#:~:text=A%20beneficiary%20of%20a%20scholarship,National%20Police%20Academy%20(PNPA).",
+              "title": "Congratulations to the most hated, Nicholas Torre, on becoming the PNP Chief.",
+              "karma": 2360,
+              "subreddit": "Philippines",
+              "link": "https://reddit.com/r/Philippines/comments/1l1b9kv/congratulations_to_the_most_hated_nicholas_torre/"
+            }
+          ]
+        }
+      ],
+      [
+        "pnp",
+        {
+          "label": "pnp",
+          "count": 6,
+          "metadata": [
+            {
+              "timestamp": 1748828745,
+              "body": "",
+              "title": "The Most Hated Man by the DDS is now our PNP CHIEF \ud83d\ude93\ud83d\udea8",
+              "karma": 4403,
+              "subreddit": "Philippines",
+              "link": "https://reddit.com/r/Philippines/comments/1l15xwb/the_most_hated_man_by_the_dds_is_now_our_pnp_chief/"
+            },
+            {
+              "timestamp": 1748847022,
+              "body": "Background of PGen. Nicolas Torre III\n\nELEMENTARY EDUCATION \n\n- Notre Dame of Marbel, Koronadal, South Cotabato\n- Graduated as Class Valedictorian\n\nHIGH SCHOOL EDUCATION \n\n- Koronadal National Comprehensive High School\n- Graduated as Class Salutatorian\n\nTERTIARY EDUCATION\n\n1.) Attended Map\u00faa University \n- Studied Electronics and Communications Engineering\n- DOST (Department of Science and Technology) scholar\n- Completed 72 academic units\n- Qualified for entry into the PNPA\n\n2.) Philippine National Police Academy (PNPA)\n- Graduated in 1993 from Tagapaglunsad Class\n- Earned a Bachelor of Science in Public Safety\n- First PNPA graduate to become PNP Chief\n\nSource: https://en.wikipedia.org/wiki/Nicolas_Torre#:~:text=A%20beneficiary%20of%20a%20scholarship,National%20Police%20Academy%20(PNPA).",
+              "title": "Congratulations to the most hated, Nicholas Torre, on becoming the PNP Chief.",
+              "karma": 2360,
+              "subreddit": "Philippines",
+              "link": "https://reddit.com/r/Philippines/comments/1l1b9kv/congratulations_to_the_most_hated_nicholas_torre/"
+            }
+          ]
+        }
+      ]
+    ],
+    [
+      [
+        "bathroom",
+        {
+          "label": "bathroom",
+          "count": null,
+          "metadata": [
+            {
+              "timestamp": 1748806862,
+              "body": "",
+              "title": "Stayed in the bathroom long enough for a shift change",
+              "karma": 51879,
+              "subreddit": "WhatsWrongWithYourCat",
+              "link": "https://reddit.com/r/WhatsWrongWithYourCat/comments/1l0xv17/stayed_in_the_bathroom_long_enough_for_a_shift/"
+            }
+          ]
+        }
+      ],
+      [
+        "shift",
+        {
+          "label": "shift",
+          "count": null,
+          "metadata": [
+            {
+              "timestamp": 1748806862,
+              "body": "",
+              "title": "Stayed in the bathroom long enough for a shift change",
+              "karma": 51879,
+              "subreddit": "WhatsWrongWithYourCat",
+              "link": "https://reddit.com/r/WhatsWrongWithYourCat/comments/1l0xv17/stayed_in_the_bathroom_long_enough_for_a_shift/"
+            }
+          ]
         }
       ]
     ]
@@ -1444,901 +2576,511 @@
   "edges": [
     [
       [
-        "siakam",
-        "trophy",
+        "austin",
+        "cast",
         {
-          "label": "siakam-trophy",
-          "count": 3
+          "label": "austin-cast",
+          "count": 5
         }
       ]
     ],
     [
       [
-        "dad",
-        "peter",
+        "austin",
+        "yvette",
         {
-          "label": "dad-peter",
-          "count": 3
+          "label": "austin-yvette",
+          "count": 5
         }
       ]
     ],
     [
       [
-        "democrats",
-        "maps",
+        "karol",
+        "nawrocki",
         {
-          "label": "democrats-maps",
-          "count": 3
+          "label": "karol-nawrocki",
+          "count": 5
         }
       ]
     ],
     [
       [
-        "democrats",
-        "republicans",
+        "karol",
+        "poland",
         {
-          "label": "democrats-republicans",
-          "count": 3
+          "label": "karol-poland",
+          "count": 5
         }
       ]
     ],
     [
       [
-        "democrats",
-        "voters",
+        "karol",
+        "polish",
         {
-          "label": "democrats-voters",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "finally",
-        "happened",
-        {
-          "label": "finally-happened",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "bird",
-        "lad",
-        {
-          "label": "bird-lad",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "frankenstein",
-        "guillermo",
-        {
-          "label": "frankenstein-guillermo",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "frankenstein",
-        "toro",
-        {
-          "label": "frankenstein-toro",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "cigar",
-        "cigars",
-        {
-          "label": "cigar-cigars",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "cigar",
-        "cuba",
-        {
-          "label": "cigar-cuba",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "cigar",
-        "cuban",
-        {
-          "label": "cigar-cuban",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "cigar",
-        "kennedy",
-        {
-          "label": "cigar-kennedy",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "crops",
-        "farm",
-        {
-          "label": "crops-farm",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "crops",
-        "farmer",
-        {
-          "label": "crops-farmer",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "crops",
-        "jason",
-        {
-          "label": "crops-jason",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "shot",
-        "square",
-        {
-          "label": "shot-square",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "eliminated",
-        "knicks",
-        {
-          "label": "eliminated-knicks",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "cuba",
-        "cuban",
-        {
-          "label": "cuba-cuban",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "cuba",
-        "kennedy",
-        {
-          "label": "cuba-kennedy",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "paddy",
-        "palestine",
-        {
-          "label": "paddy-palestine",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "failure",
-        "systemic",
-        {
-          "label": "failure-systemic",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "drummer",
-        "stick",
-        {
-          "label": "drummer-stick",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "sandra",
-        "waitress",
-        {
-          "label": "sandra-waitress",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "cutie",
-        "fb",
-        {
-          "label": "cutie-fb",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "republicans",
-        "voters",
-        {
-          "label": "republicans-voters",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "baby",
-        "kangaroo",
-        {
-          "label": "baby-kangaroo",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "photo",
-        "shot",
-        {
-          "label": "photo-shot",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "photo",
-        "square",
-        {
-          "label": "photo-square",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "exposed",
-        "failure",
-        {
-          "label": "exposed-failure",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "exposed",
-        "systemic",
-        {
-          "label": "exposed-systemic",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "athletes",
-        "cold",
-        {
-          "label": "athletes-cold",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "athletes",
-        "sports",
-        {
-          "label": "athletes-sports",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "forget",
-        "voters",
-        {
-          "label": "forget-voters",
+          "label": "karol-polish",
           "count": 2
         }
       ]
     ],
     [
       [
-        "don",
-        "forget",
+        "gukesh",
+        "magnus",
         {
-          "label": "don-forget",
-          "count": 3
+          "label": "gukesh-magnus",
+          "count": 9
         }
       ]
     ],
     [
       [
-        "mvp",
-        "raptors",
+        "dad",
+        "wins",
         {
-          "label": "mvp-raptors",
-          "count": 3
+          "label": "dad-wins",
+          "count": 5
         }
       ]
     ],
     [
       [
-        "mvp",
-        "siakam",
+        "aitah",
+        "honeymoon",
         {
-          "label": "mvp-siakam",
-          "count": 3
+          "label": "aitah-honeymoon",
+          "count": 5
         }
       ]
     ],
     [
       [
-        "mvp",
-        "trophy",
+        "bumrah",
+        "iyer",
         {
-          "label": "mvp-trophy",
-          "count": 3
+          "label": "bumrah-iyer",
+          "count": 5
         }
       ]
     ],
     [
       [
-        "championship",
-        "eliminated",
+        "bumrah",
+        "jasprit",
         {
-          "label": "championship-eliminated",
-          "count": 3
+          "label": "bumrah-jasprit",
+          "count": 5
         }
       ]
     ],
     [
       [
-        "championship",
-        "knicks",
+        "bumrah",
+        "shreyas",
         {
-          "label": "championship-knicks",
-          "count": 3
+          "label": "bumrah-shreyas",
+          "count": 5
         }
       ]
     ],
     [
       [
-        "andor",
-        "gaza",
+        "play",
+        "pride",
         {
-          "label": "andor-gaza",
-          "count": 3
+          "label": "play-pride",
+          "count": 5
         }
       ]
     ],
     [
       [
-        "tim",
-        "walz",
+        "god",
+        "hate",
         {
-          "label": "tim-walz",
-          "count": 3
+          "label": "god-hate",
+          "count": 5
         }
       ]
     ],
     [
       [
-        "oc",
-        "photo",
+        "god",
+        "people",
         {
-          "label": "oc-photo",
-          "count": 3
+          "label": "god-people",
+          "count": 5
         }
       ]
     ],
     [
       [
-        "oc",
-        "shot",
+        "chess",
+        "gukesh",
         {
-          "label": "oc-shot",
-          "count": 3
+          "label": "chess-gukesh",
+          "count": 11
         }
       ]
     ],
     [
       [
-        "oc",
-        "square",
+        "chess",
+        "magnus",
         {
-          "label": "oc-square",
-          "count": 3
+          "label": "chess-magnus",
+          "count": 9
         }
       ]
     ],
     [
       [
-        "forever",
-        "funny",
+        "smart",
+        "work",
         {
-          "label": "forever-funny",
-          "count": 3
+          "label": "smart-work",
+          "count": 5
         }
       ]
     ],
     [
       [
-        "guillermo",
-        "toro",
+        "carlsen",
+        "chess",
         {
-          "label": "guillermo-toro",
-          "count": 3
+          "label": "carlsen-chess",
+          "count": 11
         }
       ]
     ],
     [
       [
-        "maps",
-        "republicans",
+        "carlsen",
+        "gukesh",
         {
-          "label": "maps-republicans",
-          "count": 3
+          "label": "carlsen-gukesh",
+          "count": 11
         }
       ]
     ],
     [
       [
-        "maps",
-        "voters",
+        "carlsen",
+        "magnus",
         {
-          "label": "maps-voters",
-          "count": 3
+          "label": "carlsen-magnus",
+          "count": 11
         }
       ]
     ],
     [
       [
-        "childbirths",
-        "march",
+        "mudroom",
+        "nook",
         {
-          "label": "childbirths-march",
-          "count": 3
+          "label": "mudroom-nook",
+          "count": 5
         }
       ]
     ],
     [
       [
-        "cuban",
-        "kennedy",
+        "lesbian",
+        "pride",
         {
-          "label": "cuban-kennedy",
-          "count": 3
+          "label": "lesbian-pride",
+          "count": 4
         }
       ]
     ],
     [
       [
-        "cold",
-        "sports",
+        "lesbian",
+        "wedding",
         {
-          "label": "cold-sports",
-          "count": 3
+          "label": "lesbian-wedding",
+          "count": 5
         }
       ]
     ],
     [
       [
-        "drones",
-        "fpv",
-        {
-          "label": "drones-fpv",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "fighter",
-        "irish",
-        {
-          "label": "fighter-irish",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "fighter",
-        "mma",
-        {
-          "label": "fighter-mma",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "fighter",
-        "paddy",
-        {
-          "label": "fighter-paddy",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "fighter",
-        "palestine",
-        {
-          "label": "fighter-palestine",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "born",
-        "inside",
-        {
-          "label": "born-inside",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "born",
-        "strangeandfunny",
-        {
-          "label": "born-strangeandfunny",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "dog",
-        "drummer",
-        {
-          "label": "dog-drummer",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "dog",
-        "stick",
-        {
-          "label": "dog-stick",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "mma",
-        "paddy",
-        {
-          "label": "mma-paddy",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "mma",
-        "palestine",
-        {
-          "label": "mma-palestine",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "inside",
-        "strangeandfunny",
-        {
-          "label": "inside-strangeandfunny",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "arguing",
-        "fish",
-        {
-          "label": "arguing-fish",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "bully",
-        "tim",
-        {
-          "label": "bully-tim",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "bully",
-        "walz",
-        {
-          "label": "bully-walz",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "gate",
-        "lock",
-        {
-          "label": "gate-lock",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "cigars",
-        "cuba",
-        {
-          "label": "cigars-cuba",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "cigars",
-        "cuban",
-        {
-          "label": "cigars-cuban",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "cigars",
-        "kennedy",
-        {
-          "label": "cigars-kennedy",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "raptors",
-        "siakam",
-        {
-          "label": "raptors-siakam",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "raptors",
-        "trophy",
-        {
-          "label": "raptors-trophy",
-          "count": 3
-        }
-      ]
-    ],
-    [
-      [
-        "crying",
+        "cat",
         "dad",
         {
-          "label": "crying-dad",
-          "count": 3
+          "label": "cat-dad",
+          "count": 5
         }
       ]
     ],
     [
       [
-        "crying",
-        "peter",
+        "cat",
+        "wins",
         {
-          "label": "crying-peter",
-          "count": 3
+          "label": "cat-wins",
+          "count": 5
         }
       ]
     ],
     [
       [
-        "trial",
-        "workweek",
+        "argue",
+        "science",
         {
-          "label": "trial-workweek",
-          "count": 3
+          "label": "argue-science",
+          "count": 5
         }
       ]
     ],
     [
       [
-        "ice",
-        "illegally",
+        "jasprit",
+        "shreyas",
         {
-          "label": "ice-illegally",
-          "count": 3
+          "label": "jasprit-shreyas",
+          "count": 5
         }
       ]
     ],
     [
       [
-        "larry",
-        "mvp",
+        "celebrate",
+        "veterans",
         {
-          "label": "larry-mvp",
-          "count": 3
+          "label": "celebrate-veterans",
+          "count": 5
         }
       ]
     ],
     [
       [
-        "larry",
-        "raptors",
+        "hard",
+        "smart",
         {
-          "label": "larry-raptors",
-          "count": 3
+          "label": "hard-smart",
+          "count": 5
         }
       ]
     ],
     [
       [
-        "larry",
-        "siakam",
+        "hard",
+        "work",
         {
-          "label": "larry-siakam",
-          "count": 3
+          "label": "hard-work",
+          "count": 5
         }
       ]
     ],
     [
       [
-        "larry",
-        "trophy",
+        "photos",
+        "researchers",
         {
-          "label": "larry-trophy",
-          "count": 3
+          "label": "photos-researchers",
+          "count": 5
         }
       ]
     ],
     [
       [
-        "farmer",
-        "jason",
+        "nawrocki",
+        "poland",
         {
-          "label": "farmer-jason",
-          "count": 3
+          "label": "nawrocki-poland",
+          "count": 5
         }
       ]
     ],
     [
       [
-        "habit",
-        "poor",
+        "nawrocki",
+        "polish",
         {
-          "label": "habit-poor",
-          "count": 3
+          "label": "nawrocki-polish",
+          "count": 2
         }
       ]
     ],
     [
       [
-        "habit",
-        "rich",
+        "drone",
+        "zelensky",
         {
-          "label": "habit-rich",
-          "count": 3
+          "label": "drone-zelensky",
+          "count": 5
         }
       ]
     ],
     [
       [
-        "poor",
-        "rich",
+        "cast",
+        "yvette",
         {
-          "label": "poor-rich",
-          "count": 3
+          "label": "cast-yvette",
+          "count": 5
         }
       ]
     ],
     [
       [
-        "farm",
-        "farmer",
+        "cozy",
+        "mudroom",
         {
-          "label": "farm-farmer",
-          "count": 3
+          "label": "cozy-mudroom",
+          "count": 5
         }
       ]
     ],
     [
       [
-        "farm",
-        "jason",
+        "cozy",
+        "nook",
         {
-          "label": "farm-jason",
-          "count": 3
+          "label": "cozy-nook",
+          "count": 5
         }
       ]
     ],
     [
       [
-        "irish",
-        "mma",
+        "moldoveni",
+        "unguri",
         {
-          "label": "irish-mma",
-          "count": 3
+          "label": "moldoveni-unguri",
+          "count": 5
         }
       ]
     ],
     [
       [
-        "irish",
-        "paddy",
+        "bombers",
+        "drone",
         {
-          "label": "irish-paddy",
-          "count": 3
+          "label": "bombers-drone",
+          "count": 5
         }
       ]
     ],
     [
       [
-        "irish",
-        "palestine",
+        "hate",
+        "people",
         {
-          "label": "irish-palestine",
-          "count": 3
+          "label": "hate-people",
+          "count": 5
+        }
+      ]
+    ],
+    [
+      [
+        "bystander",
+        "trucks",
+        {
+          "label": "bystander-trucks",
+          "count": 5
+        }
+      ]
+    ],
+    [
+      [
+        "closet",
+        "cozy",
+        {
+          "label": "closet-cozy",
+          "count": 5
+        }
+      ]
+    ],
+    [
+      [
+        "closet",
+        "mudroom",
+        {
+          "label": "closet-mudroom",
+          "count": 5
+        }
+      ]
+    ],
+    [
+      [
+        "closet",
+        "nook",
+        {
+          "label": "closet-nook",
+          "count": 5
+        }
+      ]
+    ],
+    [
+      [
+        "heart",
+        "surgery",
+        {
+          "label": "heart-surgery",
+          "count": 5
+        }
+      ]
+    ],
+    [
+      [
+        "galaxy",
+        "photographed",
+        {
+          "label": "galaxy-photographed",
+          "count": 5
+        }
+      ]
+    ],
+    [
+      [
+        "iyer",
+        "jasprit",
+        {
+          "label": "iyer-jasprit",
+          "count": 5
+        }
+      ]
+    ],
+    [
+      [
+        "iyer",
+        "shreyas",
+        {
+          "label": "iyer-shreyas",
+          "count": 5
+        }
+      ]
+    ],
+    [
+      [
+        "animals",
+        "scratches",
+        {
+          "label": "animals-scratches",
+          "count": 6
+        }
+      ]
+    ],
+    [
+      [
+        "chief",
+        "pnp",
+        {
+          "label": "chief-pnp",
+          "count": 6
+        }
+      ]
+    ],
+    [
+      [
+        "bathroom",
+        "shift",
+        {
+          "label": "bathroom-shift",
+          "count": 5
         }
       ]
     ]
