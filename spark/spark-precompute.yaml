@@ -3,7 +3,7 @@ kind: CronJob
 metadata:
   name: spark-top-nodes-precompute
 spec:
-  schedule: "*/1 * * * *"  # every 5 minutes
+  schedule: "*/2 * * * *"  # every 5 minutes
   concurrencyPolicy: Forbid
   jobTemplate:
     spec:

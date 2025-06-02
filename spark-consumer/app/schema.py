@@ -15,7 +15,7 @@ schema = StructType() \
     .add("text",StringType())\
     .add("comments", ArrayType(
         StructType()
-        .add("text", StringType())
+        .add("text", StringType())\
         .add("karma", IntegerType())
     )) \
     .add("link", StringType()) 
