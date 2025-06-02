@@ -1,14 +1,12 @@
 
-import { useEffect, useRef, useState, useCallback } from 'react'
+import { useEffect, useRef, useState, useCallback, useContext } from 'react'
 import Sigma from 'sigma'
 import Graph from 'graphology'
 import data from './data.json'
-import ForceSupervisor from "graphology-layout-force/worker"
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import forceAtlas2 from 'graphology-layout-forceatlas2';
-import random from 'graphology-layout/random';
-import noverlap from 'graphology-layout-noverlap';
+import { DarkModeContext } from '../App'
 
 const SigmaGraph = () => {
     const containerRef = useRef(null);
@@ -20,6 +18,8 @@ const SigmaGraph = () => {
     const [selectedNode, setSelectedNode] = useState(null);
     const [suggestions, setSuggestions] = useState(null);
     const [searchQuery, setSearchQuery] = useState("");
+
+    const darkMode = useContext(DarkModeContext)
 
     const handleSetHoveredNode = useCallback((node) => {
         if (node && graphRef.current) {
@@ -83,28 +83,46 @@ const SigmaGraph = () => {
         return res;
     }, [hoveredNode, suggestions]);
 
+    function setGraphLayout() {
+        const center = {x: 0, y: 0};
+        const maxDistance = 100; // max distance from center for smallest nodes
+
+        graphRef.current.forEachNode((node, attrs) => {
+        const size = attrs.size || 1;
+        const sizeNorm = size / 100; // from 0 to 1
+
+        // Distance is inverse of normalized size: bigger size → smaller distance
+        const distance = maxDistance * (1 - sizeNorm);
+
+        // Random angle around center
+        const angle = Math.random() * 2 * Math.PI;
+
+        // Compute x, y
+        const x = center.x + distance * Math.cos(angle);
+        const y = center.y + distance * Math.sin(angle);
+
+        graphRef.current.setNodeAttribute(node, 'x', x);
+        graphRef.current.setNodeAttribute(node, 'y', y);
+        });
+
+        forceAtlas2.assign(graphRef.current, {
+            iterations: 100,
+            settings: {
+                gravity: 1,
+                scalingRatio: 1,
+                adjustSizes: true, // Keeps bigger nodes away from overlapping
+                strongGravityMode: true // Helps centralize heavier nodes
+            }
+        });
+    }
+
     useEffect(() => {
         // Instantiate the graph
         const graph = new Graph();
         graph.import(data);
         graphRef.current = graph;
 
-        // Create the spring layout and start it
-        const layout = new ForceSupervisor(graph, { isNodeFixed: (_, attr) => attr.highlighted });
-        layout.start();
-
-        random.assign(graph);
-
-        forceAtlas2.assign(graph, { 
-        iterations: 600,
-        settings: {
-            barnesHutOptimize: true,
-            gravity: 0.05,
-            scalingRatio: 5
-        }
-        });
-
-        noverlap.assign(graph, { maxIterations: 150 });
+        setGraphLayout()
                 
         // Instantiate the sigma
         const renderer = new Sigma(graph, containerRef.current);
@@ -119,69 +137,24 @@ const SigmaGraph = () => {
             handleSetHoveredNode(null);
         };
 
+        graph.forEachEdge((edge, attributes) => {
+            graph.setEdgeAttribute(edge, 'size', attributes.size * 0.01);
+        });
+
         renderer.on("enterNode", handleEnterNode);
         renderer.on("leaveNode", handleLeaveNode);
-
-        // State for drag'n'drop
-        let draggedNode = null;
-        let isDragging = false;
-
-        // On mouse down on a node
-        const handleDownNode = (e) => {
-            isDragging = true;
-            draggedNode = e.node;
-            graph.setNodeAttribute(draggedNode, "highlighted", true);
-
-            if (!renderer.getCustomBBox()) {
-                renderer.setCustomBBox(renderer.getBBox());
-            }
-        };
-
-        // On mouse move, if the drag mode is enabled, we change the position of the draggedNode
-        const handleMoveBody = ({ event }) => {
-            if (!isDragging || !draggedNode) return;
-
-            // Get new position of node
-            const pos = renderer.viewportToGraph(event);
-
-            graph.setNodeAttribute(draggedNode, "x", pos.x);
-            graph.setNodeAttribute(draggedNode, "y", pos.y);
-
-            // Prevent sigma to move camera:
-            event.preventSigmaDefault();
-            event.original.preventDefault();
-            event.original.stopPropagation();
-        };
-
-        // On mouse up, we reset the dragging mode
-        const handleUp = () => {
-            if (draggedNode) {
-                graph.removeNodeAttribute(draggedNode, "highlighted");
-            }
-
-            isDragging = false;
-            draggedNode = null;
-        };
 
         // Add click handler for node selection
         const handleClickNode = ({ node }) => {
             setSelectedNode(selectedNode === node ? null : node);
         };
 
-        renderer.on("downNode", handleDownNode);
-        renderer.on("moveBody", handleMoveBody);
-        renderer.on("upNode", handleUp);
-        renderer.on("upStage", handleUp);
         renderer.on("clickNode", handleClickNode);
 
         return () => {
             // Clean up event listeners
             renderer.off("enterNode", handleEnterNode);
             renderer.off("leaveNode", handleLeaveNode);
-            renderer.off("downNode", handleDownNode);
-            renderer.off("moveBody", handleMoveBody);
-            renderer.off("upNode", handleUp);
-            renderer.off("upStage", handleUp);
             renderer.off("clickNode", handleClickNode);
             
             renderer.kill();
@@ -227,12 +200,11 @@ const SigmaGraph = () => {
                         {selectedNode && <span>Selected: {selectedNode} | </span>}
                         <span>Search: "{searchQuery}"</span>
                     </div>         
-                    <div
+                    <div 
                         ref={containerRef}
                         style={{ 
                             width: '800px', 
                             height: '600px',
-                            background: 'white',
                             border: '1px solid #ccc',
                             borderRadius: '8px'
                         }}
