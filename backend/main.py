@@ -58,16 +58,20 @@ def get_top_nodes():
     rows = session.execute("""SELECT * FROM top_nodes_edges""")
     nodes = []
     edges = []
+    added_keywords = set()
     for row in rows:
         keyword_x_metadata = json.loads(row.keyword_x_metadata)
         keyword_y_metadata = json.loads(row.keyword_y_metadata)
-        nodes.append({"key":row.keyword_x,"attributes": {"label":row.keyword_x, "size":row.count_x, "sentiment" : row.sentiment_x , "color" : red_to_green(row.sentiment_x), "posts":keyword_x_metadata}})
-        nodes.append({"key":row.keyword_y,"attributes": {"label":row.keyword_y, "size":row.count_y, "sentiment" : row.sentiment_y ,"color" : red_to_green(row.sentiment_y), "posts":keyword_y_metadata}})
+        if row.keyword_x not in added_keywords:
+            nodes.append({"key":row.keyword_x,"attributes": {"label":row.keyword_x, "size":row.count_x, "sentiment" : row.sentiment_x , "color" : red_to_green(row.sentiment_x), "posts":keyword_x_metadata}})
+        if row.keyword_y not in added_keywords:
+            nodes.append({"key":row.keyword_y,"attributes": {"label":row.keyword_y, "size":row.count_y, "sentiment" : row.sentiment_y ,"color" : red_to_green(row.sentiment_y), "posts":keyword_y_metadata}})
         edges.append({"source":row.keyword_x,"target":row.keyword_y, "attributes": {"label": row.keyword_x+"-"+row.keyword_y, "size": row.count, "color":"#FFFFFF"}})
-        
-    try:
-        with open('top_nodes_and_edges.json', 'w') as f:
-            json.dump({"nodes": nodes, "edges": edges}, f, indent=2)
-    except Exception as e:
-        print(f"Error exporting Cassandra data: {e}")
+        added_keywords.add(row.keyword_x)
+        added_keywords.add(row.keyword_y)
+    #try:
+     #   with open('top_nodes_and_edges.json', 'w') as f:
+      #      json.dump({"nodes": nodes, "edges": edges}, f, indent=2)
+    #except Exception as e:
+     #   print(f"Error exporting Cassandra data: {e}")
     return {"nodes": nodes, "edges": edges}
