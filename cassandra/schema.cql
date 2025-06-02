@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS graph.vertices_info (
     karma int,
     subreddit text,
     link text,
-    sentiment int,
+    sentiment float,
     PRIMARY KEY (timestamp, keyword)
 );
 
@@ -36,6 +36,8 @@ CREATE TABLE IF NOT EXISTS graph.top_nodes_edges (
     count_x int,
     count_y int,
     count int,
+    sentiment_x float,
+    sentiment_y float,
     keyword_x_metadata text,
     keyword_y_metadata text,
     PRIMARY KEY (keyword_x, keyword_y)

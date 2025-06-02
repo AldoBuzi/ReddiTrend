@@ -50,15 +50,20 @@ def get_top_nodes():
     if USE_MOCK:
         with open("top_nodes_and_edges.json") as f:
             return json.load(f)
-        
+    def red_to_green(value: float):
+        t = (value + 1) / 2
+        red = int(255 * (1 - t))
+        green = int(255 * t)
+        return f"rgb({red}, {green}, 0)"
     rows = session.execute("""SELECT * FROM top_nodes_edges""")
     nodes = []
     edges = []
     for row in rows:
         keyword_x_metadata = json.loads(row.keyword_x_metadata)
         keyword_y_metadata = json.loads(row.keyword_y_metadata)
-        nodes.append([(row.keyword_x, {"label":row.keyword_x, "count":row.count_x, "metadata":keyword_x_metadata}),(row.keyword_y, {"label":row.keyword_y, "count":row.count_y, "metadata":keyword_y_metadata})])
-        edges.append([(row.keyword_x,row.keyword_y, {"label": row.keyword_x+"-"+row.keyword_y, "count": row.count})])
+        nodes.append({"key":row.keyword_x,"attributes": {"label":row.keyword_x, "size":row.count_x, "sentiment" : row.sentiment_x , "color" : red_to_green(row.sentiment_x), "posts":keyword_x_metadata}})
+        nodes.append({"key":row.keyword_y,"attributes": {"label":row.keyword_y, "size":row.count_y, "sentiment" : row.sentiment_y ,"color" : red_to_green(row.sentiment_y), "posts":keyword_y_metadata}})
+        edges.append({"source":row.keyword_x,"target":row.keyword_y, "attributes": {"label": row.keyword_x+"-"+row.keyword_y, "size": row.count, "color":"#FFFFFF"}})
         
     try:
         with open('top_nodes_and_edges.json', 'w') as f:

@@ -15,10 +15,7 @@ def extract_keywords_udf(text, accuracy = 0.35):
     if kw_model is None:
         from keybert import KeyBERT
         kw_model = KeyBERT()  # Initialize once per executor
-        
-        
-        
-        
+    
     if text:
         keywords = kw_model.extract_keywords(text, keyphrase_ngram_range=(1, 1), top_n=5)
         # Just return keywords, or filter by relevance if needed
@@ -30,7 +27,6 @@ extract_keywords = udf(extract_keywords_udf, ArrayType(StringType()))
 def process_batch(batch_df: DataFrame, batch_id):
     keywords_df = batch_df.withColumn("keywords", extract_keywords(batch_df["title"]))
     keywords_df.show(truncate=True)  # Safe way to debug batch
-    
     (vertices,edges) = add_vertices(spark=spark,df=keywords_df, debug=True)
     
     if vertices.rdd.isEmpty(): #also lazy
@@ -38,11 +34,12 @@ def process_batch(batch_df: DataFrame, batch_id):
     def update_partition(rows):
         cluster = Cluster(['cassandra-service'])
         session = cluster.connect('graph')
+        
         prepared = session.prepare("UPDATE vertices SET count = count + 1 WHERE keyword = ?")
-        insert_stmt = session.prepare("""INSERT INTO vertices_info (timestamp, keyword, body, title, karma, subreddit, link) VALUES (?, ?, ?, ?, ?, ?, ?)""")
+        insert_stmt = session.prepare("""INSERT INTO vertices_info (timestamp, keyword, body, title, karma, subreddit, link,sentiment) VALUES (?, ?, ?, ?, ?, ?, ?, ?)""")
         for row in rows:
             session.execute(prepared, (row.keyword,))
-            session.execute(insert_stmt, (row.timestamp, row.keyword, row.text, row.title, row.karma, row.subreddit, row.link) )
+            session.execute(insert_stmt, (row.timestamp, row.keyword, row.text, row.title, row.karma, row.subreddit, row.link, row.sentiment) )
         session.shutdown()
         cluster.shutdown()
     vertices.foreachPartition(update_partition)
@@ -87,7 +84,7 @@ query = parsed_df.select("data.*") \
     .outputMode("append") \
     .format("console") \
     .foreachBatch(process_batch) \
-    .option("truncate", True) \
+    .option("truncate", False) \
     .start()
 query.awaitTermination()
 

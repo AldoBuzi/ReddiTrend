@@ -1,5 +1,5 @@
 from pyspark.sql import SparkSession, DataFrame
-from pyspark.sql.functions import collect_list, struct, to_json
+from pyspark.sql.functions import collect_list, struct, to_json, expr
 from pyspark.sql.window import Window
 from pyspark.sql.functions import row_number
 spark: SparkSession = SparkSession.builder\
@@ -33,9 +33,14 @@ aggregated_df = top5_per_keyword.groupBy("keyword").agg(
 aggregated_df.show(truncate=True)
 keywords_info_result = aggregated_df.withColumn("json_col", to_json("metadata_list"))
 
+#Add sentiment column that is the average of the top 5
+keywords_info_result = keywords_info_result.withColumn(
+    "sentiment",
+    expr("aggregate(metadata_list, 0.0D, (acc, x) -> acc + x.sentiment) / size(metadata_list)")
+)
 
 # Get top N nodes by count
-top_nodes_df = keywords_df.orderBy(keywords_df["count"].desc()).limit(100)
+top_nodes_df = keywords_df.orderBy(keywords_df["count"].desc()).limit(300)
 
 # Collect top node list (small enough to collect)
 top_nodes_list = [row["keyword"] for row in top_nodes_df.collect()]
@@ -53,8 +58,8 @@ filtered_edges_df = edges_df.filter(
 filtered_edges_df = filtered_edges_df.join(top_nodes_df.withColumnRenamed("keyword", "keyword_x").withColumnRenamed("count", "count_x"), on="keyword_x",how="left")
 filtered_edges_df = filtered_edges_df.join(top_nodes_df.withColumnRenamed("keyword", "keyword_y").withColumnRenamed("count", "count_y"), on="keyword_y",how="left")
 # add keywords metadata
-filtered_edges_df = filtered_edges_df.join(keywords_info_result.select("keyword","json_col").withColumnRenamed("keyword", "keyword_x").withColumnRenamed("json_col","keyword_x_metadata"),on="keyword_x",how="left")
-filtered_edges_df = filtered_edges_df.join(keywords_info_result.select("keyword","json_col").withColumnRenamed("keyword", "keyword_y").withColumnRenamed("json_col","keyword_y_metadata"),on="keyword_y",how="left")
+filtered_edges_df = filtered_edges_df.join(keywords_info_result.select("keyword","json_col","sentiment").withColumnRenamed("keyword", "keyword_x").withColumnRenamed("json_col","keyword_x_metadata").withColumnRenamed("sentiment","sentiment_x"),on="keyword_x",how="left")
+filtered_edges_df = filtered_edges_df.join(keywords_info_result.select("keyword","json_col","sentiment").withColumnRenamed("keyword", "keyword_y").withColumnRenamed("json_col","keyword_y_metadata").withColumnRenamed("sentiment","sentiment_y"),on="keyword_y",how="left")
 # Filter edges where both ends are in top nodes
 
 # Write filtered edges to precomputed table, overwriting existing data
