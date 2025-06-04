@@ -38,3 +38,7 @@ body.dark {
 .checkbox:checked + .checkbox-label .ball {
   transform: translateX(24px);
 }
+
+.dark-mode .sigma-label {
+   color: white !important;
+}

@@ -35,9 +35,9 @@ function App() {
             <div>
                 <input onChange={() => {setDarkMode(!darkMode)}} type="checkbox" className="checkbox" id="checkbox" />
                 <label htmlFor="checkbox" className="checkbox-label" >
-                    <i class="fas fa-moon"></i>
-                    <i class="fas fa-sun"></i>
-                    <span class="ball"></span>
+                    <i className="fas fa-moon"></i>
+                    <i className="fas fa-sun"></i>
+                    <span className="ball"></span>
                 </label>
             </div>
           </Nav>

@@ -1,5 +1,5 @@
 
-import { useEffect, useRef, useState, useCallback, useContext } from 'react'
+import { useEffect, useRef, useState, useCallback, useContext, lazy } from 'react'
 import Sigma from 'sigma'
 import Graph from 'graphology'
 import data from './data.json'
@@ -9,100 +9,42 @@ import forceAtlas2 from 'graphology-layout-forceatlas2';
 import { DarkModeContext } from '../App'
 
 const SigmaGraph = () => {
-    const containerRef = useRef(null);
-    const rendererRef = useRef(null);
-    const graphRef = useRef(null);
-    
-    const [hoveredNode, setHoveredNode] = useState(null);
-    const [hoveredNeighbors, setHoveredNeighbors] = useState(null);
-    const [selectedNode, setSelectedNode] = useState(null);
-    const [suggestions, setSuggestions] = useState(null);
-    const [searchQuery, setSearchQuery] = useState("");
-
     const darkMode = useContext(DarkModeContext)
 
-    const handleSetHoveredNode = useCallback((node) => {
-        if (node && graphRef.current) {
-            setHoveredNode(node);
-            setHoveredNeighbors(new Set(graphRef.current.neighbors(node)));
-        } else {
-            setHoveredNode(null);
-            setHoveredNeighbors(null);
-        }
+    const containerRef = useRef(null);
+    const inputRef = useRef(null);
+    const suggestionsRef = useRef(null);
+    const rendererRef = useRef(null);
+    const graphRef = useRef(null);
 
-        // Refresh rendering
-        if (rendererRef.current) {
-            rendererRef.current.refresh({
-                skipIndexation: true,
-            });
-        }
-    }, []);
-
-    const nodeReducer = useCallback((node, data) => {
-        const res = { ...data };
-
-        if (hoveredNeighbors && !hoveredNeighbors.has(node) && hoveredNode !== node) {
-            res.label = "";
-            res.color = "#f6f6f6";
-        }
-
-        if (selectedNode === node) {
-            res.highlighted = true;
-        } else if (suggestions) {
-            if (suggestions.has(node)) {
-                res.forceLabel = true;
-            } else {
-                res.label = "";
-                res.color = "#f6f6f6";
-            }
-        }
-
-        return res;
-    }, [hoveredNode, hoveredNeighbors, selectedNode, suggestions]);
-
-    const edgeReducer = useCallback((edge, data) => {
-        const res = { ...data };
-        const graph = graphRef.current;
-        
-        if (!graph) return res;
-
-        if (
-            hoveredNode &&
-            !graph.extremities(edge).every((n) => n === hoveredNode || graph.areNeighbors(n, hoveredNode))
-        ) {
-            res.hidden = true;
-        }
-
-        if (
-            suggestions &&
-            (!suggestions.has(graph.source(edge)) || !suggestions.has(graph.target(edge)))
-        ) {
-            res.hidden = true;
-        }
-
-        return res;
-    }, [hoveredNode, suggestions]);
+    const state = useRef({
+        hoveredNode: undefined,
+        searchQuery: "",
+        selectedNode: undefined,
+        suggestions: undefined,
+        hoveredNeighbors: undefined,
+    });
 
     function setGraphLayout() {
         const center = {x: 0, y: 0};
         const maxDistance = 100; // max distance from center for smallest nodes
 
         graphRef.current.forEachNode((node, attrs) => {
-        const size = attrs.size || 1;
-        const sizeNorm = size / 100; // from 0 to 1
+            const size = attrs.size || 1;
+            const sizeNorm = size / 100; // from 0 to 1
 
-        // Distance is inverse of normalized size: bigger size → smaller distance
-        const distance = maxDistance * (1 - sizeNorm);
+            // Distance is inverse of normalized size: bigger size → smaller distance
+            const distance = maxDistance * (1 - sizeNorm);
 
-        // Random angle around center
-        const angle = Math.random() * 2 * Math.PI;
+            // Random angle around center
+            const angle = Math.random() * 2 * Math.PI;
 
-        // Compute x, y
-        const x = center.x + distance * Math.cos(angle);
-        const y = center.y + distance * Math.sin(angle);
+            // Compute x, y
+            const x = center.x + distance * Math.cos(angle);
+            const y = center.y + distance * Math.sin(angle);
 
-        graphRef.current.setNodeAttribute(node, 'x', x);
-        graphRef.current.setNodeAttribute(node, 'y', y);
+            graphRef.current.setNodeAttribute(node, 'x', x);
+            graphRef.current.setNodeAttribute(node, 'y', y);
         });
 
         forceAtlas2.assign(graphRef.current, {
@@ -117,100 +59,190 @@ const SigmaGraph = () => {
     }
 
     useEffect(() => {
-        // Instantiate the graph
+        const container = containerRef.current;
+        const searchInput = inputRef.current;
+        const searchSuggestions = suggestionsRef.current;
+    
+        // Initialize the graph
         const graph = new Graph();
         graph.import(data);
         graphRef.current = graph;
 
         setGraphLayout()
-                
-        // Instantiate the sigma
-        const renderer = new Sigma(graph, containerRef.current);
-        rendererRef.current = renderer;
 
-        // Bind graph interactions
-        const handleEnterNode = ({ node }) => {
-            handleSetHoveredNode(node);
-        };
-        
-        const handleLeaveNode = () => {
-            handleSetHoveredNode(null);
-        };
-
+        // TODO: Update the original edge size
         graph.forEachEdge((edge, attributes) => {
             graph.setEdgeAttribute(edge, 'size', attributes.size * 0.01);
         });
+    
+        const renderer = new Sigma(graph, container);
 
-        renderer.on("enterNode", handleEnterNode);
-        renderer.on("leaveNode", handleLeaveNode);
-
-        // Add click handler for node selection
-        const handleClickNode = ({ node }) => {
-            setSelectedNode(selectedNode === node ? null : node);
-        };
-
-        renderer.on("clickNode", handleClickNode);
-
-        return () => {
-            // Clean up event listeners
-            renderer.off("enterNode", handleEnterNode);
-            renderer.off("leaveNode", handleLeaveNode);
-            renderer.off("clickNode", handleClickNode);
+        rendererRef.current = renderer;
+    
+        // Fill datalist with node labels
+        searchSuggestions.innerHTML = graph
+            .nodes()
+            .map(
+                (node) =>
+                `<option value="${graph.getNodeAttribute(node, "label")}"></option>`
+            )
+            .join("\n");
+    
+        function setSearchQuery(query) {
+            const currentState = state.current;
+            currentState.searchQuery = query;
+        
+            if (searchInput.value !== query) searchInput.value = query;
+        
+            if (query) {
+                const lcQuery = query.toLowerCase();
+                const suggestions = graph
+                    .nodes()
+                    .map((n) => ({ id: n, label: graph.getNodeAttribute(n, "label") }))
+                    .filter(({ label }) => label.toLowerCase().includes(lcQuery));
+        
+                if (suggestions.length === 1 && suggestions[0].label === query) {
+                    currentState.selectedNode = suggestions[0].id;
+                    currentState.suggestions = undefined;
             
-            renderer.kill();
-            rendererRef.current = null;
-            graphRef.current = null;
-        };
-    }, []); // Keep empty dependency array since we want this to run only once
+                    const nodePosition = renderer.getNodeDisplayData(
+                        currentState.selectedNode
+                    );
 
-    // Update reducers when state changes
-    useEffect(() => {
-        if (rendererRef.current) {
-            rendererRef.current.setSetting("nodeReducer", nodeReducer);
-            rendererRef.current.setSetting("edgeReducer", edgeReducer);
-            rendererRef.current.refresh({ skipIndexation: true });
+                    if (nodePosition) {
+                        renderer.getCamera().animate(nodePosition, { duration: 500 });
+
+                        graph.forEachNode((node) => {
+                            if (node === currentState.selectedNode) {
+                                graph.setNodeAttribute(node, 'highlighted', true);
+                            } else {
+                                graph.setNodeAttribute(node, 'highlighted', false);
+                            }
+                        })
+                    }
+                } else {
+                    currentState.selectedNode = undefined;
+                    currentState.suggestions = new Set(suggestions.map(({ id }) => id));
+                }
+            } else {
+                currentState.selectedNode = undefined;
+                currentState.suggestions = undefined;
+            }
+        
+            // This line gives error for some reason i don't know
+            // renderer.refresh({ skipIndexation: true }); 
         }
-    }, [nodeReducer, edgeReducer]);
+    
+        function setHoveredNode(node) {
+            const currentState = state.current;
+
+            if (node) {
+                currentState.hoveredNode = node;
+                currentState.hoveredNeighbors = new Set(graph.neighbors(node));
+            } else {
+                currentState.hoveredNode = undefined;
+                currentState.hoveredNeighbors = undefined;
+            }
+        
+            renderer.refresh({ skipIndexation: true });
+        }
+    
+        searchInput.addEventListener("input", () => {
+            setSearchQuery(searchInput.value || "");
+        });
+
+        searchInput.addEventListener("blur", () => {
+            setSearchQuery("");
+        });
+    
+        renderer.on("enterNode", ({ node }) => {
+            setHoveredNode(node);
+        });
+
+        renderer.on("leaveNode", () => {
+            setHoveredNode(undefined);
+        });
+    
+        renderer.setSetting("nodeReducer", (node, data) => {
+            const res = { ...data };
+            const currentState = state.current;
+        
+            if (
+                currentState.hoveredNeighbors &&
+                !currentState.hoveredNeighbors.has(node) &&
+                currentState.hoveredNode !== node
+            ) {
+                res.label = "";
+                res.color = "#f6f6f6";
+            }
+        
+            if (currentState.selectedNode === node) {
+                res.highlighted = true;
+            } else if (currentState.suggestions) {
+                if (currentState.suggestions.has(node)) {
+                    res.forceLabel = true;
+                } else {
+                    res.label = "";
+                    res.color = "#f6f6f6";
+                }
+            } else {
+                res.highlighted = false;
+            }
+        
+            return res;
+        });
+    
+        renderer.setSetting("edgeReducer", (edge, data) => {
+            const res = { ...data };
+            const currentState = state.current;
+        
+            if (
+                currentState.hoveredNode &&
+                !graph
+                .extremities(edge)
+                .every(
+                    (n) =>
+                    n === currentState.hoveredNode ||
+                    graph.areNeighbors(n, currentState.hoveredNode)
+                )
+            ) {
+                res.hidden = true;
+            }
+        
+            if (
+                currentState.suggestions &&
+                (!currentState.suggestions.has(graph.source(edge)) ||
+                !currentState.suggestions.has(graph.target(edge)))
+            ) {
+                res.hidden = true;
+            }
+        
+            return res;
+        });
+    
+        // Cleanup function
+        return () => {
+            renderer.kill();
+        };
+    }, []);
 
     return (
-        <div className="d-flex justify-content-center mt-4">
-            <Col className="h-100">
-                <Row className="d-flex justify-content-center">
-                    <div className="d-flex justify-content-center">
-                        <input
-                            type="text"
-                            placeholder="Search nodes..."
-                            value={searchQuery}
-                            onChange={(e) => setSearchQuery(e.target.value)}
-                            className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                        />
-                        {selectedNode && (
-                            <button
-                                onClick={() => setSelectedNode(null)}
-                                className="px-3 py-2 bg-gray-500 text-white rounded-md hover:bg-gray-600"
-                            >
-                                Clear Selection
-                            </button>
-                        )}
-                    </div>
-                </Row>
-                <Row className="d-flex justify-content-center">
-                    <div className="d-flex justify-content-center text-sm text-gray-600">
-                        {hoveredNode && <span>Hovered: {hoveredNode} | </span>}
-                        {selectedNode && <span>Selected: {selectedNode} | </span>}
-                        <span>Search: "{searchQuery}"</span>
-                    </div>         
-                    <div 
-                        ref={containerRef}
-                        style={{ 
-                            width: '800px', 
-                            height: '600px',
-                            border: '1px solid #ccc',
-                            borderRadius: '8px'
-                        }}
-                    />
-                </Row>
-            </Col>
+        <div className="position-absolute top-50 start-50 translate-middle">
+            <div
+                id="sigma-container"
+                ref={containerRef}
+                className="p-0 ratio ratio-1x1 rounded-4"
+                style={{ "width": "50vw", border: "1px solid #ccc"}}
+            />
+            <input
+                ref={inputRef}
+                id="search-input"
+                list="suggestions"
+                placeholder="Search node"
+                style={{ "backgroundColor": `${ darkMode ? "#292c35" : "" }`, border: "1px solid #ccc" }}
+                className={`${ darkMode ? "text-white" : "" } position-absolute bottom-0 start-50 translate-middle-x w-100 p-3 rounded-4`}
+            />
+            <datalist id="suggestions" ref={suggestionsRef}></datalist>
         </div>
     )
 }
