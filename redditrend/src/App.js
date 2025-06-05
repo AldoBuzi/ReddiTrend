@@ -31,7 +31,7 @@ function App() {
             />
             ReddiTrend
           </Navbar.Brand>
-          <Nav>
+          {/*<Nav>
             <div>
                 <input onChange={() => {setDarkMode(!darkMode)}} type="checkbox" className="checkbox" id="checkbox" />
                 <label htmlFor="checkbox" className="checkbox-label" >
@@ -40,7 +40,7 @@ function App() {
                     <span className="ball"></span>
                 </label>
             </div>
-          </Nav>
+          </Nav>*/}
         </Container>
       </Navbar>
       <SigmaGraph />

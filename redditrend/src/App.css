@@ -1,3 +1,7 @@
+body {
+  overflow: hidden;
+}
+
 body.dark {
   background-color: #292c35;
 }

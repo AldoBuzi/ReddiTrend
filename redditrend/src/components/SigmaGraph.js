@@ -75,7 +75,7 @@ const SigmaGraph = () => {
             graph.setEdgeAttribute(edge, 'size', attributes.size * 0.01);
         });
     
-        const renderer = new Sigma(graph, container);
+        const renderer = new Sigma(graph, container)
 
         rendererRef.current = renderer;
     
@@ -224,26 +224,25 @@ const SigmaGraph = () => {
         return () => {
             renderer.kill();
         };
-    }, []);
+    }, [darkMode]);
 
-    return (
-        <div className="position-absolute top-50 start-50 translate-middle">
+    return (<>
             <div
                 id="sigma-container"
                 ref={containerRef}
-                className="p-0 ratio ratio-1x1 rounded-4"
-                style={{ "width": "50vw", border: "1px solid #ccc"}}
+                className="position-absolute top-50 start-50 translate-middle h-100 w-100 z-n1"
+                style={{ }}
             />
             <input
                 ref={inputRef}
                 id="search-input"
                 list="suggestions"
                 placeholder="Search node"
-                style={{ "backgroundColor": `${ darkMode ? "#292c35" : "" }`, border: "1px solid #ccc" }}
-                className={`${ darkMode ? "text-white" : "" } position-absolute bottom-0 start-50 translate-middle-x w-100 p-3 rounded-4`}
+                style={{ "backgroundColor": `${ darkMode ? "#292c35" : "" }`, border: "2px solid #CCCCCC", "outline": "none" }}
+                className={`${ darkMode ? "text-white" : "" } position-absolute bottom-0 start-50 translate-middle-x w-50 p-3 rounded-4 mb-5`}
             />
             <datalist id="suggestions" ref={suggestionsRef}></datalist>
-        </div>
+        </>
     )
 }
 
