@@ -6,6 +6,8 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import forceAtlas2 from 'graphology-layout-forceatlas2';
 import { DarkModeContext } from '../App'
+import Offcanvas from 'react-bootstrap/Offcanvas';
+import isEmpty from '../utils/isEmpty'
 
 function SigmaGraph({ graphData }) {
     const darkMode = useContext(DarkModeContext)
@@ -23,6 +25,10 @@ function SigmaGraph({ graphData }) {
         suggestions: undefined,
         hoveredNeighbors: undefined,
     });
+
+    const [clickedNode, setClickedNode] = useState({})
+
+    const [showNodeInfo, setShowNodeInfo] = useState(false);
 
     function setGraphLayout() {
         const center = {x: 0, y: 0};
@@ -65,7 +71,6 @@ function SigmaGraph({ graphData }) {
         // Initialize the graph
         const graph = new Graph();
         graph.import(graphData);
-        console.log(graphData)
         graphRef.current = graph;
 
         setGraphLayout()
@@ -163,6 +168,11 @@ function SigmaGraph({ graphData }) {
         renderer.on("leaveNode", () => {
             setHoveredNode(undefined);
         });
+
+        renderer.on("clickNode", ({ node }) => {
+            setClickedNode(graph.getNodeAttributes(node))
+            console.log(graph.getNodeAttributes(node))
+        });
     
         renderer.setSetting("nodeReducer", (node, data) => {
             const res = { ...data };
@@ -231,7 +241,7 @@ function SigmaGraph({ graphData }) {
             <div
                 id="sigma-container"
                 ref={containerRef}
-                className="position-absolute top-50 start-50 translate-middle h-100 w-100 z-n1"
+                className="position-absolute top-50 start-50 translate-middle h-100 w-100"
                 style={{ }}
             />
             <input
@@ -243,6 +253,19 @@ function SigmaGraph({ graphData }) {
                 className={`${ darkMode ? "text-white" : "" } position-absolute bottom-0 start-50 translate-middle-x w-50 p-3 rounded-4 mb-5`}
             />
             <datalist id="suggestions" ref={suggestionsRef}></datalist>
+            {!isEmpty(clickedNode) && <div
+                className="position-absolute bg-white m-5 rounded-4 p-3"
+                style={{ border: "2px solid #CCCCCC", "maxWidth": "50%"}}
+            >
+                <strong>Keyword:</strong> {clickedNode.label}<br />
+                <strong>Sentiment:</strong> {Math.round((clickedNode.sentiment + 1) * 50)}%<br />
+                <strong>Posts:</strong>
+                <ul>
+                    {clickedNode.posts.map((post) => (
+                        <li>{post.title}</li>
+                    ))}
+                </ul>
+            </div>}
         </>
     )
 }

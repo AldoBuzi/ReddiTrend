@@ -29,9 +29,9 @@ function App() {
 
   return (
     <DarkModeContext.Provider value={darkMode}>
-      <Navbar>
+      <Navbar className="">
         <Container>
-          <Navbar.Brand className={`${darkMode ? "text-white" : ""}`}>
+          <Navbar.Brand className={`${darkMode ? "text-white" : ""} z-1`}>
             <img
               src={redditLogo}
               width="30"
