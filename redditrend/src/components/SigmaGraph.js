@@ -2,13 +2,12 @@
 import { useEffect, useRef, useState, useCallback, useContext, lazy } from 'react'
 import Sigma from 'sigma'
 import Graph from 'graphology'
-import data from './data.json'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import forceAtlas2 from 'graphology-layout-forceatlas2';
 import { DarkModeContext } from '../App'
 
-const SigmaGraph = () => {
+function SigmaGraph({ graphData }) {
     const darkMode = useContext(DarkModeContext)
 
     const containerRef = useRef(null);
@@ -65,14 +64,16 @@ const SigmaGraph = () => {
     
         // Initialize the graph
         const graph = new Graph();
-        graph.import(data);
+        graph.import(graphData);
+        console.log(graphData)
         graphRef.current = graph;
 
         setGraphLayout()
 
-        // TODO: Update the original edge size
+        // TODO: Update the original edge size and color
         graph.forEachEdge((edge, attributes) => {
             graph.setEdgeAttribute(edge, 'size', attributes.size * 0.01);
+            graph.setEdgeAttribute(edge, 'color', "#CCCCCC");
         });
     
         const renderer = new Sigma(graph, container)

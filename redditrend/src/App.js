@@ -3,12 +3,15 @@ import { Navbar, Container, Button, Nav } from 'react-bootstrap';
 import redditLogo from './assets/reddit-logo.svg';
 import SigmaGraph from './components/SigmaGraph';
 import { useEffect, useRef, useState, useCallback, createContext } from 'react'
+import getTopNodes from './services/getTopNodes'
+import isEmpty from './utils/isEmpty'
 
 export const DarkModeContext = createContext(false)
 
 function App() {
   const [darkMode, setDarkMode] = useState(false)
-  
+  const [graph, setGraph] = useState({})
+
   useEffect(() => {
     if (darkMode) {
       document.body.classList.add("dark")
@@ -17,6 +20,12 @@ function App() {
       document.body.classList.remove("dark")
     }
   }, [darkMode])
+
+  useEffect(() => {
+    getTopNodes().then(res => {
+      setGraph(res)
+    }).catch(error => alert(error))
+  }, []) 
 
   return (
     <DarkModeContext.Provider value={darkMode}>
@@ -43,7 +52,9 @@ function App() {
           </Nav>*/}
         </Container>
       </Navbar>
-      <SigmaGraph />
+      {!isEmpty(graph) && <SigmaGraph
+        graphData = {graph}
+      />}
     </DarkModeContext.Provider>
   );
 }

@@ -3,7 +3,17 @@ from connection import get_session
 from models import Vertex, Edge
 import json
 import os
+from fastapi.middleware.cors import CORSMiddleware
+
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 USE_MOCK = os.getenv("USE_MOCK", "false").lower() == "true"
 
