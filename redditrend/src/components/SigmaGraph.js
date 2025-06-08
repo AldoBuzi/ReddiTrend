@@ -8,6 +8,7 @@ import forceAtlas2 from 'graphology-layout-forceatlas2';
 import { DarkModeContext } from '../App'
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import isEmpty from '../utils/isEmpty'
+import getExpandedNode from '../services/getExpandedNode'
 
 function SigmaGraph({ graphData }) {
     const darkMode = useContext(DarkModeContext)
@@ -69,7 +70,7 @@ function SigmaGraph({ graphData }) {
         const searchSuggestions = suggestionsRef.current;
     
         // Initialize the graph
-        const graph = new Graph();
+        const graph = new Graph({ multi: true, type: 'directed' });
         graph.import(graphData);
         graphRef.current = graph;
 
@@ -174,6 +175,24 @@ function SigmaGraph({ graphData }) {
         renderer.on("clickNode", ({ node }) => {
             setClickedNode(graph.getNodeAttributes(node))
         });
+
+
+        let clickTimer = null;
+        let longPressDuration = 2000; // 2 seconds
+
+        renderer.on("downNode", ({ node }) => {
+        clickTimer = setTimeout(() => {
+            handleLongClick(node); // Trigger your expand logic
+        }, longPressDuration);
+        });
+
+        renderer.on("upNode", () => {
+        clearTimeout(clickTimer);
+        });
+
+        renderer.on("leaveNode", () => {
+        clearTimeout(clickTimer);
+        });
     
         renderer.setSetting("nodeReducer", (node, data) => {
             const res = { ...data };
@@ -274,6 +293,46 @@ function SigmaGraph({ graphData }) {
             </div>}
         </>
     )
-}
 
+    async function handleLongClick(nodeId) {
+        try {
+            const depth = 5;
+            const { nodes, edges } = await getExpandedNode(nodeId, depth);
+        
+            addToGraphWithoutDuplicates(nodeId,nodes, edges);
+          } catch (err) {
+            console.error("Failed to expand node:", err);
+          }
+    }
+    
+    function addToGraphWithoutDuplicates(baseNodeId, newNodes, newEdges) {
+        const baseNode = graphRef.current.getNodeAttributes(baseNodeId);
+        const angleStep = (2 * Math.PI) / newNodes.length;
+        let index = 0;
+        newNodes.forEach((node) => {
+          if (!graphRef.current.hasNode(node.key)) {
+            const radius = 5; // adjust spacing
+            const angle = index * angleStep;
+
+            const x = baseNode.x + radius * Math.cos(angle);
+            const y = baseNode.y + radius * Math.sin(angle) + 5; // push downward more
+            graphRef.current.addNode(node.key, {
+                ...node.attributes,
+                x: x,
+                y: y,
+              });
+            index++;
+          }
+        });
+      
+        newEdges.forEach((edge) => {
+          // Check for existing edge (directed or not)
+          if (!graphRef.current.hasEdge(edge.source, edge.target)) {
+            // Optional: generate a unique edge ID or use provided
+            const edgeId = `${edge.source}->${edge.target}`;
+            graphRef.current.addDirectedEdgeWithKey(edgeId, edge.source, edge.target, edge);
+          }
+        });
+    }
+}
 export default SigmaGraph
