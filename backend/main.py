@@ -110,4 +110,4 @@ def get_top_nodes():
       #    json.dump({"nodes": nodes, "edges": edges}, f, indent=2)
     #except Exception as e:
      #   print(f"Error exporting Cassandra data: {e}")
-    #return {"nodes": nodes, "edges": edges}
+    return {"nodes": nodes, "edges": edges}
