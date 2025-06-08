@@ -19,7 +19,11 @@ def extract_sentiment(row):
 sentiment_udf = udf(extract_sentiment, FloatType())
 
 def generate_pairs(keywords):
-    return [(a, b) for a, b in combinations(sorted(set(keywords)), 2)]
+    pairs = []
+    for a, b in combinations(sorted(set(keywords)), 2):
+        pairs.append((a, b))
+        pairs.append((b, a))
+    return pairs
 def add_vertices(spark: "SparkSession", df: DataFrame, debug=False):
     # Explode keywords into rows, select distinct keywords as vertices
     #sentiment_score = df.select(col("comments")).rdd.flatMap(extract_sentiment)

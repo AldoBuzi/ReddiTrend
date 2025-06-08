@@ -1,8 +1,9 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Query
 from connection import get_session
-from models import Vertex, Edge
+from models import GraphResponse, Edge
 import json
 import os
+from typing import List
 app = FastAPI()
 
 USE_MOCK = os.getenv("USE_MOCK", "false").lower() == "true"
@@ -10,51 +11,76 @@ USE_MOCK = os.getenv("USE_MOCK", "false").lower() == "true"
 
 session = get_session() if USE_MOCK == False else None
 
+def red_to_green(value: float):
+    t = (value + 1) / 2
+    red = int(255 * (1 - t))
+    green = int(255 * t)
+    return f"rgb({red}, {green}, 0)"
 
 
-#@app.get("/vertices/{keyword}", response_model=Vertex)
-def get_vertex(keyword: str):
-    query = "SELECT keyword, count, sentiment FROM graph.vertices WHERE keyword=%s"
-    result = session.execute(query, [keyword]).one()
-
-    if result:
-        return Vertex(**result._asdict())
+@app.get("/expand-node/{node}/{depth}", response_model=GraphResponse)
+def expand_node(node: str, depth: int):
+    if USE_MOCK:
+        with open(f"depth/depth_{depth}.json") as f:
+            return json.load(f)
     
-    raise HTTPException(status_code=404, detail="Vertex not found")
-
-#@app.get("/vertices", response_model=list[Vertex])
-def get_all_vertices():
-    query = "SELECT keyword, count, sentiment FROM graph.vertices"
-    results = session.execute(query)
-    return [Vertex(**row._asdict()) for row in results]
-
-#@app.get("/edges/{keyword_x}/{keyword_y}", response_model=Edge)
-def get_edge(keyword_x: str, keyword_y: str):
-    query = "SELECT keyword_x, keyword_y, count FROM graph.edges WHERE keyword_x=%s AND keyword_y=%s"
-    result = session.execute(query, [keyword_x, keyword_y]).one()
-
-    if result:
-        return Edge(**result._asdict())
+    graph = expand(node, depth=depth, visited=set())
+    # Filter out the source node from the result
+    graph["nodes"] = [n for n in graph["nodes"] if n["key"] != node]
+    #try:
+     #   with open('expand-nodes.json', 'a') as f:
+      #    json.dump(graph, f, indent=2)
+    #except Exception as e:
+     #   print(f"Error exporting Cassandra data: {e}")
     
-    raise HTTPException(status_code=404, detail="Edge not found")
+    return graph
+    
+def expand(node, depth: int, visited = None ) -> GraphResponse:
+    if visited is None:
+        visited = set()
+    if depth == 0 or node in visited:
+        return {"nodes": [], "edges": []}
+    query = session.prepare("SELECT keyword_y, count FROM graph.edges WHERE keyword_x= ?")
+    
+    result = list(session.execute(query, (node,)))
+    if len(result) == 0:
+        return  {"nodes": [], "edges": []}
 
-#@app.get("/edges", response_model=list[Edge])
-def get_all_edges():
-    query = "SELECT keyword_x, keyword_y, count FROM graph.vertices"
-    results = session.execute(query)
-    return [Edge(**row._asdict()) for row in results]
+    visited.add(node)
+    
+    all_connected_nodes = {row.keyword_y for row in result}
+    nodes = []
+    edges = []
+    query_info = session.prepare("SELECT * FROM graph.vertices_info WHERE keyword= ? ORDER BY karma DESC LIMIT 5")
+    query_count = session.prepare("SELECT count FROM graph.vertices WHERE keyword= ?")
+    
+    for row in result:
+        edges.append({"source":node,"target":row.keyword_y, "attributes": {"label": node+"-"+row.keyword_y, "size": row.count, "color":"#FFFFFF"}})
+        edges.append({"target":node,"source":row.keyword_y, "attributes": {"label": node+"-"+row.keyword_y, "size": row.count, "color":"#FFFFFF"}})
+    
+    for n in all_connected_nodes:
+        result_info = list(session.execute(query_info, (n,)))
+        count_info = session.execute(query_count, (n,)).one()
+        if count_info:
+            sentiment_average = sum([row.sentiment for row in result_info if row.sentiment is not None]) / 5
+            posts = [{"timestamp": row.timestamp, "body": row.body, "title": row.title, "karma": row.karma, "sentiment" : row.sentiment, "link": row.link , "subreddit": row.subreddit} for row in result_info]
+            nodes.append({"key":n,"attributes": {"label":n, "size":count_info.count, "sentiment" :  sentiment_average , "color" : red_to_green(sentiment_average), "posts":posts}})
+    
+    for n in all_connected_nodes:
+        graph: GraphResponse = expand(n,depth=depth-1, visited=visited)
+        nodes = nodes + [node for node in graph["nodes"] if node["key"] not in [node2["key"] for node2 in nodes ] ]
+        edges = edges + [edge for edge in graph["edges"] if (edge["source"], edge["target"]) not in [(edge2["source"], edge2["target"]) for edge2 in edges] ]
+        visited.add(n)
+    return {"nodes": nodes, "edges": edges}
+    
+    
 
-@app.get("/top_nodes")
+@app.get("/top-nodes", response_model=GraphResponse)
 def get_top_nodes():
     # Return fake graph if mock is set to true
     if USE_MOCK:
         with open("top_nodes_and_edges.json") as f:
             return json.load(f)
-    def red_to_green(value: float):
-        t = (value + 1) / 2
-        red = int(255 * (1 - t))
-        green = int(255 * t)
-        return f"rgb({red}, {green}, 0)"
     rows = session.execute("""SELECT * FROM top_nodes_edges""")
     nodes = []
     edges = []
@@ -67,11 +93,12 @@ def get_top_nodes():
         if row.keyword_y not in added_keywords:
             nodes.append({"key":row.keyword_y,"attributes": {"label":row.keyword_y, "size":row.count_y, "sentiment" : row.sentiment_y ,"color" : red_to_green(row.sentiment_y), "posts":keyword_y_metadata}})
         edges.append({"source":row.keyword_x,"target":row.keyword_y, "attributes": {"label": row.keyword_x+"-"+row.keyword_y, "size": row.count, "color":"#FFFFFF"}})
+        edges.append({"source":row.keyword_y,"target":row.keyword_x, "attributes": {"label": row.keyword_x+"-"+row.keyword_y, "size": row.count, "color":"#FFFFFF"}})
         added_keywords.add(row.keyword_x)
         added_keywords.add(row.keyword_y)
     #try:
      #   with open('top_nodes_and_edges.json', 'w') as f:
-      #      json.dump({"nodes": nodes, "edges": edges}, f, indent=2)
+      #    json.dump({"nodes": nodes, "edges": edges}, f, indent=2)
     #except Exception as e:
      #   print(f"Error exporting Cassandra data: {e}")
-    return {"nodes": nodes, "edges": edges}
+    #return {"nodes": nodes, "edges": edges}

@@ -22,7 +22,7 @@ def fetch_and_send():
     print("Fetching Reddit posts...")
 
     # Fetch the hottest 100 posts
-    for index, post in enumerate(reddit.subreddit("all").hot(limit=200), start=1):
+    for index, post in enumerate(reddit.subreddit("all").hot(limit=400), start=1):
         post_data = {
             "timestamp": int(post.created_utc),
             "title": post.title,
