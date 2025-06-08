@@ -163,15 +163,16 @@ function SigmaGraph({ graphData }) {
     
         renderer.on("enterNode", ({ node }) => {
             setHoveredNode(node);
+            container.style.cursor = "pointer";
         });
 
         renderer.on("leaveNode", () => {
             setHoveredNode(undefined);
+            container.style.cursor = "default";
         });
 
         renderer.on("clickNode", ({ node }) => {
             setClickedNode(graph.getNodeAttributes(node))
-            console.log(graph.getNodeAttributes(node))
         });
     
         renderer.setSetting("nodeReducer", (node, data) => {
@@ -237,6 +238,10 @@ function SigmaGraph({ graphData }) {
         };
     }, [darkMode]);
 
+    useEffect(() => {
+        setShowNodeInfo(!isEmpty(clickedNode))
+    }, [clickedNode])
+
     return (<>
             <div
                 id="sigma-container"
@@ -253,7 +258,7 @@ function SigmaGraph({ graphData }) {
                 className={`${ darkMode ? "text-white" : "" } position-absolute bottom-0 start-50 translate-middle-x w-50 p-3 rounded-4 mb-5`}
             />
             <datalist id="suggestions" ref={suggestionsRef}></datalist>
-            {!isEmpty(clickedNode) && <div
+            {showNodeInfo && <div
                 className="position-absolute bg-white m-5 rounded-4 p-3"
                 style={{ border: "2px solid #CCCCCC", "maxWidth": "50%"}}
             >
@@ -265,6 +270,7 @@ function SigmaGraph({ graphData }) {
                         <li>{post.title}</li>
                     ))}
                 </ul>
+                <i className="bi bi-x-lg position-absolute m-3 end-0 top-0 cursor-pointer" style={{ cursor: "pointer" }} onClick={() => setShowNodeInfo(false)}></i>
             </div>}
         </>
     )
