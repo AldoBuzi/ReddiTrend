@@ -46,3 +46,8 @@ body.dark {
 .dark-mode .sigma-label {
    color: white !important;
 }
+
+.rounded-container {
+  border: 2px solid #CCCCCC;
+  border-radius: .375rem
+}
