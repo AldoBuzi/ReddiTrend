@@ -24,6 +24,11 @@ function SigmaGraph({ graphData }) {
     const rendererRef = useRef(null);
     const graphRef = useRef(null);
 
+    const [filters, setFilters] = useState({
+        size: false,
+        degree: false
+    })
+
     const [showFilterNodeBySizeMenu, setShowFilterNodeBySizeMenu] = useState(false)
     const [showFilterNodeByDegreeMenu, setShowFilterNodeByDegreeMenu] = useState(false)
 
@@ -253,7 +258,7 @@ function SigmaGraph({ graphData }) {
             clickedNodeSizeRef.current = nodeSize
             clickedNodeColorRef.current = nodeColor
             graph.setNodeAttribute(node, "size", nodeSize * 1.1)
-            console.log("nodeColor", nodeColor)
+            console.log("node", )
             graph.setNodeAttribute(node, "color", darkenColor(nodeColor, 20))
         });
 
@@ -329,29 +334,38 @@ function SigmaGraph({ graphData }) {
 
     useEffect(() => {
         setShowNodeInfo(!isEmpty(clickedNode))
+        console.log(clickedNode)
     }, [clickedNode])
 
-    function handleFilterNodeBySize() {
+    function filterGraph(size, degree) {
         graphRef.current.forEachNode((node, attributes) => {
-            if (attributes.size < filterNodeBySizeValue) {
-                graphRef.current.setNodeAttribute(node, "hidden", true);
-            } else {
-                graphRef.current.setNodeAttribute(node, "hidden", false);
-            }
+            const hidden = (size && attributes.size < filterNodeBySizeValue) || (degree &&  graphRef.current.outDegree(node) < filterNodeByDegreeValue)
+            graphRef.current.setNodeAttribute(node, "hidden", hidden);
         });
+    }
 
-        updateSuggesions()
+    function handleFilterNodeBySize(value) {
+        setFilters(prev => ({
+            ...prev,
+            size: value
+        }))
+
         setShowFilterNodeBySizeMenu(false)
     }
 
-    function handleFilterNodeByDegree() {
-        graphRef.current.forEachNode((node) => {
-            graphRef.current.setNodeAttribute(node, "hidden", graphRef.current.outDegree(node) < filterNodeByDegreeValue);
-        });
+    function handleFilterNodeByDegree(value) {
+        setFilters(prev => ({
+            ...prev,
+            degree: value
+        }))
 
-        updateSuggesions()
         setShowFilterNodeByDegreeMenu(false)
     }
+
+    useEffect(() => {
+        filterGraph(filters.size, filters.degree)
+        updateSuggesions()
+    }, [filters])
 
     return (<>
             {showFilterNodeBySizeMenu && <div
@@ -365,7 +379,7 @@ function SigmaGraph({ graphData }) {
                     value={filterNodeBySizeValue}
                     onChange={(e) => setFilterNodeBySizeValue(e.target.value)}/>
                 <div className="d-flex">
-                    <Button className="ms-auto" variant="secondary" onClick={handleFilterNodeBySize}>Filter</Button>
+                    <Button className="ms-auto" variant="secondary" onClick={() => handleFilterNodeBySize(true)}>Filter</Button>
                 </div>
                 <CloseButton className="position-absolute m-3 end-0 top-0"  onClick={() => setShowFilterNodeBySizeMenu(false)} />
             </div>}
@@ -380,7 +394,7 @@ function SigmaGraph({ graphData }) {
                     value={filterNodeByDegreeValue}
                     onChange={(e) => setFilterNodeByDegreeValue(e.target.value)}/>
                 <div className="d-flex">
-                    <Button className="ms-auto" variant="secondary" onClick={handleFilterNodeByDegree}>Filter</Button>
+                    <Button className="ms-auto" variant="secondary" onClick={() => handleFilterNodeByDegree(true)}>Filter</Button>
                 </div>
                 <CloseButton className="position-absolute m-3 end-0 top-0"  onClick={() => setShowFilterNodeByDegreeMenu(false)} />
             </div>}
@@ -405,10 +419,10 @@ function SigmaGraph({ graphData }) {
                             className={`${ darkMode ? "text-white" : "" } px-3`}
                         />
                     </Row>
-                    <Row>
-                        <Dropdown>
+                    <Row className="d-flex">
+                        <Dropdown className="w-auto">
                             <Dropdown.Toggle style={{ "backgroundColor": "transparent", "border": "none" }}>
-                                <i class="bi bi-filter-left text-black"></i>
+                                <i class="bi bi-sliders text-black"></i>
                             </Dropdown.Toggle>
                             <Dropdown.Menu>
                                 <Dropdown.Item href="#/action-1" onClick={() => setShowFilterNodeBySizeMenu(true)}>
@@ -419,22 +433,34 @@ function SigmaGraph({ graphData }) {
                                 </Dropdown.Item>
                             </Dropdown.Menu>
                         </Dropdown>
+                        {filters.size && <div className="d-flex gap-3 w-auto align-items-center" style={{ "borderRadius": "50px", "backgroundColor": "#CCCCCC", "transform": "scale(0.75)", "transformOrigin": "left center" }}>
+                            size {filterNodeBySizeValue}
+                            <CloseButton style={{ width: '5px', height: '5px', backgroundSize: 'auto' }} onClick={() => handleFilterNodeBySize(false)} />
+                        </div>}
+                        {filters.degree && <div className="d-flex gap-3 w-auto align-items-center" style={{ "borderRadius": "50px", "backgroundColor": "#CCCCCC", "transform": "scale(0.75)", "transformOrigin": "left center" }}>
+                            degree {filterNodeByDegreeValue}
+                            <CloseButton style={{ width: '5px', height: '5px', backgroundSize: 'auto' }} onClick={() => handleFilterNodeByDegree(false)} />
+                        </div>}
                     </Row>
                 </Col>
             </div>
             <datalist id="suggestions" ref={suggestionsRef}></datalist>
             {showNodeInfo && <div
-                className="position-absolute bg-white m-5 rounded-4 p-3"
-                style={{ border: "2px solid #CCCCCC", "maxWidth": "50%"}}
+                className="position-absolute bg-white m-5 rounded-4 p-3 overflow-auto"
+                style={{ border: "2px solid #CCCCCC", "maxWidth": "25%", "maxHeight": "50%" }}
             >
-                <strong>Keyword:</strong> {clickedNode.label}<br />
+                <h3>Info about "{clickedNode.label}"</h3>
                 <strong>Sentiment:</strong> {Math.round((clickedNode.sentiment + 1) * 50)}%<br />
-                <strong>Posts:</strong>
-                <ul>
-                    {clickedNode.posts.map((post) => (
-                        <li>{post.title}</li>
-                    ))}
-                </ul>
+                <strong>Posts:</strong><br />
+                {clickedNode.posts.map((post) => (
+                    <div className="m-3 rounded-4 p-3" style={{ "backgroundColor": "#CCCCCC" }}>
+                        <strong>Title: </strong><a href={post.link} target="_blank">{post.title}</a>
+                        <ul>
+                            <li><strong>Subreddit:</strong> {post.subreddit}</li>
+                            <li><strong>Karma:</strong> {post.karma}</li>
+                        </ul>
+                    </div>
+                ))}
                 <CloseButton className="position-absolute m-3 end-0 top-0" onClick={() => setShowNodeInfo(false)} />
             </div>}
         </>
