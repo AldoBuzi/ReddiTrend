@@ -9,6 +9,11 @@ import { DarkModeContext } from '../App'
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import isEmpty from '../utils/isEmpty'
 import getExpandedNode from '../services/getExpandedNode'
+import darkenColor from '../utils/darkenColor'
+import Dropdown from 'react-bootstrap/Dropdown';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+import CloseButton from 'react-bootstrap/CloseButton';
 
 function SigmaGraph({ graphData }) {
     const darkMode = useContext(DarkModeContext)
@@ -19,6 +24,17 @@ function SigmaGraph({ graphData }) {
     const rendererRef = useRef(null);
     const graphRef = useRef(null);
 
+    const [filters, setFilters] = useState({
+        size: false,
+        degree: false
+    })
+
+    const [showFilterNodeBySizeMenu, setShowFilterNodeBySizeMenu] = useState(false)
+    const [showFilterNodeByDegreeMenu, setShowFilterNodeByDegreeMenu] = useState(false)
+
+    const [filterNodeBySizeValue, setFilterNodeBySizeValue] = useState(1)
+    const [filterNodeByDegreeValue, setFilterNodeByDegreeValue] = useState(1)
+
     const state = useRef({
         hoveredNode: undefined,
         searchQuery: "",
@@ -26,6 +42,12 @@ function SigmaGraph({ graphData }) {
         suggestions: undefined,
         hoveredNeighbors: undefined,
     });
+
+    const animationRef = useRef(null);
+    const zoomingNodeRef = useRef(null);
+    
+    const clickedNodeSizeRef = useRef(null)
+    const clickedNodeColorRef = useRef(null)
 
     const [clickedNode, setClickedNode] = useState({})
 
@@ -64,10 +86,59 @@ function SigmaGraph({ graphData }) {
         });
     }
 
+    function handleLongClickNode(nodeId) {
+        const depth = 1;
+
+        getExpandedNode(nodeId, depth).then(({ nodes, edges }) => {
+            expandNode(nodeId, nodes, edges);
+        }).catch(error => alert(error))
+    }
+    
+    function expandNode(rootNodeId, newNodes, newEdges) {
+        const rootNode = graphRef.current.getNodeAttributes(rootNodeId);
+        const angleStep = (2 * Math.PI) / newNodes.length;
+        let index = 0;
+
+        newNodes.forEach((newNode) => {
+          if (!graphRef.current.hasNode(newNode.key)) {
+            const radius = 10;
+            const angle = index * angleStep;
+
+            const xNewNode = rootNode.x + radius * Math.cos(angle);
+            const yNewNode = rootNode.y + radius * Math.sin(angle);
+
+            graphRef.current.addNode(newNode.key, {
+                ...newNode.attributes,
+                x: xNewNode,
+                y: yNewNode,
+            });
+
+            index++;
+          }
+        });
+
+        updateSuggesions()
+
+        newEdges.forEach((newEdge) => {
+            if (!graphRef.current.hasEdge(newEdge.source, newEdge.target)) {
+                graphRef.current.addDirectedEdge(newEdge.source, newEdge.target, newEdge);
+            }
+        });
+    }
+
+    function updateSuggesions() {
+        suggestionsRef.current.innerHTML = graphRef.current
+            .nodes()
+            .map(
+                (node) => 
+                graphRef.current.getNodeAttribute(node, "hidden") ? "" : `<option value="${graphRef.current.getNodeAttribute(node, "label")}"></option>`
+            )
+            .join("\n");
+    }
+
     useEffect(() => {
         const container = containerRef.current;
         const searchInput = inputRef.current;
-        const searchSuggestions = suggestionsRef.current;
     
         // Initialize the graph
         const graph = new Graph({ multi: true, type: 'directed' });
@@ -87,13 +158,7 @@ function SigmaGraph({ graphData }) {
         rendererRef.current = renderer;
     
         // Fill datalist with node labels
-        searchSuggestions.innerHTML = graph
-            .nodes()
-            .map(
-                (node) =>
-                `<option value="${graph.getNodeAttribute(node, "label")}"></option>`
-            )
-            .join("\n");
+        updateSuggesions()
     
         function setSearchQuery(query) {
             const currentState = state.current;
@@ -116,7 +181,9 @@ function SigmaGraph({ graphData }) {
                         currentState.selectedNode
                     );
 
-                    if (nodePosition) {
+                    const isNodeHidden = graph.getNodeAttribute(currentState.selectedNode, "hidden")
+
+                    if (nodePosition && !isNodeHidden) {
                         renderer.getCamera().animate(nodePosition, { duration: 500 });
 
                         graph.forEachNode((node) => {
@@ -167,31 +234,39 @@ function SigmaGraph({ graphData }) {
             container.style.cursor = "pointer";
         });
 
-        renderer.on("leaveNode", () => {
-            setHoveredNode(undefined);
-            container.style.cursor = "default";
-        });
-
         renderer.on("clickNode", ({ node }) => {
             setClickedNode(graph.getNodeAttributes(node))
         });
 
-
-        let clickTimer = null;
-        let longPressDuration = 2000; // 2 seconds
-
-        renderer.on("downNode", ({ node }) => {
-        clickTimer = setTimeout(() => {
-            handleLongClick(node); // Trigger your expand logic
-        }, longPressDuration);
-        });
-
-        renderer.on("upNode", () => {
-        clearTimeout(clickTimer);
-        });
+        let longClickNodeTimer = null;
+        let longPressDuration = 1000; 
 
         renderer.on("leaveNode", () => {
-        clearTimeout(clickTimer);
+            setHoveredNode(undefined);
+            container.style.cursor = "default";
+            clearTimeout(longClickNodeTimer);
+        });
+
+        renderer.on("downNode", ({ node }) => {
+            longClickNodeTimer = setTimeout(() => {
+                cancelAnimationFrame(animationRef.current)
+                handleLongClickNode(node);
+            }, longPressDuration);
+
+            const nodeSize = graph.getNodeAttributes(node).size
+            const nodeColor = graph.getNodeAttributes(node).color
+            clickedNodeSizeRef.current = nodeSize
+            clickedNodeColorRef.current = nodeColor
+            graph.setNodeAttribute(node, "size", nodeSize * 1.1)
+            console.log("node", )
+            graph.setNodeAttribute(node, "color", darkenColor(nodeColor, 20))
+        });
+
+        renderer.on("upNode", ({ node }) => {
+            clearTimeout(longClickNodeTimer);
+            graph.setNodeAttribute(node, "size", clickedNodeSizeRef.current)
+            graph.setNodeAttribute(node, "color", clickedNodeColorRef.current)
+            clickedNodeSizeRef.curren = null
         });
     
         renderer.setSetting("nodeReducer", (node, data) => {
@@ -255,84 +330,140 @@ function SigmaGraph({ graphData }) {
         return () => {
             renderer.kill();
         };
-    }, [darkMode]);
+    }, []);
 
     useEffect(() => {
         setShowNodeInfo(!isEmpty(clickedNode))
+        console.log(clickedNode)
     }, [clickedNode])
 
+    function filterGraph(size, degree) {
+        graphRef.current.forEachNode((node, attributes) => {
+            const hidden = (size && attributes.size < filterNodeBySizeValue) || (degree &&  graphRef.current.outDegree(node) < filterNodeByDegreeValue)
+            graphRef.current.setNodeAttribute(node, "hidden", hidden);
+        });
+    }
+
+    function handleFilterNodeBySize(value) {
+        setFilters(prev => ({
+            ...prev,
+            size: value
+        }))
+
+        setShowFilterNodeBySizeMenu(false)
+    }
+
+    function handleFilterNodeByDegree(value) {
+        setFilters(prev => ({
+            ...prev,
+            degree: value
+        }))
+
+        setShowFilterNodeByDegreeMenu(false)
+    }
+
+    useEffect(() => {
+        filterGraph(filters.size, filters.degree)
+        updateSuggesions()
+    }, [filters])
+
     return (<>
+            {showFilterNodeBySizeMenu && <div
+                className="w-25 position-absolute top-50 start-50 translate-middle bg-white z-1 p-3 rounded-4"
+                style={{ "border": "2px solid #CCCCCC" }}
+            >
+                <Form.Label>Minimum Size: {filterNodeBySizeValue}</Form.Label>
+                <Form.Range min={1}
+                    max={10}
+                    step={1}
+                    value={filterNodeBySizeValue}
+                    onChange={(e) => setFilterNodeBySizeValue(e.target.value)}/>
+                <div className="d-flex">
+                    <Button className="ms-auto" variant="secondary" onClick={() => handleFilterNodeBySize(true)}>Filter</Button>
+                </div>
+                <CloseButton className="position-absolute m-3 end-0 top-0"  onClick={() => setShowFilterNodeBySizeMenu(false)} />
+            </div>}
+            {showFilterNodeByDegreeMenu && <div
+                className="w-25 position-absolute top-50 start-50 translate-middle bg-white z-1 p-3 rounded-4"
+                style={{ "border": "2px solid #CCCCCC" }}
+            >
+                <Form.Label>Minimum Degree: {filterNodeByDegreeValue}</Form.Label>
+                <Form.Range min={1}
+                    max={10}
+                    step={1}
+                    value={filterNodeByDegreeValue}
+                    onChange={(e) => setFilterNodeByDegreeValue(e.target.value)}/>
+                <div className="d-flex">
+                    <Button className="ms-auto" variant="secondary" onClick={() => handleFilterNodeByDegree(true)}>Filter</Button>
+                </div>
+                <CloseButton className="position-absolute m-3 end-0 top-0"  onClick={() => setShowFilterNodeByDegreeMenu(false)} />
+            </div>}
             <div
                 id="sigma-container"
                 ref={containerRef}
                 className="position-absolute top-50 start-50 translate-middle h-100 w-100"
                 style={{ }}
             />
-            <input
-                ref={inputRef}
-                id="search-input"
-                list="suggestions"
-                placeholder="Search node"
-                style={{ "backgroundColor": `${ darkMode ? "#292c35" : "" }`, border: "2px solid #CCCCCC", "outline": "none" }}
-                className={`${ darkMode ? "text-white" : "" } position-absolute bottom-0 start-50 translate-middle-x w-50 p-3 rounded-4 mb-5`}
-            />
+            <div
+                className="position-absolute bottom-0 start-50 translate-middle-x w-50 p-3 rounded-4 mb-5 bg-white"
+                style={{ "border": "2px solid #CCCCCC" }}
+            >
+                <Col className="d-flex flex-column gap-3">
+                    <Row>
+                        <input
+                            ref={inputRef}
+                            id="search-input"
+                            list="suggestions"
+                            placeholder="Search node"
+                            style={{ "backgroundColor": `${ darkMode ? "#292c35" : "" }`, "border": "none", "outline": "none" }}
+                            className={`${ darkMode ? "text-white" : "" } px-3`}
+                        />
+                    </Row>
+                    <Row className="d-flex">
+                        <Dropdown className="w-auto">
+                            <Dropdown.Toggle style={{ "backgroundColor": "transparent", "border": "none" }}>
+                                <i class="bi bi-sliders text-black"></i>
+                            </Dropdown.Toggle>
+                            <Dropdown.Menu>
+                                <Dropdown.Item href="#/action-1" onClick={() => setShowFilterNodeBySizeMenu(true)}>
+                                    Size
+                                </Dropdown.Item>
+                                <Dropdown.Item href="#/action-2" onClick={() => setShowFilterNodeByDegreeMenu(true)}>
+                                    Degree
+                                </Dropdown.Item>
+                            </Dropdown.Menu>
+                        </Dropdown>
+                        {filters.size && <div className="d-flex gap-3 w-auto align-items-center" style={{ "borderRadius": "50px", "backgroundColor": "#CCCCCC", "transform": "scale(0.75)", "transformOrigin": "left center" }}>
+                            size {filterNodeBySizeValue}
+                            <CloseButton style={{ width: '5px', height: '5px', backgroundSize: 'auto' }} onClick={() => handleFilterNodeBySize(false)} />
+                        </div>}
+                        {filters.degree && <div className="d-flex gap-3 w-auto align-items-center" style={{ "borderRadius": "50px", "backgroundColor": "#CCCCCC", "transform": "scale(0.75)", "transformOrigin": "left center" }}>
+                            degree {filterNodeByDegreeValue}
+                            <CloseButton style={{ width: '5px', height: '5px', backgroundSize: 'auto' }} onClick={() => handleFilterNodeByDegree(false)} />
+                        </div>}
+                    </Row>
+                </Col>
+            </div>
             <datalist id="suggestions" ref={suggestionsRef}></datalist>
             {showNodeInfo && <div
-                className="position-absolute bg-white m-5 rounded-4 p-3"
-                style={{ border: "2px solid #CCCCCC", "maxWidth": "50%"}}
+                className="position-absolute bg-white m-5 rounded-4 p-3 overflow-auto"
+                style={{ border: "2px solid #CCCCCC", "maxWidth": "25%", "maxHeight": "50%" }}
             >
-                <strong>Keyword:</strong> {clickedNode.label}<br />
+                <h3>Info about "{clickedNode.label}"</h3>
                 <strong>Sentiment:</strong> {Math.round((clickedNode.sentiment + 1) * 50)}%<br />
-                <strong>Posts:</strong>
-                <ul>
-                    {clickedNode.posts.map((post) => (
-                        <li>{post.title}</li>
-                    ))}
-                </ul>
-                <i className="bi bi-x-lg position-absolute m-3 end-0 top-0 cursor-pointer" style={{ cursor: "pointer" }} onClick={() => setShowNodeInfo(false)}></i>
+                <strong>Posts:</strong><br />
+                {clickedNode.posts.map((post) => (
+                    <div className="m-3 rounded-4 p-3" style={{ "backgroundColor": "#CCCCCC" }}>
+                        <strong>Title: </strong><a href={post.link} target="_blank">{post.title}</a>
+                        <ul>
+                            <li><strong>Subreddit:</strong> {post.subreddit}</li>
+                            <li><strong>Karma:</strong> {post.karma}</li>
+                        </ul>
+                    </div>
+                ))}
+                <CloseButton className="position-absolute m-3 end-0 top-0" onClick={() => setShowNodeInfo(false)} />
             </div>}
         </>
     )
-
-    async function handleLongClick(nodeId) {
-        try {
-            const depth = 5;
-            const { nodes, edges } = await getExpandedNode(nodeId, depth);
-        
-            addToGraphWithoutDuplicates(nodeId,nodes, edges);
-          } catch (err) {
-            console.error("Failed to expand node:", err);
-          }
-    }
-    
-    function addToGraphWithoutDuplicates(baseNodeId, newNodes, newEdges) {
-        const baseNode = graphRef.current.getNodeAttributes(baseNodeId);
-        const angleStep = (2 * Math.PI) / newNodes.length;
-        let index = 0;
-        newNodes.forEach((node) => {
-          if (!graphRef.current.hasNode(node.key)) {
-            const radius = 5; // adjust spacing
-            const angle = index * angleStep;
-
-            const x = baseNode.x + radius * Math.cos(angle);
-            const y = baseNode.y + radius * Math.sin(angle) + 5; // push downward more
-            graphRef.current.addNode(node.key, {
-                ...node.attributes,
-                x: x,
-                y: y,
-              });
-            index++;
-          }
-        });
-      
-        newEdges.forEach((edge) => {
-          // Check for existing edge (directed or not)
-          if (!graphRef.current.hasEdge(edge.source, edge.target)) {
-            // Optional: generate a unique edge ID or use provided
-            const edgeId = `${edge.source}->${edge.target}`;
-            graphRef.current.addDirectedEdgeWithKey(edgeId, edge.source, edge.target, edge);
-          }
-        });
-    }
 }
 export default SigmaGraph

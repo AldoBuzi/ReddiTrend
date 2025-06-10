@@ -9,5 +9,5 @@ COPY main.py .
 COPY connection.py .
 COPY models.py .
 COPY top_nodes_and_edges.json .
-COPY depth/* depth/
 
+COPY depth/ depth/
