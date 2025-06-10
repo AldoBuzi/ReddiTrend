@@ -47,6 +47,6 @@ spec:
         - --conf
         - spark.kubernetes.driver.request.cores=0.5
         - --packages #required packages by spark structured streaming + kafka
-        - org.apache.spark:spark-sql-kafka-0-10_2.12:3.5.5,graphframes:graphframes:0.8.4-spark3.5-s_2.12,com.datastax.spark:spark-cassandra-connector_2.12:3.5.1 # add graphframes to use graphx in python
+        - org.apache.spark:spark-sql-kafka-0-10_2.12:3.5.5
         - local:///opt/bitnami/spark/app/consumer.py
     restartPolicy: Never

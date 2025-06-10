@@ -40,7 +40,7 @@ keywords_info_result = keywords_info_result.withColumn(
 )
 
 # Get top N nodes by count
-top_nodes_df = keywords_df.orderBy(keywords_df["count"].desc()).limit(600)
+top_nodes_df = keywords_df.orderBy(keywords_df["count"].desc()).limit(1000)
 
 # Collect top node list (small enough to collect)
 top_nodes_list = [row["keyword"] for row in top_nodes_df.collect()]
