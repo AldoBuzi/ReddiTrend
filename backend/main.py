@@ -65,7 +65,6 @@ def expand(node, depth: int, visited = None ) -> GraphResponse:
     
     for row in result:
         edges.append({"source":node,"target":row.keyword_y, "attributes": {"label": node+"-"+row.keyword_y, "size": row.count, "color":"#FFFFFF"}})
-        edges.append({"target":node,"source":row.keyword_y, "attributes": {"label": node+"-"+row.keyword_y, "size": row.count, "color":"#FFFFFF"}})
     
     for n in all_connected_nodes:
         result_info = list(session.execute(query_info, (n,)))
@@ -102,7 +101,6 @@ def get_top_nodes():
         if row.keyword_y not in added_keywords:
             nodes.append({"key":row.keyword_y,"attributes": {"label":row.keyword_y, "size":row.count_y, "sentiment" : row.sentiment_y ,"color" : red_to_green(row.sentiment_y), "posts":keyword_y_metadata}})
         edges.append({"source":row.keyword_x,"target":row.keyword_y, "attributes": {"label": row.keyword_x+"-"+row.keyword_y, "size": row.count, "color":"#FFFFFF"}})
-        edges.append({"source":row.keyword_y,"target":row.keyword_x, "attributes": {"label": row.keyword_x+"-"+row.keyword_y, "size": row.count, "color":"#FFFFFF"}})
         added_keywords.add(row.keyword_x)
         added_keywords.add(row.keyword_y)
     #try:

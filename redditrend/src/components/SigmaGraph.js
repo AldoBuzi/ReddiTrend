@@ -23,6 +23,7 @@ function SigmaGraph({ graphData }) {
     const suggestionsRef = useRef(null);
     const rendererRef = useRef(null);
     const graphRef = useRef(null);
+    const [expandedNodeIds, setExpandedNodeIds] = useState(new Set());
 
     const [filters, setFilters] = useState({
         size: false,
@@ -90,6 +91,11 @@ function SigmaGraph({ graphData }) {
         const depth = 1;
 
         getExpandedNode(nodeId, depth).then(({ nodes, edges }) => {
+            setExpandedNodeIds(prevExpandedIds => {
+                const newExpandedIds = new Set(prevExpandedIds);
+                nodes.forEach(item => newExpandedIds.add(nodes.key))
+                return newExpandedIds;
+              });
             expandNode(nodeId, nodes, edges);
         }).catch(error => alert(error))
     }
@@ -135,13 +141,69 @@ function SigmaGraph({ graphData }) {
             )
             .join("\n");
     }
+    useEffect(() => {
+        if (graphRef.current == null) return
+        // Update existing nodes:
+        let index = 0;
+        graphData.nodes.forEach(newNode => {
+            if (graphRef.current.hasNode(newNode.key)) {
+                // Update node attributes
+                graphRef.current.updateNodeAttributes(newNode.key, attrs => ({
+                  ...attrs,
+                  ...newNode.attributes, // overwrite attributes with newNode properties
+                }));
+              } else {
+                // Add new node
+                const radius = 10;
+                const angle = index * angleStep;
+
+                const xNewNode = rootNode.x + radius * Math.cos(angle);
+                const yNewNode = rootNode.y + radius * Math.sin(angle);
+
+                graphRef.current.addNode(newNode.key, {
+                    ...newNode.attributes,
+                    x: xNewNode,
+                    y: yNewNode,
+                });
+                index++;
+            }
+        });
+        
+        // Remove nodes not in graphData.nodes
+        graphRef.current.forEachNode(nodeId => {
+            if (!graphData.nodes.find(n => n.key === nodeId) && ! nodeId in expandedNodeIds) {
+                graphRef.current.dropNode(nodeId);
+              }
+        });
+        
+        // Similarly for edges:
+        graphData.edges.forEach(newEdge => {
+            if (graphRef.current.hasEdge(newEdge.source, newEdge.target)) {
+                graphRef.current.updateEdgeAttributes(newEdge.source, newEdge.target, attrs => ({
+                  ...attrs,
+                  ...newEdge,
+                }));
+              } else {
+                graphRef.current.addDirectedEdge(newEdge.source, newEdge.target, newEdge);
+              }
+        });
+        
+        /*graphRef.current.forEachEdge((edgeId, attributes, source, target) => {
+            if (!graphData.edges.find(e => e.source === source && e.target === target)) {
+                graphRef.current.dropEdge(source, target);
+              }
+        });*/
+        updateSuggesions()
+        
+        rendererRef.current.refresh();
+      }, [graphData]);
 
     useEffect(() => {
         const container = containerRef.current;
         const searchInput = inputRef.current;
     
         // Initialize the graph
-        const graph = new Graph({ multi: true, type: 'directed' });
+        const graph = new Graph({ multi: false, type: 'directed' });
         graph.import(graphData);
         graphRef.current = graph;
 
@@ -156,6 +218,7 @@ function SigmaGraph({ graphData }) {
         const renderer = new Sigma(graph, container)
 
         rendererRef.current = renderer;
+
     
         // Fill datalist with node labels
         updateSuggesions()
@@ -266,13 +329,13 @@ function SigmaGraph({ graphData }) {
             clearTimeout(longClickNodeTimer);
             graph.setNodeAttribute(node, "size", clickedNodeSizeRef.current)
             graph.setNodeAttribute(node, "color", clickedNodeColorRef.current)
-            clickedNodeSizeRef.curren = null
+            clickedNodeSizeRef.current = null
         });
     
         renderer.setSetting("nodeReducer", (node, data) => {
             const res = { ...data };
             const currentState = state.current;
-        
+            res.size = res.size * 1.5;
             if (
                 currentState.hoveredNeighbors &&
                 !currentState.hoveredNeighbors.has(node) &&
@@ -333,8 +396,8 @@ function SigmaGraph({ graphData }) {
     }, []);
 
     useEffect(() => {
-        setShowNodeInfo(!isEmpty(clickedNode))
         console.log(clickedNode)
+        setShowNodeInfo(!isEmpty(clickedNode))
     }, [clickedNode])
 
     function filterGraph(size, degree) {
@@ -445,24 +508,59 @@ function SigmaGraph({ graphData }) {
                 </Col>
             </div>
             <datalist id="suggestions" ref={suggestionsRef}></datalist>
-            {showNodeInfo && <div
-                className="position-absolute bg-white m-5 rounded-4 p-3 overflow-auto"
-                style={{ border: "2px solid #CCCCCC", "maxWidth": "25%", "maxHeight": "50%" }}
-            >
-                <h3>Info about "{clickedNode.label}"</h3>
-                <strong>Sentiment:</strong> {Math.round((clickedNode.sentiment + 1) * 50)}%<br />
-                <strong>Posts:</strong><br />
-                {clickedNode.posts.map((post) => (
-                    <div className="m-3 rounded-4 p-3" style={{ "backgroundColor": "#CCCCCC" }}>
-                        <strong>Title: </strong><a href={post.link} target="_blank">{post.title}</a>
-                        <ul>
-                            <li><strong>Subreddit:</strong> {post.subreddit}</li>
-                            <li><strong>Karma:</strong> {post.karma}</li>
-                        </ul>
+            {showNodeInfo && (() => {
+                const normalizedSentiment = Math.round((clickedNode.sentiment + 1) * 50); // Range 0–100
+
+                return (
+                    <div
+                        className="position-absolute bg-white m-5 rounded-5 p-3 overflow-auto"
+                        style={{ border: "1px solid #CCCCCC", maxWidth: "25%", maxHeight: "60%", minHeight: "50%" }}
+                    >
+                        <h3>Info: {clickedNode.label}</h3>
+                        <div className="mb-3" style={{ fontSize: "1.2em" }}>
+                            <strong>Sentiment: </strong>
+                            <span style={{ fontSize: "1.3em", verticalAlign: "middle" }}>
+                                {normalizedSentiment > 60 && <span style={{ color: "green" }}>🟢</span>}
+                                {normalizedSentiment <= 60 && normalizedSentiment >= 40 && <span style={{ color: "goldenrod" }}>🟡</span>}
+                                {normalizedSentiment < 40 && <span style={{ color: "red" }}>🔴</span>}
+                                {' '}{normalizedSentiment}%
+                            </span>
+                        </div>
+                        <strong>Posts:</strong><br />
+                        {clickedNode.posts.map((post, index) => {
+                            const postSentiment = Math.round((post.sentiment + 1) * 50);
+                            return (
+                                <div
+                                    key={index}
+                                    className="my-3 rounded-4 p-3"
+                                    style={{ backgroundColor: "#f2f2f2" }}
+                                >
+                                    <div style={{ display: "flex", alignItems: "center", marginBottom: "5px" }}>
+                                        <strong style={{ marginLeft: "8px" }}>Title:</strong>&nbsp;
+                                        <a href={post.link} target="_blank" rel="noopener noreferrer">{post.title}</a>
+                                    </div>
+                                    <ul className="mb-0">
+                                        <li><strong>Subreddit:</strong> {post.subreddit}</li>
+                                        <li><strong>Karma:</strong> {post.karma}</li>
+                                        <li>
+                                            <strong>Sentiment: </strong>
+                                            <span style={{ fontSize: "1.3em", verticalAlign: "middle" }}>
+                                                {postSentiment > 60 && <span style={{ color: "green" }}>🟢</span>}
+                                                {postSentiment <= 60 && postSentiment >= 40 && <span style={{ color: "goldenrod" }}>🟡</span>}
+                                                {postSentiment < 40 && <span style={{ color: "red" }}>🔴</span>}
+                                                {' '}{postSentiment}%
+                                            </span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            );
+                        })}
+                        <CloseButton className="position-absolute m-3 end-0 top-0" onClick={() => {setShowNodeInfo(false); setClickedNode({})}} />
                     </div>
-                ))}
-                <CloseButton className="position-absolute m-3 end-0 top-0" onClick={() => setShowNodeInfo(false)} />
-            </div>}
+                );
+            })()}
+
+
         </>
     )
 }

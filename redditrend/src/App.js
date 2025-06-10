@@ -5,6 +5,7 @@ import SigmaGraph from './components/SigmaGraph';
 import { useEffect, useRef, useState, useCallback, createContext } from 'react'
 import getTopNodes from './services/getTopNodes'
 import isEmpty from './utils/isEmpty'
+import SyncStatus from './components/SyncStatus';
 
 export const DarkModeContext = createContext(false)
 
@@ -50,6 +51,9 @@ function App() {
                 </label>
             </div>
           </Nav>*/}
+          <Nav>
+            <SyncStatus setGraph={setGraph}/>
+          </Nav>
         </Container>
       </Navbar>
       {!isEmpty(graph) && <SigmaGraph
