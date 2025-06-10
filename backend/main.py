@@ -3,8 +3,17 @@ from connection import get_session
 from models import GraphResponse, Edge
 import json
 import os
-from typing import List
+from fastapi.middleware.cors import CORSMiddleware
+
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 USE_MOCK = os.getenv("USE_MOCK", "false").lower() == "true"
 
@@ -101,4 +110,4 @@ def get_top_nodes():
       #    json.dump({"nodes": nodes, "edges": edges}, f, indent=2)
     #except Exception as e:
      #   print(f"Error exporting Cassandra data: {e}")
-    #return {"nodes": nodes, "edges": edges}
+    return {"nodes": nodes, "edges": edges}

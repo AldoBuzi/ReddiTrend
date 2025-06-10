@@ -1,5 +1,6 @@
 .*
 !/.gitignore
+!/redditrend/.gitignore
 !/.devcontainer
 reddit-secret.yaml
 reddit-fetcher/reddit-fetcher
