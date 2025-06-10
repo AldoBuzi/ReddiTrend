@@ -7,7 +7,7 @@ if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
   exit 1
 fi
 
-minikube start -p ReddiTrend-Cluster --memory=13000 --cpus=4
+minikube start -p ReddiTrend-Cluster --memory=15000 --cpus=4
 
 kubectl create namespace kafka
 

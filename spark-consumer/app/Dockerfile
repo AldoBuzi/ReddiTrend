@@ -29,3 +29,5 @@ COPY spark.py app/spark.py
 COPY schema.py app/schema.py
 COPY graph.py app/graph.py
 COPY consumer.py  app/consumer.py
+COPY cassandra_connector.py app/cassandra_connector.py
+COPY utilities_consumer.py app/utilities_consumer.py

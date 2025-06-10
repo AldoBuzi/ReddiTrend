@@ -1,64 +1,70 @@
 from pyspark.sql import DataFrame
-from pyspark.rdd import (
-    RDD,
-)
 from app.schema import spark, schema
 from app.graph import add_vertices
-from pyspark.sql.functions import from_json, col, udf
-from pyspark.sql.types import  StringType, ArrayType
-from cassandra.cluster import Cluster
-
-kw_model = None
-
-def extract_keywords_udf(text, accuracy = 0.35):
-    global kw_model
-    if kw_model is None:
-        from keybert import KeyBERT
-        kw_model = KeyBERT()  # Initialize once per executor
-    
-    if text:
-        keywords = kw_model.extract_keywords(text, keyphrase_ngram_range=(1, 1), top_n=5)
-        # Just return keywords, or filter by relevance if needed
-        return [kw[0] for kw in keywords if kw[1] > accuracy]
-    return []
-# Register UDF
-extract_keywords = udf(extract_keywords_udf, ArrayType(StringType()))
+from pyspark.sql.functions import from_json, col
+from app.utilities_consumer import extract_keywords
+from cassandra.query import BatchStatement, BatchType
+from app.cassandra_connector import CassandraConnector
+import logging
+# Initialize logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 def process_batch(batch_df: DataFrame, batch_id):
+    
+    print(f"============== BATCH {batch_id} ==============")
+    
     keywords_df = batch_df.withColumn("keywords", extract_keywords(batch_df["title"]))
     keywords_df.show(truncate=True)  # Safe way to debug batch
     (vertices,edges) = add_vertices(spark=spark,df=keywords_df, debug=True)
     
     if vertices.rdd.isEmpty(): #also lazy
         return
+    
+    ## UPDATE VERTICES
+    
     def update_partition(rows):
-        cluster = Cluster(['cassandra-service'])
-        session = cluster.connect('graph')
+        session = CassandraConnector.get_session()
         
         prepared = session.prepare("UPDATE vertices SET count = count + 1 WHERE keyword = ?")
-        insert_stmt = session.prepare("""INSERT INTO vertices_info (timestamp, keyword, body, title, karma, subreddit, link,sentiment) VALUES (?, ?, ?, ?, ?, ?, ?, ?)""")
+        insert_stmt = session.prepare("""INSERT INTO vertices_info (timestamp, keyword, body, title, karma, subreddit, link,sentiment) VALUES (?, ?, ?, ?, ?, ?, ?, ?) IF NOT EXISTS""")
         for row in rows:
-            session.execute(prepared, (row.keyword,))
-            session.execute(insert_stmt, (row.timestamp, row.keyword, row.text, row.title, row.karma, row.subreddit, row.link, row.sentiment) )
-        session.shutdown()
-        cluster.shutdown()
-    vertices.foreachPartition(update_partition)
-    def update_edges(rows):
-        cluster = Cluster(['cassandra-service'])
-        session = cluster.connect('graph')
-        prepared = session.prepare(
-            "UPDATE edges SET count = count +1 WHERE keyword_x = ? and keyword_y = ?"
-        )
-        for row in rows:
-            session.execute(prepared, (row.src, row.dst))
-        session.shutdown()
-        cluster.shutdown()
-    if edges.rdd.isEmpty(): #also lazy
-        return
-    edges.foreachPartition(update_edges)
+            try:
+                result = session.execute(insert_stmt, (
+                    row.timestamp, row.keyword, row.text, row.title,
+                    row.karma, row.subreddit, row.link, row.sentiment
+                ))
 
-    print(f"============== BATCH {batch_id} ==============")
-    #keywords_df.show(truncate=False) #safe there because this method is used inside "foreachBatch"
+                if result[0].applied:
+                    session.execute(prepared, (row.keyword,))
+
+            except Exception as e:
+                logger.error(f"Cassandra write failed: {e}")
+                continue
+    vertices.repartition(10).foreachPartition(update_partition)
+    
+    ## UPDATE EDGES
+    
+    def update_edges(rows):
+        session = CassandraConnector.get_session()
+        update_stmt = session.prepare("""
+            UPDATE edges SET count = count + 1 WHERE keyword_x = ? AND keyword_y = ?
+        """)
+
+        batch = BatchStatement(batch_type=BatchType.UNLOGGED)
+        count = 0
+        for row in rows:
+            batch.add(update_stmt, (row.src, row.dst))
+            count += 1
+            if count >= 20:
+                session.execute(batch)
+                batch.clear()
+                count = 0
+
+        if count > 0:
+            session.execute(batch)
+
+    edges.repartition(10).foreachPartition(update_edges)
 
 
 
@@ -71,6 +77,7 @@ df = spark.readStream \
     .option("kafka.bootstrap.servers", "my-cluster-kafka-bootstrap.kafka.svc:9092") \
     .option("subscribe", "reddit-posts") \
     .option("startingOffsets", "latest") \
+    .option("maxOffsetsPerTrigger", 1000) \
     .load()
 
 
