@@ -10,7 +10,7 @@ cutoff_time = datetime.utcnow() - timedelta(hours=72)
 
 
 spark: SparkSession = SparkSession.builder\
-        .appName("SparkMovingWindow")\
+        .appName("Spark-Moving-Window")\
         .config("spark.cassandra.connection.host", "cassandra-service") \
         .config("spark.cassandra.connection.port", "9042") \
         .config("spark.sql.extensions", "com.datastax.spark.connector.CassandraSparkExtensions") \
@@ -22,7 +22,7 @@ keywords_df = spark.read.format("org.apache.spark.sql.cassandra") \
     .options(table="vertices_info", keyspace="graph") \
     .load()
     
-old_posts = keywords_df.filter(col("timestamp") < cutoff_time)
+old_posts = keywords_df.filter(col("timestamp") < cutoff_time.timestamp())
 
 
 decrement_df = old_posts.groupBy("keyword").count().withColumnRenamed("count", "decrement")  # 'count' here means how much to decrement

@@ -1,5 +1,9 @@
 FROM bitnami/spark:3.5.5
 
 USER root 
-COPY __init__.py __init__.p
-COPY spark-top-nodes.py spark-top-nodes.py
+
+RUN pip install cassandra-driver
+
+
+COPY __init__.py __init__.py
+COPY moving-window.py moving-window.py

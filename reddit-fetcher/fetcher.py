@@ -37,7 +37,7 @@ def fetch_and_send():
         post.comment_sort = "top"
         post.comments.replace_more(limit=0)
         top_comments = post.comments[:10]
-
+        post_data["comments"] = []
         for comment in top_comments:
             post_data["comments"].append({"text": comment.body, "karma": comment.score})
 

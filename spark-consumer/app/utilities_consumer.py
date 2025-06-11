@@ -7,7 +7,7 @@ def extract_keywords_udf(text, accuracy = 0.35):
     global kw_model
     if kw_model is None:
         from keybert import KeyBERT
-        kw_model = KeyBERT()  # Initialize once per executor
+        kw_model = KeyBERT(model="/opt/bitnami/spark/app/my_model_backend")  # Initialize once per executor
     
     if text:
         keywords = kw_model.extract_keywords(text, keyphrase_ngram_range=(1, 1), top_n=5)

@@ -18,6 +18,20 @@ spec:
         image: cassandra:3.11
         ports:
         - containerPort: 9042 #CQL (Cassandra Query Language) port
+        env:
+        - name: JVM_OPTS
+          # Set MaxDirectMemorySize, initial/max heap size, and garbage collector
+          # Important: Tune these values carefully based on your node's total memory
+          # and Cassandra's recommended settings for your specific version and workload.
+          # Example values below - adjust as needed!
+          value: "-Xms2560M -Xmx2560M -XX:MaxDirectMemorySize=1G "
+        resources:
+          requests:
+            memory: "2.5Gi" # Minimum memory guaranteed to the container
+            cpu: "1"      # Example: 1 CPU core guaranteed
+          limits:
+            memory: "5Gi" # Hard limit on memory usage
+            cpu: "2"      # Example: 2 CPU cores max
 ---
 #This service allows other pods in the cluster to connect to Cassandra using the name cassandra-service:9042
 apiVersion: v1

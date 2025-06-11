@@ -23,6 +23,7 @@ function SigmaGraph({ graphData }) {
     const suggestionsRef = useRef(null);
     const rendererRef = useRef(null);
     const graphRef = useRef(null);
+    const [expandedNodeIds, setExpandedNodeIds] = useState(new Set());
 
     const [filters, setFilters] = useState({
         size: false,
@@ -55,11 +56,12 @@ function SigmaGraph({ graphData }) {
 
     function setGraphLayout() {
         const center = {x: 0, y: 0};
-        const maxDistance = 100; // max distance from center for smallest nodes
-
+        const maxDistance = 80; // max distance from center for smallest nodes
+        const maxSize = Math.max(...graphData.nodes.map(node => node.attributes.size));
+        console.log(maxSize)
         graphRef.current.forEachNode((node, attrs) => {
             const size = attrs.size || 1;
-            const sizeNorm = size / 100; // from 0 to 1
+            const sizeNorm = size / maxSize; // from 0 to 1
 
             // Distance is inverse of normalized size: bigger size → smaller distance
             const distance = maxDistance * (1 - sizeNorm);
@@ -68,15 +70,15 @@ function SigmaGraph({ graphData }) {
             const angle = Math.random() * 2 * Math.PI;
 
             // Compute x, y
-            const x = center.x + distance * Math.cos(angle);
-            const y = center.y + distance * Math.sin(angle);
+            const x = center.x + (distance + Math.random() * 20) * Math.cos(angle);
+            const y = center.y + (distance + Math.random() * 20) * Math.sin(angle);
 
             graphRef.current.setNodeAttribute(node, 'x', x);
             graphRef.current.setNodeAttribute(node, 'y', y);
         });
 
         forceAtlas2.assign(graphRef.current, {
-            iterations: 100,
+            iterations: 10,
             settings: {
                 gravity: 1,
                 scalingRatio: 1,
@@ -90,6 +92,11 @@ function SigmaGraph({ graphData }) {
         const depth = 1;
 
         getExpandedNode(nodeId, depth).then(({ nodes, edges }) => {
+            setExpandedNodeIds(prevExpandedIds => {
+                const newExpandedIds = new Set(prevExpandedIds);
+                nodes.forEach(item => newExpandedIds.add(nodes.key))
+                return newExpandedIds;
+              });
             expandNode(nodeId, nodes, edges);
         }).catch(error => alert(error))
     }
@@ -135,13 +142,74 @@ function SigmaGraph({ graphData }) {
             )
             .join("\n");
     }
+    useEffect(() => {
+        if (graphRef.current == null) return
+        // Update existing nodes:
+        graphData.nodes.forEach(newNode => {
+            if (graphRef.current.hasNode(newNode.key)) {
+                // Update node attributes
+                graphRef.current.updateNodeAttributes(newNode.key, attrs => ({
+                  ...attrs,
+                  ...newNode.attributes, // overwrite attributes with newNode properties
+                }));
+              } else {
+                // Add new node
+                const size = newNode.attributes.size || 1;
+                const sizeNorm = size / 100; // from 0 to 1
+
+                // Distance is inverse of normalized size: bigger size → smaller distance
+                const distance = 80 * (1 - sizeNorm);
+
+                // Random angle around center
+                const angle = Math.random() * 3 * Math.PI;
+
+                // Compute x, y
+                const x = (distance + Math.random() * 20 )  * Math.cos(angle);
+                const y = (distance + Math.random() * 20 ) * Math.sin(angle);
+
+                graphRef.current.addNode(newNode.key, {
+                    ...newNode.attributes,
+                    x: x,
+                    y: y,
+                });
+            }
+        });
+        
+        // Remove nodes not in graphData.nodes
+        graphRef.current.forEachNode(nodeId => {
+            if (!graphData.nodes.find(n => n.key === nodeId) && ! nodeId in expandedNodeIds) {
+                graphRef.current.dropNode(nodeId);
+              }
+        });
+        
+        // Similarly for edges:
+        graphData.edges.forEach(newEdge => {
+            if (graphRef.current.hasEdge(newEdge.source, newEdge.target)) {
+                graphRef.current.updateEdgeAttributes(newEdge.source, newEdge.target, attrs => ({
+                  ...attrs,
+                  ...newEdge,
+                }));
+              } else {
+                graphRef.current.addDirectedEdge(newEdge.source, newEdge.target, newEdge);
+              }
+        });
+        
+        /*graphRef.current.forEachEdge((edgeId, attributes, source, target) => {
+            if (!graphData.edges.find(e => e.source === source && e.target === target)) {
+                graphRef.current.dropEdge(source, target);
+              }
+        });*/
+        updateSuggesions()
+        
+        rendererRef.current.refresh();
+      }, [graphData]);
 
     useEffect(() => {
         const container = containerRef.current;
         const searchInput = inputRef.current;
     
         // Initialize the graph
-        const graph = new Graph({ multi: true, type: 'directed' });
+        const graph = new Graph({ multi: false, type: 'directed' });
         graph.import(graphData);
         graphRef.current = graph;
 
@@ -156,6 +224,7 @@ function SigmaGraph({ graphData }) {
         const renderer = new Sigma(graph, container)
 
         rendererRef.current = renderer;
+
     
         // Fill datalist with node labels
         updateSuggesions()
@@ -172,8 +241,9 @@ function SigmaGraph({ graphData }) {
                     .nodes()
                     .map((n) => ({ id: n, label: graph.getNodeAttribute(n, "label") }))
                     .filter(({ label }) => label.toLowerCase().includes(lcQuery));
-        
+                // only one match and matches exactly our query
                 if (suggestions.length === 1 && suggestions[0].label === query) {
+                    // set node as selected
                     currentState.selectedNode = suggestions[0].id;
                     currentState.suggestions = undefined;
             
@@ -194,9 +264,56 @@ function SigmaGraph({ graphData }) {
                             }
                         })
                     }
-                } else {
+                } 
+                //multiple matches
+                else {
                     currentState.selectedNode = undefined;
                     currentState.suggestions = new Set(suggestions.map(({ id }) => id));
+                    //fix highlighted empty node when changing query
+                    graph.forEachNode((node) => {
+                        graph.setNodeAttribute(node, 'highlighted', false);
+                    });
+                    if (suggestions.length ==0) return
+                    
+                    const largestSuggestion = suggestions.reduce((maxNode, node) => {
+                        const size = graph.getNodeAttribute(node.id, "size") || 0;
+                        const maxSize = graph.getNodeAttribute(maxNode.id, "size") || 0;
+                        return size > maxSize ? node : maxNode;
+                    });
+                    
+                    currentState.selectedNode = largestSuggestion.id;
+                    const nodePosition = renderer.getNodeDisplayData(
+                        currentState.selectedNode
+                    );
+
+                    const isNodeHidden = graph.getNodeAttribute(currentState.selectedNode, "hidden")
+
+                    if (nodePosition && !isNodeHidden) {
+                        renderer.getCamera().animate(nodePosition, { duration: 500 });
+
+                        graph.forEachNode((node) => {
+                            if (node === currentState.selectedNode) {
+                                graph.setNodeAttribute(node, 'highlighted', true);
+                            } else {
+                                graph.setNodeAttribute(node, 'highlighted', false);
+                            }
+                        })
+                        graph.forEachEdge((edge, attributes, source, target) => {
+                            const isConnected =
+                            source === currentState.selectedNode || target === currentState.selectedNode
+                            if(isConnected){
+                                console.log(isConnected)
+                                console.log(source)
+                                console.log(target)
+                            }
+                            console.log(currentState.selectedNode)
+                            graph.setEdgeAttribute(edge, 'highlighted', isConnected);
+                            if (!graph.getNodeAttribute(source,'highlighted'))
+                                graph.setNodeAttribute(source, 'highlighted', isConnected);
+                            if (!graph.getNodeAttribute(target,'highlighted'))
+                                graph.setNodeAttribute(target, 'highlighted', isConnected);
+                        });
+                    }
                 }
             } else {
                 currentState.selectedNode = undefined;
@@ -204,6 +321,7 @@ function SigmaGraph({ graphData }) {
             }
         
             // This line gives error for some reason i don't know
+            rendererRef.current.refresh();
             // renderer.refresh({ skipIndexation: true }); 
         }
     
@@ -266,17 +384,18 @@ function SigmaGraph({ graphData }) {
             clearTimeout(longClickNodeTimer);
             graph.setNodeAttribute(node, "size", clickedNodeSizeRef.current)
             graph.setNodeAttribute(node, "color", clickedNodeColorRef.current)
-            clickedNodeSizeRef.curren = null
+            clickedNodeSizeRef.current = null
         });
     
         renderer.setSetting("nodeReducer", (node, data) => {
             const res = { ...data };
             const currentState = state.current;
-        
+            res.size = res.size * 1.5;
             if (
                 currentState.hoveredNeighbors &&
                 !currentState.hoveredNeighbors.has(node) &&
-                currentState.hoveredNode !== node
+                currentState.hoveredNode !== node && 
+                ! graph.getNodeAttribute(node,'highlighted')
             ) {
                 res.label = "";
                 res.color = "#f6f6f6";
@@ -284,8 +403,9 @@ function SigmaGraph({ graphData }) {
         
             if (currentState.selectedNode === node) {
                 res.highlighted = true;
-            } else if (currentState.suggestions) {
-                if (currentState.suggestions.has(node)) {
+            } 
+            else if (currentState.suggestions) {
+                if (currentState.suggestions.has(node) || graph.getNodeAttribute(node,'highlighted')) {
                     res.forceLabel = true;
                 } else {
                     res.label = "";
@@ -299,6 +419,13 @@ function SigmaGraph({ graphData }) {
         });
     
         renderer.setSetting("edgeReducer", (edge, data) => {
+            if (graph.getEdgeAttribute(edge, 'highlighted')) {
+                return {
+                  ...data,
+                  color: '#ccc',
+                  size: 3,
+                };
+            }
             const res = { ...data };
             const currentState = state.current;
         
@@ -333,8 +460,8 @@ function SigmaGraph({ graphData }) {
     }, []);
 
     useEffect(() => {
-        setShowNodeInfo(!isEmpty(clickedNode))
         console.log(clickedNode)
+        setShowNodeInfo(!isEmpty(clickedNode))
     }, [clickedNode])
 
     function filterGraph(size, degree) {
@@ -445,24 +572,59 @@ function SigmaGraph({ graphData }) {
                 </Col>
             </div>
             <datalist id="suggestions" ref={suggestionsRef}></datalist>
-            {showNodeInfo && <div
-                className="position-absolute bg-white m-5 rounded-4 p-3 overflow-auto"
-                style={{ border: "2px solid #CCCCCC", "maxWidth": "25%", "maxHeight": "50%" }}
-            >
-                <h3>Info about "{clickedNode.label}"</h3>
-                <strong>Sentiment:</strong> {Math.round((clickedNode.sentiment + 1) * 50)}%<br />
-                <strong>Posts:</strong><br />
-                {clickedNode.posts.map((post) => (
-                    <div className="m-3 rounded-4 p-3" style={{ "backgroundColor": "#CCCCCC" }}>
-                        <strong>Title: </strong><a href={post.link} target="_blank">{post.title}</a>
-                        <ul>
-                            <li><strong>Subreddit:</strong> {post.subreddit}</li>
-                            <li><strong>Karma:</strong> {post.karma}</li>
-                        </ul>
+            {showNodeInfo && (() => {
+                const normalizedSentiment = Math.round((clickedNode.sentiment + 1) * 50); // Range 0–100
+
+                return (
+                    <div
+                        className="position-absolute bg-white m-5 rounded-5 p-3 overflow-auto"
+                        style={{ border: "1px solid #CCCCCC", maxWidth: "25%", maxHeight: "60%", minHeight: "50%" }}
+                    >
+                        <h3>Info: {clickedNode.label}</h3>
+                        <div className="mb-3" style={{ fontSize: "1.2em" }}>
+                            <strong>Sentiment: </strong>
+                            <span style={{ fontSize: "1.3em", verticalAlign: "middle" }}>
+                                {normalizedSentiment > 60 && <span style={{ color: "green" }}>🟢</span>}
+                                {normalizedSentiment <= 60 && normalizedSentiment >= 40 && <span style={{ color: "goldenrod" }}>🟡</span>}
+                                {normalizedSentiment < 40 && <span style={{ color: "red" }}>🔴</span>}
+                                {' '}{normalizedSentiment}%
+                            </span>
+                        </div>
+                        <strong>Posts:</strong><br />
+                        {clickedNode.posts.map((post, index) => {
+                            const postSentiment = Math.round((post.sentiment + 1) * 50);
+                            return (
+                                <div
+                                    key={index}
+                                    className="my-3 rounded-4 p-3"
+                                    style={{ backgroundColor: "#f2f2f2" }}
+                                >
+                                    <div style={{ display: "flex", alignItems: "center", marginBottom: "5px" }}>
+                                        <strong style={{ marginLeft: "8px" }}>Title:</strong>&nbsp;
+                                        <a href={post.link} target="_blank" rel="noopener noreferrer">{post.title}</a>
+                                    </div>
+                                    <ul className="mb-0">
+                                        <li><strong>Subreddit:</strong> {post.subreddit}</li>
+                                        <li><strong>Karma:</strong> {post.karma}</li>
+                                        <li>
+                                            <strong>Sentiment: </strong>
+                                            <span style={{ fontSize: "1.3em", verticalAlign: "middle" }}>
+                                                {postSentiment > 60 && <span style={{ color: "green" }}>🟢</span>}
+                                                {postSentiment <= 60 && postSentiment >= 40 && <span style={{ color: "goldenrod" }}>🟡</span>}
+                                                {postSentiment < 40 && <span style={{ color: "red" }}>🔴</span>}
+                                                {' '}{postSentiment}%
+                                            </span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            );
+                        })}
+                        <CloseButton className="position-absolute m-3 end-0 top-0" onClick={() => {setShowNodeInfo(false); setClickedNode({})}} />
                     </div>
-                ))}
-                <CloseButton className="position-absolute m-3 end-0 top-0" onClick={() => setShowNodeInfo(false)} />
-            </div>}
+                );
+            })()}
+
+
         </>
     )
 }

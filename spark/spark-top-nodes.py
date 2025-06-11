@@ -19,15 +19,15 @@ keywords_info = spark.read.format("org.apache.spark.sql.cassandra") \
     .load()
 
 # Define window partitioned by 'keyword' and ordered by karma
-window_spec = Window.partitionBy("keyword").orderBy(keywords_info["karma"].desc())
+window_spec = Window.partitionBy("keyword").orderBy(keywords_info["timestamp"])
 
 # Add row number per group
 ranked = keywords_info.withColumn("row_number", row_number().over(window_spec))
 
-# Keep top 5 rows per keyword
-top5_per_keyword = ranked.filter(ranked.row_number <= 5).drop("row_number")
+# Keep top 6 rows per keyword
+top6_per_keyword = ranked.filter(ranked.row_number <= 6).drop("row_number")
 
-aggregated_df = top5_per_keyword.groupBy("keyword").agg(
+aggregated_df = top6_per_keyword.groupBy("keyword").agg(
     collect_list(struct("timestamp", "body","title","karma","subreddit","link","sentiment")).alias("metadata_list")
 )
 aggregated_df.show(truncate=True)

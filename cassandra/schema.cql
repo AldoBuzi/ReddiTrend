@@ -17,8 +17,8 @@ CREATE TABLE IF NOT EXISTS graph.vertices_info (
     subreddit text,
     link text,
     sentiment float,
-    PRIMARY KEY (keyword, karma, timestamp)
-) WITH CLUSTERING ORDER BY (karma DESC, timestamp ASC);
+    PRIMARY KEY (keyword, timestamp)
+) WITH CLUSTERING ORDER BY (timestamp ASC);
 
 
 -- Create the table edges
