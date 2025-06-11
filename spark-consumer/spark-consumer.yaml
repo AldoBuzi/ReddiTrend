@@ -11,10 +11,10 @@ spec:
       imagePullPolicy: Never
       resources:
           requests:
-            memory: "4Gi"
+            memory: "3Gi"
             cpu: "2"
           limits:
-            memory: "6Gi"
+            memory: "5Gi"
             cpu: "4"
       command:
         - /opt/bitnami/spark/bin/spark-submit

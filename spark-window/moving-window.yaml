@@ -22,7 +22,7 @@ spec:
                 - --deploy-mode 
                 - cluster
                 - --conf
-                - spark.kubernetes.container.image=spark-top-nodes:latest
+                - spark.kubernetes.container.image=spark-moving-window:latest
                 - --conf # specify path for cache and other stuff as an absolute path
                 - spark.jars.ivy=/tmp/.ivy2
                 - --conf 
@@ -30,9 +30,15 @@ spec:
                 - --conf
                 - spark.kubernetes.authenticate.driver.serviceAccountName=spark
                 - --conf 
+                - spark.driver.memory=512m
+                - --conf 
+                - spark.driver.memoryOverhead=512m
+                - --conf 
+                - spark.executor.memory=512m
+                - --conf 
                 - spark.executor.instances=1
                 - --name 
-                - spark-top-nodes 
+                - spark-moving-window 
                 - --packages 
                 - org.apache.spark:spark-sql-kafka-0-10_2.12:3.5.5,com.datastax.spark:spark-cassandra-connector_2.12:3.5.1
                 - local:///opt/bitnami/spark/moving-window.py
@@ -43,7 +49,7 @@ spec:
                   value: "graph"
           resources:
             requests:
-              memory: "1Gi"
+              memory: "2Gi"
               cpu: "1"
             limits:
               memory: "2Gi"

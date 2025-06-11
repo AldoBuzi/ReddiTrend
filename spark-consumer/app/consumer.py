@@ -28,15 +28,22 @@ def process_batch(batch_df: DataFrame, batch_id):
         
         prepared = session.prepare("UPDATE vertices SET count = count + 1 WHERE keyword = ?")
         insert_stmt = session.prepare("""INSERT INTO vertices_info (timestamp, keyword, body, title, karma, subreddit, link,sentiment) VALUES (?, ?, ?, ?, ?, ?, ?, ?) IF NOT EXISTS""")
+        insert_stmt2 = session.prepare("""INSERT INTO vertices_info (timestamp, keyword, body, title, karma, subreddit, link,sentiment) VALUES (?, ?, ?, ?, ?, ?, ?, ?)""")
         for row in rows:
             try:
                 result = session.execute(insert_stmt, (
                     row.timestamp, row.keyword, row.text, row.title,
-                    row.karma, row.subreddit, row.link, row.sentiment
+                    row.karma, row.subreddit, row.link, row.sentiment if row.sentiment != None else 0
                 ))
 
                 if result[0].applied:
                     session.execute(prepared, (row.keyword,))
+                else :
+                    session.execute(insert_stmt2, (
+                    row.timestamp, row.keyword, row.text, row.title,
+                    row.karma, row.subreddit, row.link, row.sentiment if row.sentiment != None else 0
+                ))
+
 
             except Exception as e:
                 logger.error(f"Cassandra write failed: {e}")

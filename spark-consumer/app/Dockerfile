@@ -14,7 +14,7 @@ RUN mkdir -p /app && chown -R spark:spark /app /tmp
 ENV PYTHONPATH "${PYTHONPATH}:/app/"
 
 # Copy your Spark script into the image
-RUN pip install graphframes
+#RUN pip install graphframes
 RUN pip install keybert
 RUN pip install cassandra-driver
 RUN pip install vaderSentiment
@@ -30,4 +30,5 @@ COPY schema.py app/schema.py
 COPY graph.py app/graph.py
 COPY consumer.py  app/consumer.py
 COPY cassandra_connector.py app/cassandra_connector.py
+COPY my_model_backend app/my_model_backend
 COPY utilities_consumer.py app/utilities_consumer.py

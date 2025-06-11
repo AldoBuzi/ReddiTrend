@@ -21,7 +21,7 @@ USE_MOCK = os.getenv("USE_MOCK", "false").lower() == "true"
 session = get_session() if USE_MOCK == False else None
 
 def red_to_green(value: float):
-    t = (value + 1) / 2
+    t = ((value if value != None else 0) + 1) / 2
     red = int(255 * (1 - t))
     green = int(255 * t)
     return f"rgb({red}, {green}, 0)"
@@ -60,7 +60,7 @@ def expand(node, depth: int, visited = None ) -> GraphResponse:
     all_connected_nodes = {row.keyword_y for row in result}
     nodes = []
     edges = []
-    query_info = session.prepare("SELECT * FROM graph.vertices_info WHERE keyword= ? ORDER BY karma DESC LIMIT 5")
+    query_info = session.prepare("SELECT * FROM graph.vertices_info WHERE keyword= ? LIMIT 6")
     query_count = session.prepare("SELECT count FROM graph.vertices WHERE keyword= ?")
     
     for row in result:
