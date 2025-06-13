@@ -26,8 +26,8 @@ function SigmaGraph({ graphData }) {
     const [expandedNodeIds, setExpandedNodeIds] = useState(new Set());
 
     const [filters, setFilters] = useState({
-        size: false,
-        degree: false
+        size: 1,
+        degree: 1
     })
 
     const [showFilterNodeBySizeMenu, setShowFilterNodeBySizeMenu] = useState(false)
@@ -224,7 +224,6 @@ function SigmaGraph({ graphData }) {
         const renderer = new Sigma(graph, container)
 
         rendererRef.current = renderer;
-
     
         // Fill datalist with node labels
         updateSuggesions()
@@ -466,7 +465,7 @@ function SigmaGraph({ graphData }) {
 
     function filterGraph(size, degree) {
         graphRef.current.forEachNode((node, attributes) => {
-            const hidden = (size && attributes.size < filterNodeBySizeValue) || (degree &&  graphRef.current.outDegree(node) < filterNodeByDegreeValue)
+            const hidden = (size !== 1 && attributes.size < filterNodeBySizeValue) || (degree !== 1 && graphRef.current.outDegree(node) < filterNodeByDegreeValue)
             graphRef.current.setNodeAttribute(node, "hidden", hidden);
         });
     }
@@ -506,7 +505,7 @@ function SigmaGraph({ graphData }) {
                     value={filterNodeBySizeValue}
                     onChange={(e) => setFilterNodeBySizeValue(e.target.value)}/>
                 <div className="d-flex">
-                    <Button className="ms-auto" variant="secondary" onClick={() => handleFilterNodeBySize(true)}>Filter</Button>
+                    <Button className="ms-auto" variant="secondary" onClick={() => handleFilterNodeBySize(filterNodeBySizeValue)}>Filter</Button>
                 </div>
                 <CloseButton className="position-absolute m-3 end-0 top-0"  onClick={() => setShowFilterNodeBySizeMenu(false)} />
             </div>}
@@ -521,7 +520,7 @@ function SigmaGraph({ graphData }) {
                     value={filterNodeByDegreeValue}
                     onChange={(e) => setFilterNodeByDegreeValue(e.target.value)}/>
                 <div className="d-flex">
-                    <Button className="ms-auto" variant="secondary" onClick={() => handleFilterNodeByDegree(true)}>Filter</Button>
+                    <Button className="ms-auto" variant="secondary" onClick={() => handleFilterNodeByDegree(filterNodeByDegreeValue)}>Filter</Button>
                 </div>
                 <CloseButton className="position-absolute m-3 end-0 top-0"  onClick={() => setShowFilterNodeByDegreeMenu(false)} />
             </div>}
@@ -546,85 +545,78 @@ function SigmaGraph({ graphData }) {
                             className={`${ darkMode ? "text-white" : "" } px-3`}
                         />
                     </Row>
-                    <Row className="d-flex">
-                        <Dropdown className="w-auto">
-                            <Dropdown.Toggle style={{ "backgroundColor": "transparent", "border": "none" }}>
-                                <i class="bi bi-sliders text-black"></i>
-                            </Dropdown.Toggle>
-                            <Dropdown.Menu>
-                                <Dropdown.Item href="#/action-1" onClick={() => setShowFilterNodeBySizeMenu(true)}>
-                                    Size
-                                </Dropdown.Item>
-                                <Dropdown.Item href="#/action-2" onClick={() => setShowFilterNodeByDegreeMenu(true)}>
-                                    Degree
-                                </Dropdown.Item>
-                            </Dropdown.Menu>
-                        </Dropdown>
-                        {filters.size && <div className="d-flex gap-3 w-auto align-items-center" style={{ "borderRadius": "50px", "backgroundColor": "#CCCCCC", "transform": "scale(0.75)", "transformOrigin": "left center" }}>
-                            size {filterNodeBySizeValue}
-                            <CloseButton style={{ width: '5px', height: '5px', backgroundSize: 'auto' }} onClick={() => handleFilterNodeBySize(false)} />
-                        </div>}
-                        {filters.degree && <div className="d-flex gap-3 w-auto align-items-center" style={{ "borderRadius": "50px", "backgroundColor": "#CCCCCC", "transform": "scale(0.75)", "transformOrigin": "left center" }}>
-                            degree {filterNodeByDegreeValue}
-                            <CloseButton style={{ width: '5px', height: '5px', backgroundSize: 'auto' }} onClick={() => handleFilterNodeByDegree(false)} />
-                        </div>}
+                    <Row className="d-flex align-items-center">
+                        <Col xs="auto">
+                            <Dropdown>
+                                <Dropdown.Toggle style={{ "backgroundColor": "transparent", "border": "none" }}>
+                                    <i class="bi bi-sliders text-black"></i>
+                                </Dropdown.Toggle>
+                                <Dropdown.Menu>
+                                    <Dropdown.Item href="#/action-1" onClick={() => setShowFilterNodeBySizeMenu(true)}>
+                                        Size
+                                    </Dropdown.Item>
+                                    <Dropdown.Item href="#/action-2" onClick={() => setShowFilterNodeByDegreeMenu(true)}>
+                                        Degree
+                                    </Dropdown.Item>
+                                </Dropdown.Menu>
+                            </Dropdown>
+                        </Col>
+                        <Col className="d-flex ps-0 gap-2">
+                            {filters.size !== 1 && <div className="d-flex gap-2 align-items-center py-1 px-2" style={{ "height": "max-content", "width": "max-content", "borderRadius": "50px", "backgroundColor": "#CCCCCC" }}>
+                                <p className="m-0" style={{ "fontSize": "0.75rem"}}>size {filters.size}</p>
+                                <CloseButton style={{ width: '0.25rem', height: '0.25rem', backgroundSize: 'auto' }} onClick={() => handleFilterNodeBySize(1)} />
+                            </div>}
+                            {filters.degree !== 1 && <div className="d-flex gap-2 align-items-center py-1 px-2" style={{ "height": "max-content", "width": "max-content", "borderRadius": "50px", "backgroundColor": "#CCCCCC" }}>
+                                <p className="m-0" style={{ "fontSize": "0.75rem"}}>degree {filters.degree}</p>
+                                <CloseButton style={{ width: '0.25rem', height: '0.25rem', backgroundSize: 'auto' }} onClick={() => handleFilterNodeByDegree(1)} />
+                            </div>}
+                        </Col>
                     </Row>
                 </Col>
             </div>
             <datalist id="suggestions" ref={suggestionsRef}></datalist>
             {showNodeInfo && (() => {
                 const normalizedSentiment = Math.round((clickedNode.sentiment + 1) * 50); // Range 0–100
-
                 return (
                     <div
-                        className="position-absolute bg-white m-5 rounded-5 p-3 overflow-auto"
-                        style={{ border: "1px solid #CCCCCC", maxWidth: "25%", maxHeight: "60%", minHeight: "50%" }}
+                        className="position-absolute bg-white m-5 rounded-4 p-3 overflow-auto"
+                        style={{ border: "2px solid #CCCCCC", maxWidth: "25%", maxHeight: "50%" }}
                     >
                         <h3>Info: {clickedNode.label}</h3>
-                        <div className="mb-3" style={{ fontSize: "1.2em" }}>
-                            <strong>Sentiment: </strong>
-                            <span style={{ fontSize: "1.3em", verticalAlign: "middle" }}>
-                                {normalizedSentiment > 60 && <span style={{ color: "green" }}>🟢</span>}
-                                {normalizedSentiment <= 60 && normalizedSentiment >= 40 && <span style={{ color: "goldenrod" }}>🟡</span>}
-                                {normalizedSentiment < 40 && <span style={{ color: "red" }}>🔴</span>}
-                                {' '}{normalizedSentiment}%
-                            </span>
-                        </div>
-                        <strong>Posts:</strong><br />
+                        <h5 className="mb-3">Sentiment: {normalizedSentiment > 67 && <>🟢</>}
+                        {normalizedSentiment <= 67 && normalizedSentiment >= 33 && <>🟡</>}
+                        {normalizedSentiment < 33 && <>🔴</>}
+                        {' '}{normalizedSentiment}%</h5>
+                        <h6>Posts:</h6>
+                        <div className="d-flex gap-3 flex-column-reverse">
                         {clickedNode.posts.map((post, index) => {
                             const postSentiment = Math.round((post.sentiment + 1) * 50);
                             return (
                                 <div
                                     key={index}
-                                    className="my-3 rounded-4 p-3"
-                                    style={{ backgroundColor: "#f2f2f2" }}
+                                    className="rounded-4 p-3"
+                                    style={{ backgroundColor: "#EEEEEE" }}
                                 >
-                                    <div style={{ display: "flex", alignItems: "center", marginBottom: "5px" }}>
-                                        <strong style={{ marginLeft: "8px" }}>Title:</strong>&nbsp;
-                                        <a href={post.link} target="_blank" rel="noopener noreferrer">{post.title}</a>
-                                    </div>
-                                    <ul className="mb-0">
-                                        <li><strong>Subreddit:</strong> {post.subreddit}</li>
-                                        <li><strong>Karma:</strong> {post.karma}</li>
-                                        <li>
-                                            <strong>Sentiment: </strong>
-                                            <span style={{ fontSize: "1.3em", verticalAlign: "middle" }}>
-                                                {postSentiment > 60 && <span style={{ color: "green" }}>🟢</span>}
-                                                {postSentiment <= 60 && postSentiment >= 40 && <span style={{ color: "goldenrod" }}>🟡</span>}
-                                                {postSentiment < 40 && <span style={{ color: "red" }}>🔴</span>}
-                                                {' '}{postSentiment}%
-                                            </span>
-                                        </li>
-                                    </ul>
+                                    <h6><strong>Title: </strong>{post.title}
+                                        <a href={post.link} target="_blank">
+                                            <i className="ms-1 bi bi-link-45deg"></i>
+                                        </a>
+                                    </h6>
+                                    <h6><strong>Subreddit: </strong>{post.subreddit}</h6>
+                                    <h6><strong>Karma: </strong>{post.karma}</h6>
+                                    <h6><strong>Sentiment: </strong>{postSentiment > 67 && <>🟢</>}
+                                    {postSentiment <= 67 && postSentiment >= 33 && <>🟡</>}
+                                    {postSentiment < 33 && <>🔴</>}
+                                    {' '}{postSentiment}%
+                                    </h6>
                                 </div>
                             );
                         })}
+                        </div>
                         <CloseButton className="position-absolute m-3 end-0 top-0" onClick={() => {setShowNodeInfo(false); setClickedNode({})}} />
                     </div>
                 );
             })()}
-
-
         </>
     )
 }

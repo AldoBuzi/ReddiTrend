@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Card, Spinner } from 'react-bootstrap';
-import { FaCheckCircle, FaSyncAlt } from 'react-icons/fa';
 import getTopNodes from '../services/getTopNodes'
 const SyncStatus = ({ setGraph }) => {
-  const REFRESH_INTERVAL = 180; // seconds (3 minutes)
+  const REFRESH_INTERVAL = 60; // seconds
 
   const [isSynching, setIsSynching] = useState(false);
   const [secondsLeft, setSecondsLeft] = useState(REFRESH_INTERVAL);
@@ -29,22 +28,14 @@ const SyncStatus = ({ setGraph }) => {
   }, []);
 
   return (
-    <div style={{ position: 'fixed', top: '10px', right: '10px', zIndex: 9999 }}>
+    <div className="position-absolute top-0 end-0 m-5">
         <Card
             bg={isSynching ? 'secondary' : 'success'}
             text="white"
-            className="text-center d-flex align-items-center justify-content-center"
-            style={{
-            width: '145px',
-            paddingTop: '0.25rem',
-            paddingBottom: '0.25rem',
-            marginBottom: '4px',
-            borderRadius: '12px',
-            }}
+            className="text-center d-flex align-items-center justify-content-center mb-2 rounded-3"
         >
             <Card.Body
-            className="d-flex align-items-center justify-content-center flex-nowrap"
-            style={{ padding: '0.25rem 0.75rem' }}
+            className="d-flex align-items-center justify-content-center flex-nowrap py-2"
             >
             {isSynching ? (
                 <>
@@ -54,21 +45,15 @@ const SyncStatus = ({ setGraph }) => {
             ) : (
                 <>
                 Synced
-                <FaCheckCircle className="ms-2" />
+                <i className="ms-2 bi bi-check-circle-fill"></i>
                 </>
             )}
             </Card.Body>
         </Card>
         <Card
-            className="text-center d-flex align-items-center justify-content-center"
-            style={{
-            width: '145px',
-            paddingTop: '0.25rem',
-            paddingBottom: '0.25rem',
-            borderRadius: '12px',
-            }}
+            className="text-center d-flex align-items-center justify-content-center rounded-3"
         >
-            <Card.Body style={{ padding: '0.25rem 0.75rem' }}>
+            <Card.Body>
             Refresh in: {secondsLeft}s
             </Card.Body>
         </Card>
