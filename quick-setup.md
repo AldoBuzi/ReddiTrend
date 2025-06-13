@@ -91,3 +91,8 @@ And check with this command that the answer is yes:
 ```
 kubectl auth can-i create pod --as=system:serviceaccount:kafka:spark
 ```
+
+## Download storage class:
+```
+kubectl apply -f https://raw.githubusercontent.com/rancher/local-path-provisioner/master/deploy/local-path-storage.yaml
+```
