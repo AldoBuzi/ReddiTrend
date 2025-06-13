@@ -8,7 +8,17 @@ kubectl create -f 'https://strimzi.io/install/latest?namespace=redditrend' -n re
 
 sleep 1
 
+echo "Waiting for Strimzi operator to be ready..."
+kubectl wait deployment/strimzi-cluster-operator \
+  --namespace=redditrend \
+  --for=condition=Available \
+  --timeout=120s
+
 kubectl apply -f kafka/kraft-kafka.yaml -n redditrend
+
+sleep 1
+
+kubectl wait kafka/my-cluster --for=condition=Ready --timeout=300s -n redditrend
 
 sleep 1
 
@@ -18,9 +28,6 @@ sleep 1
 
 kubectl apply -f kafka/kafka-topic.yaml -n redditrend
 
-sleep 1
-
-kubectl wait kafka/my-cluster --for=condition=Ready --timeout=300s -n redditrend
 
 kubectl apply -f metrics-server/components.yaml -n redditrend
 
