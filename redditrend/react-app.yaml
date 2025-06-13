@@ -14,7 +14,8 @@ spec:
     spec:
       containers:
         - name: react-app
-          image: react-app:latest
+          image: aldobuzi/redditrend-repository:redditrend
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 80
 ---

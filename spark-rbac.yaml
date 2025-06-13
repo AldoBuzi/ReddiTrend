@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: spark
-  namespace: kafka
+  namespace: redditrend
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
@@ -27,11 +27,11 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   name: spark-role-binding
-  namespace: kafka
+  namespace: redditrend
 subjects:
   - kind: ServiceAccount
     name: spark
-    namespace: kafka
+    namespace: redditrend
 roleRef:
   kind: ClusterRole
   name: edit

@@ -81,7 +81,7 @@ def process_batch(batch_df: DataFrame, batch_id):
 # Note that if you change the name of the boostrap server of the broker, you must change the entry also here
 df = spark.readStream \
     .format("kafka") \
-    .option("kafka.bootstrap.servers", "my-cluster-kafka-bootstrap.kafka.svc:9092") \
+    .option("kafka.bootstrap.servers", "my-cluster-kafka-bootstrap.redditrend.svc:9092") \
     .option("subscribe", "reddit-posts") \
     .option("startingOffsets", "latest") \
     .option("maxOffsetsPerTrigger", 1000) \

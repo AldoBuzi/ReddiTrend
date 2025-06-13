@@ -2,13 +2,13 @@ apiVersion: v1
 kind: Pod
 metadata:
   name: spark-kafka-consumer
-  namespace: kafka
+  namespace: redditrend
 spec:
     serviceAccountName: spark
     containers:
     - name: spark-consumer
-      image: reddit-spark-consumer:latest
-      imagePullPolicy: Never
+      image: aldobuzi/redditrend-repository:reddit-spark-consumer
+      imagePullPolicy: IfNotPresent
       resources:
           requests:
             memory: "3Gi"
@@ -19,17 +19,17 @@ spec:
       command:
         - /opt/bitnami/spark/bin/spark-submit
         - --master
-        - k8s://https://192.168.49.2:8443 #local[*] # Run Spark locally with as many worker threads as logical cores on your machine.
+        - k8s://https://192.168.200.9:6443 #local[*] # Run Spark locally with as many worker threads as logical cores on your machine.
         - --deploy-mode
         - cluster # default is client, submitter launched driver outside of cluster
         - --conf # specify path for cache and other stuff as an absolute path
         - spark.jars.ivy=/tmp/.ivy2
         - --conf 
-        - spark.kubernetes.namespace=kafka
+        - spark.kubernetes.namespace=redditrend
         - --conf
         - spark.kubernetes.authenticate.driver.serviceAccountName=spark
         - --conf
-        - spark.kubernetes.container.image=spark-launcher:latest
+        - spark.kubernetes.container.image=aldobuzi/redditrend-repository:spark-launcher
         - --conf 
         - spark.executor.instances=1
         - --conf 

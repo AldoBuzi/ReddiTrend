@@ -13,20 +13,20 @@ spec:
           restartPolicy: Never
           containers:
             - name: spark-moving-window
-              image: spark-moving-window:latest
-              imagePullPolicy: Never
+              image: aldobuzi/redditrend-repository:spark-moving-window
+              imagePullPolicy: IfNotPresent
               command: 
                 - /opt/bitnami/spark/bin/spark-submit
                 - --master 
-                - k8s://https://192.168.49.2:8443
+                - k8s://https://192.168.200.9:6443 #master node
                 - --deploy-mode 
                 - cluster
                 - --conf
-                - spark.kubernetes.container.image=spark-moving-window:latest
+                - spark.kubernetes.container.image=aldobuzi/redditrend-repository:spark-moving-window
                 - --conf # specify path for cache and other stuff as an absolute path
                 - spark.jars.ivy=/tmp/.ivy2
                 - --conf 
-                - spark.kubernetes.namespace=kafka
+                - spark.kubernetes.namespace=redditrend
                 - --conf
                 - spark.kubernetes.authenticate.driver.serviceAccountName=spark
                 - --conf 

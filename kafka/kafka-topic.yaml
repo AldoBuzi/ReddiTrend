@@ -2,7 +2,7 @@ apiVersion: kafka.strimzi.io/v1beta2
 kind: KafkaTopic
 metadata:
   name: reddit-posts # Name of the Kafka topic resource
-  namespace: kafka  # Namespace where the Kafka cluster and topic are deployed
+  namespace: redditrend  # Namespace where the Kafka cluster and topic are deployed
   labels:
     strimzi.io/cluster: my-cluster  # Associates the topic with the Kafka cluster named 'my-cluster'
 spec:

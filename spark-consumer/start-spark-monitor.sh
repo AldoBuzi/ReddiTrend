@@ -2,7 +2,7 @@
 
 #Make sure you start the driver first
 
-NAMESPACE=kafka
+NAMESPACE=redditrend
 LABEL_SELECTOR="spark-role=driver"  # or any label that identifies your driver pod
 LOCAL_PORT=4040
 REMOTE_PORT=4040
