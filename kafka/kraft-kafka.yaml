@@ -17,6 +17,7 @@ spec:
         size: 100Gi # Size of the volume
         deleteClaim: false  # Volume won't be deleted if the cluster is deleted
         kraftMetadata: shared # Metadata is shared for KRaft mode
+        class: local-path
 ---
 
 apiVersion: kafka.strimzi.io/v1beta2
