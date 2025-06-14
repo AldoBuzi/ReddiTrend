@@ -45,6 +45,7 @@ spec:
     app: fastapi-backend
   ports:
     - protocol: TCP
-      port: 80 #expose 80 but forward to 8000
+      port: 80      # service port inside cluster
       targetPort: 8000
-  type: ClusterIP
+      nodePort: 30080  # NodePort exposed on each node's IP (choose an unused port 30000-32767)
+  type: NodePort
