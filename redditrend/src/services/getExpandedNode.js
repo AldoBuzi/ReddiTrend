@@ -1,5 +1,5 @@
 async function getExpandedNode(node, depth) {
-    const response = await fetch(`http://localhost:8080/expand-node/${node}/${depth}`);
+    const response = await fetch(`http://fastapi-service:80/expand-node/${node}/${depth}`);
 
     if (!response.ok) {
         throw new Error("Error");

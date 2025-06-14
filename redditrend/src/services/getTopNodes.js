@@ -1,6 +1,6 @@
 
 async function getTopNodes() {
-    const response = await fetch("http://localhost:8080/top-nodes");
+    const response = await fetch("http://fastapi-service:80/top-nodes");
 
     if (!response.ok) {
         throw new Error("Error");
