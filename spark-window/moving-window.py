@@ -6,7 +6,7 @@ from cassandra.query import BatchStatement
 
 
 # lower bound timestamp
-cutoff_time = datetime.utcnow() - timedelta(hours=72)
+cutoff_time = datetime.utcnow() - timedelta(hours=24)
 
 
 spark: SparkSession = SparkSession.builder\

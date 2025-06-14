@@ -389,7 +389,7 @@ function SigmaGraph({ graphData }) {
         renderer.setSetting("nodeReducer", (node, data) => {
             const res = { ...data };
             const currentState = state.current;
-            res.size = res.size * 1.5;
+            res.size = res.size * 1;
             if (
                 currentState.hoveredNeighbors &&
                 !currentState.hoveredNeighbors.has(node) &&
