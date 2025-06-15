@@ -58,27 +58,27 @@ function SigmaGraph({ graphData }) {
         const center = {x: 0, y: 0};
         const maxDistance = 80; // max distance from center for smallest nodes
         const maxSize = Math.max(...graphData.nodes.map(node => node.attributes.size));
-        console.log(maxSize)
+        //console.log(maxSize)
         graphRef.current.forEachNode((node, attrs) => {
             const size = attrs.size || 1;
             const sizeNorm = size / maxSize; // from 0 to 1
 
             // Distance is inverse of normalized size: bigger size → smaller distance
-            const distance = maxDistance * (1 - sizeNorm);
+            const distance = maxDistance * (1 - sizeNorm) ** (13 - Math.log2(size));
 
             // Random angle around center
-            const angle = Math.random() * 2 * Math.PI;
+            const angle = Math.random() * 10 * Math.PI;
 
             // Compute x, y
-            const x = center.x + (distance + Math.random() * 20) * Math.cos(angle);
-            const y = center.y + (distance + Math.random() * 20) * Math.sin(angle);
+            const x = center.x + (distance + Math.random() * 30) * Math.cos(angle);
+            const y = center.y + (distance + Math.random() * 30) * Math.sin(angle);
 
             graphRef.current.setNodeAttribute(node, 'x', x);
             graphRef.current.setNodeAttribute(node, 'y', y);
         });
 
         forceAtlas2.assign(graphRef.current, {
-            iterations: 10,
+            iterations: 20,
             settings: {
                 gravity: 1,
                 scalingRatio: 1,
@@ -158,14 +158,14 @@ function SigmaGraph({ graphData }) {
                 const sizeNorm = size / 100; // from 0 to 1
 
                 // Distance is inverse of normalized size: bigger size → smaller distance
-                const distance = 80 * (1 - sizeNorm);
+                const distance = 80 * (1 - sizeNorm) ** (13 - Math.log2(size));
 
                 // Random angle around center
-                const angle = Math.random() * 3 * Math.PI;
+                const angle = Math.random() * 10 * Math.PI;
 
                 // Compute x, y
-                const x = (distance + Math.random() * 20 )  * Math.cos(angle);
-                const y = (distance + Math.random() * 20 ) * Math.sin(angle);
+                const x = (distance + Math.random() * 30 )  * Math.cos(angle);
+                const y = (distance + Math.random() * 30 ) * Math.sin(angle);
 
                 graphRef.current.addNode(newNode.key, {
                     ...newNode.attributes,
