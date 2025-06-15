@@ -72,7 +72,7 @@ def expand(node, depth: int, visited = None ) -> GraphResponse:
         if count_info:
             sentiment_average = sum([row.sentiment for row in result_info if row.sentiment is not None]) / 5
             posts = [{"timestamp": row.timestamp, "body": row.body, "title": row.title, "karma": row.karma, "sentiment" : row.sentiment, "link": row.link , "subreddit": row.subreddit} for row in result_info]
-            nodes.append({"key":n,"attributes": {"label":n, "size":count_info.count, "sentiment" :  sentiment_average , "color" : red_to_green(sentiment_average), "posts":posts}})
+            nodes.append({"key":n,"attributes": {"label":n, "size":count_info.count ** 0.8, "sentiment" :  sentiment_average , "color" : red_to_green(sentiment_average), "posts":posts}})
     
     for n in all_connected_nodes:
         graph: GraphResponse = expand(n,depth=depth-1, visited=visited)
@@ -97,9 +97,9 @@ def get_top_nodes():
         keyword_x_metadata = json.loads(row.keyword_x_metadata)
         keyword_y_metadata = json.loads(row.keyword_y_metadata)
         if row.keyword_x not in added_keywords:
-            nodes.append({"key":row.keyword_x,"attributes": {"label":row.keyword_x, "size":row.count_x, "sentiment" : row.sentiment_x , "color" : red_to_green(row.sentiment_x), "posts":keyword_x_metadata}})
+            nodes.append({"key":row.keyword_x,"attributes": {"label":row.keyword_x, "size":row.count_x ** 0.8 , "sentiment" : row.sentiment_x , "color" : red_to_green(row.sentiment_x), "posts":keyword_x_metadata}})
         if row.keyword_y not in added_keywords:
-            nodes.append({"key":row.keyword_y,"attributes": {"label":row.keyword_y, "size":row.count_y, "sentiment" : row.sentiment_y ,"color" : red_to_green(row.sentiment_y), "posts":keyword_y_metadata}})
+            nodes.append({"key":row.keyword_y,"attributes": {"label":row.keyword_y, "size":row.count_y ** 0.8, "sentiment" : row.sentiment_y ,"color" : red_to_green(row.sentiment_y), "posts":keyword_y_metadata}})
         edges.append({"source":row.keyword_x,"target":row.keyword_y, "attributes": {"label": row.keyword_x+"-"+row.keyword_y, "size": row.count, "color":"#FFFFFF"}})
         added_keywords.add(row.keyword_x)
         added_keywords.add(row.keyword_y)
