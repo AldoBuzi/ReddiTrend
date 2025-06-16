@@ -15,7 +15,7 @@ spec:
       containers:
         - name: react-app
           image: aldobuzi/redditrend-repository:redditrend
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           ports:
             - containerPort: 80
 ---
@@ -26,11 +26,10 @@ metadata:
   labels:
     app: react-app
 spec:
-  type: NodePort
+  type: ClusterIP
   ports:
   - port: 80
     targetPort: 80
     protocol: TCP
-    nodePort: 30080
   selector:
     app: react-app

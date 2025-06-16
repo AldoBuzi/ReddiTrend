@@ -23,7 +23,7 @@ spec:
               memory: "512Mi"
               cpu: "500m"
           image: aldobuzi/redditrend-repository:fastapi-backend
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           ports:
             - containerPort: 8000
           env:
@@ -47,5 +47,4 @@ spec:
     - protocol: TCP
       port: 80      # service port inside cluster
       targetPort: 8000
-      nodePort: 30081  # NodePort exposed on each node's IP (choose an unused port 30000-32767)
-  type: NodePort
+  type: ClusterIP

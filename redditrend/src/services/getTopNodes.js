@@ -1,6 +1,6 @@
 
 async function getTopNodes() {
-    const response = await fetch("http://localhost:8000/top-nodes");
+    const response = await fetch("http://localhost:8000/api/top-nodes");
 
     if (!response.ok) {
         throw new Error("Error");
