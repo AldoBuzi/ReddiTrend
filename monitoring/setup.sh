@@ -26,6 +26,7 @@ kubectl apply -f manifests/
 
 kubectl label namespace redditrend name=redditrend
 
+cd ..
 kubectl apply -f grafana-network-policy.yaml
 
 
