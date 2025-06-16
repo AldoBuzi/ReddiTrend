@@ -32,11 +32,13 @@ kubectl apply -f kafka/kafka-topic.yaml -n redditrend
 kubectl apply -f metrics-server/components.yaml -n redditrend
 
 
-kubectl apply -f traefik-ingress-class.yml 
+kubectl apply -f traefik-ingress-class.yml -n redditrend
 
 kubectl apply -f 00-traefik.yml -n redditrend
 
 kubectl apply -f 02-traefik.yml -n redditrend
+
+kubectl apply -f ingress.yaml
 
 echo "Starting Cassandra deployment..."
 ./cassandra/setup.sh
