@@ -96,3 +96,6 @@ kubectl auth can-i create pod --as=system:serviceaccount:kafka:spark
 ```
 kubectl apply -f https://raw.githubusercontent.com/rancher/local-path-provisioner/master/deploy/local-path-storage.yaml
 ```
+
+
+kubectl get pods -n redditrend --no-headers -o custom-columns=":metadata.name" | grep '^spark-top-nodes-.*-driver$' | xargs kubectl delete pod -n redditrend

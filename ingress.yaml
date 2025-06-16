@@ -6,7 +6,7 @@ metadata:
 spec:
   ingressClassName: traefik
   rules:
-  - host: redditrend.local
+  - host: localhost
     http:
       paths:
       - path: /api
