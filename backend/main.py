@@ -27,7 +27,7 @@ def red_to_green(value: float):
     return f"rgb({red}, {green}, 0)"
 
 
-@app.get("api/expand-node/{node}/{depth}", response_model=GraphResponse)
+@app.get("/api/expand-node/{node}/{depth}", response_model=GraphResponse)
 def expand_node(node: str, depth: int):
     if USE_MOCK:
         with open(f"depth/depth_{depth}.json") as f:
@@ -83,7 +83,7 @@ def expand(node, depth: int, visited = None ) -> GraphResponse:
     
     
 
-@app.get("api/top-nodes", response_model=GraphResponse)
+@app.get("/api/top-nodes", response_model=GraphResponse)
 def get_top_nodes():
     # Return fake graph if mock is set to true
     if USE_MOCK:
