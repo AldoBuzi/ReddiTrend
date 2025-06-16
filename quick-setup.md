@@ -99,3 +99,6 @@ kubectl apply -f https://raw.githubusercontent.com/rancher/local-path-provisione
 
 
 kubectl get pods -n redditrend --no-headers -o custom-columns=":metadata.name" | grep '^spark-top-nodes-.*-driver$' | xargs kubectl delete pod -n redditrend
+
+
+kubectl port-forward -n redditrend svc/traefik-web-service 8080:80 -n redditrend

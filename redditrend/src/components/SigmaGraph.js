@@ -55,36 +55,36 @@ function SigmaGraph({ graphData }) {
     const [showNodeInfo, setShowNodeInfo] = useState(false);
 
     function setGraphLayout() {
-        const center = {x: 0, y: 0};
-        const maxDistance = 80; // max distance from center for smallest nodes
-        const maxSize = Math.max(...graphData.nodes.map(node => node.attributes.size));
-        //console.log(maxSize)
+        const center = { x: 0, y: 0 };
+        const maxDistance = 150;
+
+        const maxSize = Math.max(...graphData.nodes.map(node => node.attributes.size || 1));
+        const minSize = Math.min(...graphData.nodes.map(node => node.attributes.size || 1));
+
         graphRef.current.forEachNode((node, attrs) => {
-            const size = attrs.size || 1;
-            const sizeNorm = size / maxSize; // from 0 to 1
+        const size = attrs.size || 1;
+        const sizeNorm = (size - minSize) / (maxSize - minSize || 1); // Normalize 0 to 1
 
-            // Distance is inverse of normalized size: bigger size → smaller distance
-            const distance = maxDistance * (1 - sizeNorm) ** (13 - Math.log2(size));
+        const distance = maxDistance * (1 - sizeNorm); // Inverse: bigger size → smaller distance
+        const angle = Math.random() * 2 * Math.PI;
 
-            // Random angle around center
-            const angle = Math.random() * 10 * Math.PI;
+        const jitter = 10;
+        const x = center.x + (distance + Math.random() * jitter) * Math.cos(angle);
+        const y = center.y + (distance + Math.random() * jitter) * Math.sin(angle);
 
-            // Compute x, y
-            const x = center.x + (distance + Math.random() * 30) * Math.cos(angle);
-            const y = center.y + (distance + Math.random() * 30) * Math.sin(angle);
-
-            graphRef.current.setNodeAttribute(node, 'x', x);
-            graphRef.current.setNodeAttribute(node, 'y', y);
+        graphRef.current.setNodeAttribute(node, 'x', x);
+        graphRef.current.setNodeAttribute(node, 'y', y);
         });
 
+        // Run ForceAtlas2 AFTER nodes are spaced out
         forceAtlas2.assign(graphRef.current, {
-            iterations: 20,
-            settings: {
-                gravity: 1,
-                scalingRatio: 1,
-                adjustSizes: true, // Keeps bigger nodes away from overlapping
-                strongGravityMode: true // Helps centralize heavier nodes
-            }
+        iterations: 200,
+        settings: {
+            gravity: 1,
+            scalingRatio: 5,
+            adjustSizes: true,
+            strongGravityMode: true
+        }
         });
     }
 
@@ -158,7 +158,7 @@ function SigmaGraph({ graphData }) {
                 const sizeNorm = size / 100; // from 0 to 1
 
                 // Distance is inverse of normalized size: bigger size → smaller distance
-                const distance = 80 * (1 - sizeNorm) ** (13 - Math.log2(size));
+                const distance = 150 * (1 - sizeNorm) ** (13 - Math.log2(size));
 
                 // Random angle around center
                 const angle = Math.random() * 10 * Math.PI;
