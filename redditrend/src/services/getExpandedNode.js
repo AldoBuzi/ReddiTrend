@@ -1,5 +1,5 @@
 async function getExpandedNode(node, depth) {
-    const response = await fetch(`http://localhost:8000/api/expand-node/${node}/${depth}`);
+    const response = await fetch(`http://localhost:8080/api/expand-node/${node}/${depth}`);
 
     if (!response.ok) {
         throw new Error("Error");

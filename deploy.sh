@@ -32,11 +32,11 @@ kubectl apply -f kafka/kafka-topic.yaml -n redditrend
 kubectl apply -f metrics-server/components.yaml -n redditrend
 
 
-kubectl apply -f 00-trafeik.yml -n redditrend
+kubectl apply -f traefik-ingress-class.yml 
 
-kubectl apply -f 02-trafeik.yml -n redditrend
+kubectl apply -f 00-traefik.yml -n redditrend
 
-
+kubectl apply -f 02-traefik.yml -n redditrend
 
 echo "Starting Cassandra deployment..."
 ./cassandra/setup.sh
@@ -61,3 +61,6 @@ echo "Starting Frontend deployment..."
 ./redditrend/setup.sh
 
 echo "All deployments executed successfully!"
+
+
+kubectl port-forward -n redditrend svc/traefik-web-service 8080:80 -n redditrend
