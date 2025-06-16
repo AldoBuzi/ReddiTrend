@@ -1,7 +1,7 @@
 kubectl create namespace my-grafana
 
 
-kubectl apply -f grafana.yaml --namespace=my-grafana
+kubectl apply -f apply-grafana.yaml --namespace=my-grafana
 
 # For Deployment
 kubectl get deployments --namespace=my-grafana -o wide
