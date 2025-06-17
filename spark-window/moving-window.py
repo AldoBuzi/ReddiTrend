@@ -45,7 +45,8 @@ def update_vertices_and_edges(rows):
 
     update_stmt = session.prepare("UPDATE vertices SET count = count - ? WHERE keyword = ?")
     delete_vertex_stmt = session.prepare("DELETE FROM vertices WHERE keyword = ?")
-    delete_edges_stmt = session.prepare("DELETE FROM edges WHERE keyword_x = ? OR keyword_y = ?")
+    delete_edges_stmt_x = session.prepare("DELETE FROM edges WHERE keyword_x = ?")
+    delete_edges_stmt_y = session.prepare("DELETE FROM edges WHERE keyword_y = ? ")
 
     batch = BatchStatement()
 
@@ -58,7 +59,8 @@ def update_vertices_and_edges(rows):
             batch.add(update_stmt, (new_count, keyword))
         elif old_count - new_count <= 0 :
             batch.add(delete_vertex_stmt, (keyword,))
-            batch.add(delete_edges_stmt, (keyword, keyword))
+            batch.add(delete_edges_stmt_x, (keyword,))
+            batch.add(delete_edges_stmt_y, (keyword,))
 
         if len(batch) >= 50:  # Flush every 50 operations
             session.execute(batch)
