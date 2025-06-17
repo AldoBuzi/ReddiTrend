@@ -8,7 +8,7 @@
 
 #eval $(minikube -p ReddiTrend-Cluster docker-env)
 
-kubectl delete deployment cassandra -n redditrend
+kubectl delete statefulset cassandra -n redditrend
 
 kubectl wait --for=condition=ready pod -l app=cassandra -n redditrend --timeout=300s
 
