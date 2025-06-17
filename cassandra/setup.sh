@@ -16,6 +16,9 @@ kubectl delete job cassandra-init -n redditrend --ignore-not-found
 
 kubectl delete configmap cassandra-schema -n redditrend
 
+#Headless service
+kubectl apply -f cassandra-svc.yaml -n redditrend
+
 # Deploy Cassandra to the cluster
 kubectl apply -f cassandra.yaml -n redditrend
 

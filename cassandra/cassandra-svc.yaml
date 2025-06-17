@@ -1,0 +1,15 @@
+#This service allows other pods in the cluster to connect to Cassandra using the name cassandra-service:9042
+# Headless service
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: cassandra
+  name: cassandra-service
+  namespace: redditrend
+spec:
+  clusterIP: None
+  ports:
+  - port: 9042
+  selector:
+    app: cassandra
