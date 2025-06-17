@@ -35,7 +35,7 @@ vertices_df = spark.read \
     .select("keyword", "count")
 
 updated_counts_df = vertices_df.join(decrement_df, "keyword", "inner") \
-    .withColumn("new_count", col("count") - col("decrement"))
+    .withColumn("new_count", col("decrement"))
     
     
 
@@ -43,7 +43,7 @@ def update_vertices_and_edges(rows):
     cluster = Cluster(['cassandra-service'])
     session = cluster.connect('graph')
 
-    update_stmt = session.prepare("UPDATE vertices SET count = ? WHERE keyword = ?")
+    update_stmt = session.prepare("UPDATE vertices SET count = count - ? WHERE keyword = ?")
     delete_vertex_stmt = session.prepare("DELETE FROM vertices WHERE keyword = ?")
     delete_edges_stmt = session.prepare("DELETE FROM edges WHERE keyword_x = ? OR keyword_y = ?")
 
@@ -52,10 +52,11 @@ def update_vertices_and_edges(rows):
     for row in rows:
         keyword = str(row['keyword'])
         new_count = int(row['new_count'])
+        old_count = int(row['count'])
 
-        if new_count > 0:
+        if new_count != 0:
             batch.add(update_stmt, (new_count, keyword))
-        else:
+        elif old_count - new_count <= 0 :
             batch.add(delete_vertex_stmt, (keyword,))
             batch.add(delete_edges_stmt, (keyword, keyword))
 
