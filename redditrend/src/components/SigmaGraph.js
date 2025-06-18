@@ -224,6 +224,8 @@ function SigmaGraph({ graphData }) {
         const renderer = new Sigma(graph, container)
 
         rendererRef.current = renderer;
+
+        renderer.setSetting("zoomingRatio", 1.20);
     
         // Fill datalist with node labels
         updateSuggesions()

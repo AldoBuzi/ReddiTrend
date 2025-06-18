@@ -31,7 +31,7 @@ spec:
         - --conf
         - spark.kubernetes.container.image=aldobuzi/redditrend-repository:spark-launcher
         - --conf 
-        - spark.executor.instances=1
+        - spark.executor.instances=3
         - --conf 
         - spark.driver.memory=2g
         - --conf 

@@ -36,7 +36,8 @@ vertices_df = spark.read \
 
 updated_counts_df = vertices_df.join(decrement_df, "keyword", "inner") \
     .withColumn("new_count", col("decrement"))
-    
+
+
     
 
 def update_vertices_and_edges(rows):
@@ -44,37 +45,23 @@ def update_vertices_and_edges(rows):
     session = cluster.connect('graph')
 
     update_stmt = session.prepare("UPDATE vertices SET count = count - ? WHERE keyword = ?")
-    delete_vertex_stmt = session.prepare("DELETE FROM vertices WHERE keyword = ?")
-    delete_edges_stmt_x = session.prepare("DELETE FROM edges WHERE keyword_x = ?")
-    delete_edges_stmt_y = session.prepare("DELETE FROM edges WHERE keyword_y = ? ")
-
-    batch = BatchStatement()
 
     for row in rows:
         keyword = str(row['keyword'])
         new_count = int(row['new_count'])
         old_count = int(row['count'])
+        
+        # This should not ever happen, but I put it just in case
+        if old_count - new_count < 0 :
+            session.execute(update_stmt, (0, keyword))
+        elif new_count != 0:
+            session.execute(update_stmt, (new_count, keyword))
 
-        if new_count != 0:
-            batch.add(update_stmt, (new_count, keyword))
-        elif old_count - new_count <= 0 :
-            batch.add(delete_vertex_stmt, (keyword,))
-            batch.add(delete_edges_stmt_x, (keyword,))
-            batch.add(delete_edges_stmt_y, (keyword,))
-
-        if len(batch) >= 50:  # Flush every 50 operations
-            session.execute(batch)
-            batch.clear()
-
-    # Execute any remaining operations
-    if batch:
-        session.execute(batch)
 
     session.shutdown()
     cluster.shutdown()
 
 updated_counts_df.foreachPartition(update_vertices_and_edges)
-
 
 def delete_old_vertices_info(rows):
     cluster = Cluster(['cassandra-service'])
@@ -96,4 +83,4 @@ def delete_old_vertices_info(rows):
     session.shutdown()
     cluster.shutdown()
     
-    old_posts.foreachPartition(delete_old_vertices_info)
+old_posts.foreachPartition(delete_old_vertices_info)
