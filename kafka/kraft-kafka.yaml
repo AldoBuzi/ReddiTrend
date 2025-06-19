@@ -5,7 +5,7 @@ metadata:
   labels:
     strimzi.io/cluster: my-cluster # Associates this node pool with the Kafka cluster
 spec:
-  replicas: 3 # Number of Kafka nodes in this pool
+  replicas: 2 # Number of Kafka nodes in this pool
   roles:
     - controller
     - broker
@@ -41,11 +41,11 @@ spec:
         type: internal
         tls: true
     config:
-      offsets.topic.replication.factor: 2 # Replication factor for internal offset topic
-      transaction.state.log.replication.factor: 3 # Replication for transaction logs
-      transaction.state.log.min.isr: 3 # Minimum in-sync replicas for transactions
-      default.replication.factor: 3 # Default replication for new topics
-      min.insync.replicas: 2 # Minimum number of in-sync replicas needed to produce
+      offsets.topic.replication.factor: 1 # Replication factor for internal offset topic
+      transaction.state.log.replication.factor: 2 # Replication for transaction logs
+      transaction.state.log.min.isr: 2 # Minimum in-sync replicas for transactions
+      default.replication.factor: 2 # Default replication for new topics
+      min.insync.replicas: 1 # Minimum number of in-sync replicas needed to produce
       auto.create.topics.enable: true # Allows automatic creation of topics
   entityOperator:
     topicOperator: {}
