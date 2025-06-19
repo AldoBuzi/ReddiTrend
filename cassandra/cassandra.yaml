@@ -32,11 +32,11 @@ spec:
           name: cql
         resources:
           limits:
-            cpu: "1000m"
-            memory: 4Gi
+            cpu: "2000m"
+            memory: 6Gi
           requests:
-            cpu: "500m"
-            memory: 3Gi
+            cpu: "1000m"
+            memory: 5Gi
         securityContext:
           capabilities:
             add:
@@ -50,9 +50,9 @@ spec:
               - nodetool drain
         env:
           - name: MAX_HEAP_SIZE
-            value: 512M
+            value: 4G
           - name: HEAP_NEWSIZE
-            value: 100M
+            value: 800M
           - name: CASSANDRA_SEEDS
             value: "cassandra-0.cassandra-service.redditrend.svc.cluster.local"
           - name: CASSANDRA_CLUSTER_NAME
@@ -87,7 +87,7 @@ spec:
       name: cassandra-data
     spec:
       accessModes: [ "ReadWriteOnce" ]
-      storageClassName: local-path
+      storageClassName: longhorn
       resources:
         requests:
-          storage: 10Gi
+          storage: 20Gi

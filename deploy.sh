@@ -31,6 +31,8 @@ kubectl apply -f kafka/kafka-topic.yaml -n redditrend
 
 kubectl apply -f metrics-server/components.yaml -n redditrend
 
+kubectl apply -f https://raw.githubusercontent.com/longhorn/longhorn/v1.9.0/deploy/longhorn.yaml
+
 
 kubectl apply -f traefik-ingress-class.yml -n redditrend
 
