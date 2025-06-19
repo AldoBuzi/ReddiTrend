@@ -22,6 +22,16 @@ kubectl wait kafka/my-cluster --for=condition=Ready --timeout=300s -n redditrend
 
 sleep 1
 
+kubectl apply -f https://raw.githubusercontent.com/longhorn/longhorn/v1.9.0/deploy/longhorn.yaml
+
+
+# Install Traefik Resource Definitions:
+kubectl apply -f https://raw.githubusercontent.com/traefik/traefik/v3.4/docs/content/reference/dynamic-configuration/kubernetes-crd-definition-v1.yml
+
+# Install RBAC for Traefik:
+kubectl apply -f https://raw.githubusercontent.com/traefik/traefik/v3.4/docs/content/reference/dynamic-configuration/kubernetes-crd-rbac.yml
+
+
 kubectl apply -f spark-rbac.yaml -n redditrend
 
 sleep 1
@@ -41,6 +51,14 @@ kubectl apply -f 00-traefik.yml -n redditrend
 kubectl apply -f 02-traefik.yml -n redditrend
 
 kubectl apply -f ingress.yaml
+
+kubectl apply -f spark-nginx.yaml 
+
+kubectl apply -f spark-middleware.yaml
+
+kubectl apply -f spark-ingress.yaml
+
+kubectl apply -f longhorn-middleware.yaml
 
 echo "Starting Cassandra deployment..."
 ./cassandra/setup.sh

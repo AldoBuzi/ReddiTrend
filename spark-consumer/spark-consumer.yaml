@@ -31,7 +31,7 @@ spec:
         - --conf
         - spark.kubernetes.container.image=aldobuzi/redditrend-repository:spark-launcher
         - --conf 
-        - spark.executor.instances=3
+        - spark.executor.instances=1
         - --conf 
         - spark.driver.memory=2g
         - --conf 
@@ -46,6 +46,11 @@ spec:
         - spark.kubernetes.executor.request.cores=0.5
         - --conf
         - spark.kubernetes.driver.request.cores=0.5
+        - spark.ui.reverseProxy=true
+        - --conf
+        - spark.ui.reverseProxyUrl=http://localhost:8080/sparkui
+        - --conf
+        - spark.ui.proxyBase=/sparkui
         - --packages #required packages by spark structured streaming + kafka
         - org.apache.spark:spark-sql-kafka-0-10_2.12:3.5.5
         - local:///opt/bitnami/spark/app/consumer.py

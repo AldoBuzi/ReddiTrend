@@ -1,0 +1,20 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: sparkui-ingress
+  namespace: redditrend
+  annotations:
+    kubernetes.io/ingress.class: traefik
+    traefik.ingress.kubernetes.io/router.middlewares: redditrend-sparkui-path-rewrite@kubernetescrd
+spec:
+  rules:
+    - host: localhost
+      http:
+        paths:
+          - path: /sparkui/
+            pathType: Prefix
+            backend:
+              service:
+                name: nginx-sparkui
+                port:
+                  number: 8080

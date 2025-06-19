@@ -1,0 +1,9 @@
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: sparkui-path-rewrite
+  namespace: redditrend
+spec:
+  replacePathRegex:
+    regex: "^/sparkui/proxy/spark-[^/]+/(.*)"
+    replacement: "/sparkui/$1"
