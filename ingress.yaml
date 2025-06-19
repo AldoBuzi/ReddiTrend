@@ -9,13 +9,34 @@ spec:
   - host: localhost
     http:
       paths:
-      - path: /api
+      - path: /api/top-nodes
         pathType: Prefix
         backend:
           service:
             name: fastapi-service
             port:
               number: 80
+      - path: /api/expand-node
+        pathType: Prefix
+        backend:
+          service:
+            name: fastapi-service
+            port:
+              number: 80
+      - path: /dashboard
+        pathType: Prefix
+        backend:
+          service:
+            name: traefik-dashboard-service
+            port:
+              number: 8080
+      - path: /api
+        pathType: Prefix
+        backend:
+          service:
+            name: traefik-dashboard-service
+            port:
+              number: 8080
       - path: /
         pathType: Prefix
         backend:
