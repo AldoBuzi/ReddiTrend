@@ -1,6 +1,8 @@
 .*
 !/.gitignore
 !/redditrend/.gitignore
+!/redditrend/.env.example
 !/.devcontainer
 reddit-secret.yaml
 reddit-fetcher/reddit-fetcher
+*.log

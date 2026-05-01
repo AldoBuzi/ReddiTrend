@@ -1,6 +1,8 @@
 
+const API_URL = process.env.REACT_APP_API_URL || "http://localhost:8080";
+
 async function getTopNodes() {
-    const response = await fetch("http://localhost:8080/api/top-nodes");
+    const response = await fetch(`${API_URL}/api/top-nodes`);
 
     if (!response.ok) {
         throw new Error("Error");

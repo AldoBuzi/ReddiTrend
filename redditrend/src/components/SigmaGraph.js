@@ -177,7 +177,7 @@ function SigmaGraph({ graphData }) {
         
         // Remove nodes not in graphData.nodes
         graphRef.current.forEachNode(nodeId => {
-            if (!graphData.nodes.find(n => n.key === nodeId) && ! nodeId in expandedNodeIds) {
+            if (!graphData.nodes.find(n => n.key === nodeId) && !expandedNodeIds.has(nodeId)) {
                 graphRef.current.dropNode(nodeId);
               }
         });
